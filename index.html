@@ -132,7 +132,7 @@
       this.accY = (this.dest.y - this.y)/250;
       this.vx += this.accX;
       this.vy += this.accY;
-      this.vx *= this.friction;
+      this.vx *= this.friction/1.01;
       this.vy *= this.friction/1.01;
     
       this.x += this.vx;
