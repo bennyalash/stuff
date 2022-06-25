@@ -315,9 +315,9 @@ function changeWord(word){
   ww = canvas.width = window.innerWidth;
   wh = canvas.height = window.innerHeight;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  var size = 80/word.value.length;
+  var size = 20/word.value.length;
   console.log(size);
-  ctx.font = "bold "+(size+2)+"vw Source Sans Pro, sans-serif";
+  ctx.font = "bold "+(size+5)+"vw Source Sans Pro, sans-serif";
   ctx.textAlign = "center";
   ctx.fillText(word.value, ww/2, wh/2);
 
