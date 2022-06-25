@@ -110,8 +110,8 @@
 
     //Particle Constructor
     function Particle(x,y){
-      this.x =  Math.random()*ww;
-      this.y =  Math.random()*wh - wh/2;
+      this.x =  (Math.random()*ww)/2;
+      this.y =  Math.random()*wh - wh/1.5;
       this.dest = {
         x : x,
         y: y
