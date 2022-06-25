@@ -317,7 +317,7 @@ function changeWord(word){
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   var size = 10/word.value.length;
   console.log(size);
-  ctx.font = "normal calc("+(size+2)+"vw + 10px) Source Sans Pro, sans-serif";
+  ctx.font = "bold calc("+(size+2)+"vw + 10px) Source Sans Pro, sans-serif";
   ctx.textAlign = "center";
   ctx.fillText(word.value, ww/2, wh/2);
 
