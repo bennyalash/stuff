@@ -330,11 +330,11 @@ function changeWord(word){
     for(var j=0;j<wh;j+=Math.round(ww/550)){
       if(data[ ((i + j*ww)*4) + 3] > 250){
           if(particles[num] !== undefined) {
-              particles[num].newDest(i - 500, j-wh/2+150);
+              particles[num].newDest(i - 700, j-wh/2+50);
               num++;
           }
           else{
-              particles.push(new Particle(i - 500,j-wh/2+150));
+              particles.push(new Particle(i - 700,j-wh/2+50));
               num++;
           }
       }
