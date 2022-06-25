@@ -326,8 +326,8 @@ function changeWord(word){
   ctx.globalCompositeOperation = "overlay";
 
   var num = 0;
-  for(var i=0;i<ww;i+=Math.round(ww/250)){
-    for(var j=0;j<wh;j+=Math.round(ww/250)){
+  for(var i=0;i<ww;i+=Math.round(ww/550)){
+    for(var j=0;j<wh;j+=Math.round(ww/550)){
       if(data[ ((i + j*ww)*4) + 3] > 250){
           if(particles[num] !== undefined) {
               particles[num].newDest(i, j-wh/2+150);
