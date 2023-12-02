@@ -198,7 +198,7 @@ function initScene(){
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  var size = 80/words[page].value.length;
+  var size = 10/words[page].value.length;
   console.log(size);
   ctx.font = "bold "+(size+8)+"vw Source Sans Pro, sans-serif";
   var twosize = size;
