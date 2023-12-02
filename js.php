@@ -253,7 +253,7 @@ function changeWord(word){
   ww = canvas.width = window.innerWidth;
   wh = canvas.height = window.innerHeight;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  var size = 80/word.value.length;
+  var size = 10/word.value.length;
   console.log(size);
   ctx.font = "bold "+(size+8)+"vw Source Sans Pro, sans-serif";
   ctx.textAlign = "center";
