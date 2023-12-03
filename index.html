@@ -22,6 +22,9 @@
       }
       .left{
       }
+      .right.active{
+        height:560px;
+      }
       .right{
         height:280px;
         overflow-y:auto;
@@ -193,6 +196,7 @@
         $(".read-more-button").eq(i).on("click", function(){
           $(".read-more-button").eq(i).hide();
           $(".read-more").eq(i).show();
+          $(".right").eq(i).addClass("active");
         });
       });
         
