@@ -137,7 +137,15 @@
     <script>
     $(function() {
   $('#logo').addClass('active');
-});
+      $(".read-more-button").each(function(i){
+        $(".read-more-button").eq(i).on("click", function(){
+          $(".read-more-button").eq(i).hide();
+          $(".read-more").eq(i).show();
+        });
+      });
+        
+  });
+      
     </script>
   </footer>
 </html>
