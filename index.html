@@ -1,7 +1,7 @@
 <html>
   <head>
     <style>
-      .active svg path{
+      svg.active path{
         stroke-width: 16px;
     stroke-dashoffset: 0px;
         stroke-dasharray: 105px;
@@ -12,7 +12,7 @@
     stroke-dasharray: 50px;
         transition:2s ease;
       }
-      .active svg path:nth-of-type(1){
+      svg.active path:nth-of-type(1){
         stroke-dasharray: 130px;
       }
     </style>
@@ -40,7 +40,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
     $(function() {
-  $('#logo').addClass('expand');
+  $('#logo').addClass('active');
 });
     </script>
   </footer>
