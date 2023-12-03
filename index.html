@@ -37,10 +37,11 @@
     </div>
   </body>
   <footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
-    window.onload = function() {
-      document.getElementById('logo').className = 'active';
-    };
+    $(function() {
+  $('#about').addClass('expand');
+});
     </script>
   </footer>
 </html>
