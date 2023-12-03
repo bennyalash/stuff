@@ -25,10 +25,11 @@
       .right{
         height:280px;
         overflow-y:auto;
+        border-radius:10px;
       }
       .right img{
         width:100%;
-        border-radius:10px;
+        
       }
       .content{
         max-width:1200px;
@@ -92,6 +93,16 @@
       }
       .read-more-button:hover{
         border-bottom: 1px solid #999;
+      }
+      /* Hiding scrollbar for Chrome, Safari and Opera */
+      .right::-webkit-scrollbar {
+          display: none;
+      }
+      
+      /* Hiding scrollbar for IE, Edge and Firefox */
+      .right {
+        scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none;  /* IE and Edge */
       }
     </style>
   </head>
