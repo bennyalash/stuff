@@ -294,7 +294,14 @@
     <script>
     $(function() {
       $(".right").on("click", function(){
-        $(this).toggleClass("pop");
+        if($(this).hasClass("pop")){
+          $(this).removeClass("pop");
+        }
+        else{
+          $(".right").removeClass("pop");
+          $(this).addClass("pop");
+        }
+        
       });
   $('#logo').addClass('active');
       $(".read-more-button").each(function(i){
