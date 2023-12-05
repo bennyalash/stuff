@@ -113,13 +113,32 @@
       }
       /* Hiding scrollbar for Chrome, Safari and Opera */
       .right::-webkit-scrollbar {
-          display: none;
+/*           display: none; */
+      }
+      /* width */
+      .right::-webkit-scrollbar {
+        width: 10px;
+      }
+      
+      /* Track */
+      .right::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      
+      /* Handle */
+      .right::-webkit-scrollbar-thumb {
+        background: #888;
+      }
+      
+      /* Handle on hover */
+      .right::-webkit-scrollbar-thumb:hover {
+        background: #555;
       }
       
       /* Hiding scrollbar for IE, Edge and Firefox */
       .right {
-        scrollbar-width: none;  /* Firefox */
-        -ms-overflow-style: none;  /* IE and Edge */
+/*         scrollbar-width: none; 
+        -ms-overflow-style: none;  */
       }
       .right.open:hover{
         cursor:pointer;
