@@ -24,7 +24,7 @@
         width:calc(50% - 20px);
         padding-right:20px;
       }
-      .right.active{
+      .right.active.open{
         height:100%;
         align-items: center;
       }
@@ -37,7 +37,7 @@
     height: 20vw;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
       }
       .right img{
             width: 100%;
@@ -146,6 +146,9 @@
       .right {
 /*         scrollbar-width: none; 
         -ms-overflow-style: none;  */
+      }
+      .open.right{
+        align-items:flex-start;
       }
       .right.open:hover{
         cursor:pointer;
