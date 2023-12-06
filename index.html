@@ -344,9 +344,9 @@
   $('#logo').addClass('active');
       $(".read-more-button").each(function(i){
         $(".read-more-button").eq(i).on("click", function(){
-          $(".read-more-button").eq(i).hide();
-          $(".read-more").eq(i).show();
-          $(".right").eq(i).addClass("active");
+          $(".read-more-button").eq(i).text("Read Less");
+          $(".read-more").eq(i).toggle();
+          $(".right").eq(i).toggleClass("active");
         });
       });
         
