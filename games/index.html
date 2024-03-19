@@ -70,6 +70,8 @@
             if(lastScore != player.points){
                 rank = num;
             }
+            lastScore = player.points;
+            
             var row = "<tr><td>" + rank + "</td><td>" + player.name + "</td><td>" + player.points + "</td><td>" + player.weeksPlayed + "</td></tr>";
             tbody.innerHTML += row;
         });
