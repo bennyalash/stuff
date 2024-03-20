@@ -244,27 +244,28 @@
                 }
 
                 function GetWord(textLetter, final) {
-                    if (final == 0) {
-                        var selectedLetters = document.querySelectorAll('#guess .letter');
-                    }
-                    else {
-                        var selectedLetters = document.querySelectorAll('#target .letter');
-                    }
-                    
-                    var word = "";
-                    var i = 1;
-                    selectedLetters.forEach(function (letter) {
-                        if (i == SelectedLetter && !final) {
-                            word += textLetter;
-                        }
-                        else {
-                            word += letter.innerText;
-                        }
-                        i++;
-                    });
-                    return word;
-                }
+    if (final == 0) {
+        var selectedLetters = document.querySelectorAll('#guess .letter');
+    } else {
+        var selectedLetters = document.querySelectorAll('#target .letter');
+    }
 
+    var word = "";
+    var i = 1;
+    selectedLetters.forEach(function (letter) {
+        if (i == SelectedLetter && !final) {
+            word += textLetter;
+        } else {
+            word += letter.innerText;
+        }
+        i++;
+    });
+
+    // Remove line breaks from the word
+    word = word.replace(/[\r\n]+/g, '');
+
+    return word;
+}
                 // Select all elements with the class "key"
                 var result = document.getElementById('result');
                 var keys = document.querySelectorAll('.key');
