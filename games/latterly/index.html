@@ -319,7 +319,8 @@
                             return true; // Resolve the promise with true
                         })
                         .catch(error => {
-                            result.innerText = '"' + word + '" is not a valid word.';
+                            result.innerText = '"' + word.replace(/[\r\n]+/g, '') + '" is not a valid word.';
+
                             return false; // Reject the promise with false
                         });
                 }
