@@ -293,6 +293,8 @@
 
                                     pastGuesses.innerHTML += innerHTMLToCopy;
                                     selectedElement.innerText = this.innerText;
+
+                                    result.innerText = newWord;
                                     if (newWord == winner) {
                                         console.log("MATCH!");
                                         document.getElementById('game').classList.add("gameover");
@@ -318,11 +320,11 @@
                             return response.json(); // Parse response body as JSON
                         })
                         .then(data => {
-                            result.innerText = word;
+                            //result.innerText = word;
                             return true; // Resolve the promise with true
                         })
                         .catch(error => {
-                            result.innerText = '"' + word + '" is not a valid word.';
+                            //result.innerText = '"' + word + '" is not a valid word.';
 
                             return false; // Reject the promise with false
                         });
