@@ -167,6 +167,19 @@
             opacity:0.8;
             border-bottom:2px solid white;
         }
+        #subheader {
+            width: 100px;
+            height: 50px;
+            border-radius: 0 0 20px 20px;
+            font-size: 40px;
+            margin: -1px auto;
+            background: #333;
+            display: flex;
+            justify-content: center;
+            color: white;
+            letter-spacing: 2px;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -222,7 +235,7 @@
     </div>
     <div id="overlay">
         <div id="logo">L<span class="special">a</span>tterly</div>
-        <div id="subheader"><span class="date">March 20</span><span class="guesses">#<span class="num">0</span></span></div>
+        <div id="subheader"><span class="guesses">0</span></div>
     </div>
 
 
@@ -305,7 +318,9 @@
 }
                 // Select all elements with the class "key"
                 var result = document.getElementById('result');
+                var totalMoves = 0;
                 var keys = document.querySelectorAll('.key');
+                var numGuesses = document.querySelector('.guesses');
                 var pastGuesses = document.getElementById('past-guesses');
                 var winner = GetWord("!", 1);
                 console.log(winner);
@@ -319,6 +334,9 @@
                         // Check if the new word is valid
                         checkWord(newWord).then(isValid => {
                             if (isValid) {
+                                totalMoves++;
+                                numGuesses.innerText = totalMoves;
+                                console.log(totalMoves);
                                 // Replace the selected letter with the clicked key's letter
                                 var selectedElement = document.querySelector('.selected');
                                 if (selectedElement) {
