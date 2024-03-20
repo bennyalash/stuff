@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latterly - Letter Swap Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Radley:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gluten:wght@100..900&family=Radley:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Gluten", "Radley", "Segoe UI";
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+            font-weight: 700;
+        }
+
+        .current, #target {
+            display: flex;
+            gap: 10px;
+            margin: 0 auto 20px;
+            width: min-content;
+        }
+
+            .current > div, #target > div {
+                background: white;
+                border: 0 solid #eee;
+                border-bottom-width: 2px;
+                height: 50px;
+                width: 50px;
+                font-size: 2em;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: transform 0.5s;
+                backface-visibility: hidden;
+                padding-top:5px;
+            }
+
+            #target > div {
+                background: black;
+                color: white;
+                border: 0;
+                border-radius: 5px;
+            }
+
+        .keyboard {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+            .keyboard .row {
+                display: flex;
+                width: 100%;
+                margin: 0 auto 8px;
+                touch-action: manipulation;
+                justify-content: center;
+                gap: 6px;
+            }
+
+        .key {
+            background-color: #eee;
+            color: black;
+            flex: 1;
+            max-width: calc((100vw - 66px) / 10);
+            display: flex;
+            height: 50px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            cursor: pointer;
+            padding-top: 5px;
+        }
+
+            .key:hover {
+                background-color: #e0e0e0;
+            }
+
+            .key span {
+                font-size: 20px;
+            }
+
+        .current .selected {
+            color: lightgrey;
+            border-color: black;
+        }
+
+        #past-guesses .current {
+            margin: 0 auto;
+            width: min-content;
+        }
+
+        .current .letter {
+            cursor: default;
+        }
+
+        #past-guesses .letter {
+            pointer-events: none;
+            color: grey;
+            border-style: dotted;
+            cursor: auto;
+        }
+
+        #game {
+            position: fixed;
+            width: 100%;
+            bottom: calc(50% - 70px);
+        }
+
+        #target {
+            position: absolute;
+            width: 100%;
+            justify-content: center;
+            transition: 1s ease;
+        }
+
+        .gameover #target {
+            transform: translateY(calc(-100% - 20px));
+        }
+
+        #game.gameover * {
+            pointer-events: none;
+        }
+
+        #game.gameover {
+        }
+
+        #result {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            font-size: 18px;
+            padding-top: 80px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        #overlay {
+            height: 100vh;
+            width: 100vw;
+            background: linear-gradient(180deg, white, 25%, transparent, 100%, transparent);
+            z-index: 1;
+            pointer-events: none;
+        }
+        #logo {
+            padding: 10px 0px;
+            font-size: 2em;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            background: black;
+            color: white;
+            pointer-events:none;
+        }
+        #logo .special{
+            opacity:0.8;
+            border-bottom:2px solid white;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="game">
+        <div id="past-guesses">
+
+        </div>
+        <div id="guess">
+            <div class="current">
+                <div onclick="select(this, this.getAttribute('data-letter'))" data-letter="1" class="letter">B</div>
+                <div onclick="select(this, this.getAttribute('data-letter'))" data-letter="2" class="letter">E</div>
+                <div onclick="select(this, this.getAttribute('data-letter'))" data-letter="3" class="letter">A</div>
+                <div onclick="select(this, this.getAttribute('data-letter'))" data-letter="4" class="letter">N</div>
+            </div>
+        </div>
+        <div id="target">
+            <div class="letter">C</div>
+            <div class="letter">A</div>
+            <div class="letter">R</div>
+            <div class="letter">T</div>
+        </div>
+        <p id="result"></p>
+    </div>
+
+    <div class="keyboard">
+        <div class="row">
+            <div class="key"><span>Q</span></div>
+            <div class="key"><span>W</span></div>
+            <div class="key"><span>E</span></div>
+            <div class="key"><span>R</span></div>
+            <div class="key"><span>T</span></div>
+            <div class="key"><span>Y</span></div>
+            <div class="key"><span>U</span></div>
+            <div class="key"><span>I</span></div>
+            <div class="key"><span>O</span></div>
+            <div class="key"><span>P</span></div>
+        </div>
+        <div class="row">
+            <div class="key"><span>A</span></div>
+            <div class="key"><span>S</span></div>
+            <div class="key"><span>D</span></div>
+            <div class="key"><span>F</span></div>
+            <div class="key"><span>G</span></div>
+            <div class="key"><span>H</span></div>
+            <div class="key"><span>J</span></div>
+            <div class="key"><span>K</span></div>
+            <div class="key"><span>L</span></div>
+        </div>
+        <div class="row">
+            <div class="key"><span>Z</span></div>
+            <div class="key"><span>X</span></div>
+            <div class="key"><span>C</span></div>
+            <div class="key"><span>V</span></div>
+            <div class="key"><span>B</span></div>
+            <div class="key"><span>N</span></div>
+            <div class="key"><span>M</span></div>
+        </div>
+    </div>
+    <div id="overlay"><div id="logo">L<span class="special">a</span>tterly</div></div>
+
+
+
+            <script>
+
+                var SelectedLetter = 0;
+
+                function select(element, letterNum) {
+                    var selectedElements = document.getElementsByClassName('selected');
+                    for (var i = 0; i < selectedElements.length; i++) {
+                        selectedElements[i].classList.remove('selected');
+                    }
+                    element.classList.add('selected');
+                    SelectedLetter = letterNum;
+                }
+
+                function GetWord(textLetter, final) {
+                    if (final == 0) {
+                        var selectedLetters = document.querySelectorAll('#guess .letter');
+                    }
+                    else {
+                        var selectedLetters = document.querySelectorAll('#target .letter');
+                    }
+                    
+                    var word = "";
+                    var i = 1;
+                    selectedLetters.forEach(function (letter) {
+                        if (i == SelectedLetter && !final) {
+                            word += textLetter;
+                        }
+                        else {
+                            word += letter.innerText;
+                        }
+                        i++;
+                    });
+                    return word;
+                }
+
+                // Select all elements with the class "key"
+                var keys = document.querySelectorAll('.key');
+                var pastGuesses = document.getElementById('past-guesses');
+                var winner = GetWord("!", 1);
+                console.log(winner);
+
+                // Add a click event listener to each key
+                keys.forEach(function (key) {
+                    key.addEventListener('click', function () {
+                        // Call TypeLetter function with the clicked letter
+                        var newWord = GetWord(this.innerText, 0);
+
+                        // Check if the new word is valid
+                        checkWord(newWord).then(isValid => {
+                            if (isValid) {
+                                // Replace the selected letter with the clicked key's letter
+                                var selectedElement = document.querySelector('.selected');
+                                if (selectedElement) {
+                                    SelectedLetter = 0;
+                                    selectedElement.classList.remove('selected');
+
+                                    var sourceDiv = document.getElementById('guess');
+                                    var innerHTMLToCopy = sourceDiv.innerHTML;
+
+                                    pastGuesses.innerHTML += innerHTMLToCopy;
+                                    selectedElement.innerText = this.innerText;
+                                    if (newWord == winner) {
+                                        console.log("MATCH!");
+                                        document.getElementById('game').classList.add("gameover");
+                                        var result = document.getElementById('result');
+                                        result.innerText = 'Congratulations!';
+                                    }
+                                }
+                            }
+                        });
+                    });
+                });
+
+
+                function checkWord(word) {
+                    var result = document.getElementById('result');
+                    // Make an API request to check if the word exists in WordNet
+                    return fetch('https://api.dictionaryapi.dev/api/v2/entries/en/' + word)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Word not found');
+                            }
+                            return response.json(); // Parse response body as JSON
+                        })
+                        .then(data => {
+                            result.innerText = '';
+                            return true; // Resolve the promise with true
+                        })
+                        .catch(error => {
+                            result.innerText = '"' + word + '" is not a valid word.';
+                            return false; // Reject the promise with false
+                        });
+                }
+            </script>
+</body>
+</html>
