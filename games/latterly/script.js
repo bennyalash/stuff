@@ -1,5 +1,4 @@
 
-<script>
                 // Define the words
                 const start_word = 'BEAN';
                 const end_word = 'CART';
@@ -142,4 +141,3 @@
                             return false; // Reject the promise with false
                         });
                 }
-            </script>
