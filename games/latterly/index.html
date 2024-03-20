@@ -315,7 +315,7 @@
                             return response.json(); // Parse response body as JSON
                         })
                         .then(data => {
-                            result.innerText = '';
+                            result.innerText = word;
                             return true; // Resolve the promise with true
                         })
                         .catch(error => {
