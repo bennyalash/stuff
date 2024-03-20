@@ -177,17 +177,11 @@
         </div>
         <div id="guess">
             <div class="current">
-                <div onclick="select(this, this.getAttribute('data-letter'))" data-letter="1" class="letter">B</div>
-                <div onclick="select(this, this.getAttribute('data-letter'))" data-letter="2" class="letter">E</div>
-                <div onclick="select(this, this.getAttribute('data-letter'))" data-letter="3" class="letter">A</div>
-                <div onclick="select(this, this.getAttribute('data-letter'))" data-letter="4" class="letter">N</div>
+                
             </div>
         </div>
         <div id="target">
-            <div class="letter">C</div>
-            <div class="letter">A</div>
-            <div class="letter">R</div>
-            <div class="letter">T</div>
+            
         </div>
         <p id="result"></p>
     </div>
@@ -231,7 +225,47 @@
 
 
             <script>
+                // Define the words
+                const start_word = 'BEAN';
+                const end_word = 'CART';
 
+                // Get the container where the elements will be appended
+                const container = document.querySelector('#guess .current');
+
+                // Loop through each character of the word
+                for (let i = 0; i < start_word.length; i++) {
+                    // Create a div element
+                    const div = document.createElement('div');
+
+                    // Set attributes for the div
+                    div.setAttribute('onclick', "select(this, this.getAttribute('data-letter'))");
+                    div.setAttribute('data-letter', (i + 1).toString());
+                    div.classList.add('letter');
+
+                    // Set the text content of the div to the current character of the word
+                    div.textContent = start_word[i];
+
+                    // Append the div to the container
+                    container.append(div);
+                }
+
+                // Get the container where the elements will be appended
+                const target = document.getElementById('target');
+
+                // Loop through each character of the word
+                for (let i = 0; i < end_word.length; i++) {
+                    // Create a div element
+                    const div = document.createElement('div');
+
+                    // Set class for the div
+                    div.classList.add('letter');
+
+                    // Set the text content of the div to the current character of the word
+                    div.textContent = end_word[i];
+
+                    // Append the div to the container
+                    target.appendChild(div);
+                }
                 var SelectedLetter = 0;
 
                 function select(element, letterNum) {
