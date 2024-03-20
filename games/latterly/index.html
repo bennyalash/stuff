@@ -266,9 +266,11 @@
                 }
 
                 // Select all elements with the class "key"
+                var result = document.getElementById('result');
                 var keys = document.querySelectorAll('.key');
                 var pastGuesses = document.getElementById('past-guesses');
                 var winner = GetWord("!", 1);
+                result.innerText = winner;
                 console.log(winner);
 
                 // Add a click event listener to each key
@@ -294,7 +296,7 @@
                                     if (newWord == winner) {
                                         console.log("MATCH!");
                                         document.getElementById('game').classList.add("gameover");
-                                        var result = document.getElementById('result');
+                                        
                                         result.innerText = 'Congratulations!';
                                     }
                                 }
@@ -306,7 +308,7 @@
 
                 function checkWord(word) {
                     word = word.replace(/[\r\n]+/g, '');
-                    var result = document.getElementById('result');
+                    
                     // Make an API request to check if the word exists in WordNet
                     return fetch('https://api.dictionaryapi.dev/api/v2/entries/en/' + word)
                         .then(response => {
