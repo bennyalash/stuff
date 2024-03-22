@@ -31,6 +31,9 @@
     #logo{
         color:var(--opposite)
     }
+    .complete *{
+        pointer-events:none !important;
+    }
     body {
         font-family: 'Crimson Pro', serif;
         background-color: var(--secondary);
@@ -41,11 +44,12 @@
         align-items: center;
     }
     .complete .gradient {
-        background: linear-gradient(135deg, #49E2FC,#4AC3FD, #4AA3FD,#8679FE,#C14FFF,#DA4FFF, #F34FFF);
+        /*background: linear-gradient(135deg, #49E2FC,#4AC3FD, #4AA3FD,#8679FE,#C14FFF,#DA4FFF, #F34FFF);
         z-index: -1;
         background: repeating-linear-gradient(var(--angle),#49E2FC,#49E2FC,#4AC3FD, #4AA3FD,#8679FE,#C14FFF,#DA4FFF, #F34FFF,#F34FFF, #DA4FFF, #C14FFF, #8679FE, #4AA3FD, #4AC3FD, #49E2FC, #49E2FC var(--d));
         background-size: calc(var(--d)/sin(var(--angle))) 100%;
-        animation: AnimationName 7s linear infinite reverse;
+        animation: AnimationName 7s linear infinite reverse;*/
+        background: #B18FCF;
     }
     .gradient {
         --d: 1000px;
@@ -132,6 +136,7 @@
         color: var(--opposite);
         text-align: center;
         font-size:18px;
+        margin-top:20px;
     }
 
 </style>
