@@ -1,16 +1,15 @@
 const wordSets = [
-    { startWord: 'BEAN', endWord: 'CART' },     // January 1
+    { startWord: 'BEAN', endWord: 'CART' },     // 
     { startWord: 'LEAP', endWord: 'FROG' },     // January 2
-    { startWord: 'SLEEP', endWord: 'DREAM' },   // December 30
+    { startWord: 'GOOD', endWord: 'SOCK' },   // December 30
     { startWord: 'SNOW', endWord: 'IGLOO' }     // December 31
 ];
 // Get the current date
 const currentDate = new Date();
-var dayOfYear = Math.floor((currentDate - new Date(currentDate.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
-dayOfYear = dayOfYear - 81;
+const daysSinceMarch2024 = Math.floor((new Date() - new Date('2024-03-20')) / (1000 * 60 * 60 * 24));
 
 // Retrieve the word set for the current day
-const wordSet = wordSets[dayOfYear];
+const wordSet = wordSets[daysSinceMarch2023];
 
 
 // Extract the startWord and endWord from the selected word set
