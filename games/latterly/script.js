@@ -1,145 +1,108 @@
+// Define the words
+const startWord = 'BEAN';
+const endWord = 'CART';
 
-                // Define the words
-                const start_word = 'BEAN';
-                const end_word = 'CART';
-
-                // Get the container where the elements will be appended
-                const container = document.querySelector('#guess .current');
-
-                // Loop through each character of the word
-                for (let i = 0; i < start_word.length; i++) {
-                    // Create a div element
-                    const div = document.createElement('div');
-
-                    // Set attributes for the div
-                    div.setAttribute('onclick', "select(this, this.getAttribute('data-letter'))");
-                    div.setAttribute('data-letter', (i + 1).toString());
-                    div.classList.add('letter');
-
-                    // Set the text content of the div to the current character of the word
-                    div.textContent = start_word[i];
-
-                    // Append the div to the container
-                    container.append(div);
-                }
-
-                // Get the container where the elements will be appended
-                const target = document.getElementById('target');
-
-                // Loop through each character of the word
-                for (let i = 0; i < end_word.length; i++) {
-                    // Create a div element
-                    const div = document.createElement('div');
-
-                    // Set class for the div
-                    div.classList.add('letter');
-
-                    // Set the text content of the div to the current character of the word
-                    div.textContent = end_word[i];
-
-                    // Append the div to the container
-                    target.appendChild(div);
-                }
-                var SelectedLetter = 0;
-
-                function select(element, letterNum) {
-                    var selectedElements = document.getElementsByClassName('selected');
-                    for (var i = 0; i < selectedElements.length; i++) {
-                        selectedElements[i].classList.remove('selected');
-                    }
-                    element.classList.add('selected');
-                    SelectedLetter = letterNum;
-                }
-
-                function GetWord(textLetter, final) {
-    if (final == 0) {
-        var selectedLetters = document.querySelectorAll('#guess .letter');
-    } else {
-        var selectedLetters = document.querySelectorAll('#target .letter');
+// Function to create and append letter divs to the specified container
+function appendLetters(word, containerSelector) {
+    const container = document.querySelector(containerSelector);
+    for (let i = 0; i < word.length; i++) {
+        const div = document.createElement('div');
+        div.setAttribute('onclick', "select(this, this.getAttribute('data-letter'))");
+        div.setAttribute('data-letter', (i + 1).toString());
+        div.classList.add('letter');
+        div.textContent = word[i];
+        container.append(div);
     }
+}
 
-    var word = "";
-    var i = 1;
+// Append letters for the start word
+appendLetters(startWord, '#guess .current');
+
+// Append letters for the end word
+appendLetters(endWord, '#target');
+
+let selectedLetter = 0;
+
+// Function to handle letter selection
+function select(element, letterNum) {
+    const selectedElements = document.getElementsByClassName('selected');
+    for (let i = 0; i < selectedElements.length; i++) {
+        selectedElements[i].classList.remove('selected');
+    }
+    element.classList.add('selected');
+    selectedLetter = letterNum;
+}
+
+// Function to construct a word based on selected letters
+function getWord(textLetter, final) {
+    const selectedLetters = document.querySelectorAll(final === 0 ? '#guess .letter' : '#target .letter');
+    let word = "";
+    let i = 1;
     selectedLetters.forEach(function (letter) {
-        if (i == SelectedLetter && !final) {
+        if (i === selectedLetter && !final) {
             word += textLetter;
         } else {
             word += letter.innerText;
         }
         i++;
     });
-
-    // Remove line breaks from the word
-    word = word.replace(/[\r\n]+/g, '');
-
+    word = word.replace(/[\r\n]+/g, ''); // Remove line breaks
     return word;
 }
-                // Select all elements with the class "key"
-                var result = document.getElementById('result');
-                var totalMoves = 0;
-                var keys = document.querySelectorAll('.key');
-                var numGuesses = document.querySelector('.guesses');
-                var pastGuesses = document.getElementById('past-guesses');
-                var winner = GetWord("!", 1);
-                console.log(winner);
 
-                // Add a click event listener to each key
-                keys.forEach(function (key) {
-                    key.addEventListener('click', function () {
-                      if(SelectedLetter != 0){
-                        // Call TypeLetter function with the clicked letter
-                        var newWord = GetWord(this.innerText, 0);
+// Get the necessary elements
+const result = document.getElementById('result');
+let totalMoves = 0;
+const keys = document.querySelectorAll('.key');
+const numGuesses = document.querySelector('.guesses');
+const pastGuesses = document.getElementById('past-guesses');
+const winner = getWord("!", 1); // Get the winning word
 
-                        // Check if the new word is valid
-                        checkWord(newWord).then(isValid => {
-                            if (isValid) {
-                                totalMoves++;
-                                numGuesses.innerText = totalMoves;
-                                console.log(totalMoves);
-                                // Replace the selected letter with the clicked key's letter
-                                var selectedElement = document.querySelector('.selected');
-                                if (selectedElement) {
-                                    SelectedLetter = 0;
-                                    selectedElement.classList.remove('selected');
-
-                                    var sourceDiv = document.getElementById('guess');
-                                    var innerHTMLToCopy = sourceDiv.innerHTML;
-
-                                    pastGuesses.innerHTML += innerHTMLToCopy;
-                                    selectedElement.innerText = this.innerText;
-
-                                    if (newWord == winner) {
-                                        console.log("MATCH!");
-                                        document.getElementById('game').classList.add("gameover");
-                                        
-                                        result.innerText = 'Congratulations!';
-                                    }
-                                }
-                            }
-                        });
-                      }
-                    });
-                });
-
-
-                function checkWord(word) {
-                    word = word.replace(/[\r\n]+/g, '');
-                    
-                    // Make an API request to check if the word exists in WordNet
-                    return fetch('https://api.dictionaryapi.dev/api/v2/entries/en/' + word)
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Word not found');
-                            }
-                            return response.json(); // Parse response body as JSON
-                        })
-                        .then(data => {
-                            result.innerText = '';
-                            return true; // Resolve the promise with true
-                        })
-                        .catch(error => {
-                            result.innerText = '"' + word + '" is not a valid word.';
-
-                            return false; // Reject the promise with false
-                        });
+// Add event listener to each key
+keys.forEach(function (key) {
+    key.addEventListener('click', function () {
+        if (selectedLetter !== 0) {
+            const newWord = getWord(this.innerText, 0);
+            checkWord(newWord).then(isValid => {
+                if (isValid) {
+                    totalMoves++;
+                    numGuesses.innerText = totalMoves;
+                    const selectedElement = document.querySelector('.selected');
+                    if (selectedElement) {
+                        selectedLetter = 0;
+                        selectedElement.classList.remove('selected');
+                        const sourceDiv = document.getElementById('guess');
+                        const innerHTMLToCopy = sourceDiv.innerHTML;
+                        pastGuesses.innerHTML += innerHTMLToCopy;
+                        selectedElement.innerText = this.innerText;
+                        if (newWord === winner) {
+                            console.log("MATCH!");
+                            document.getElementById('game').classList.add("gameover");
+                            result.innerText = 'Congratulations!';
+                        }
+                    }
                 }
+            });
+        }
+    });
+});
+
+// Function to check if a word exists
+function checkWord(word) {
+    word = word.replace(/[\r\n]+/g, '');
+    return fetch('https://api.dictionaryapi.dev/api/v2/entries/en/' + word)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Word not found');
+            }
+            return response.json(); // Parse response body as JSON
+        })
+        .then(data => {
+            result.innerText = '';
+            return true; // Resolve the promise with true
+        })
+        .catch(error => {
+            result.innerText = '"' + word + '" is not a valid word.';
+            return false; // Reject the promise with false
+        });
+}
