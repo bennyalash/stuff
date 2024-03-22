@@ -175,6 +175,7 @@ body {
             z-index: 2;
             display:none;
                 position: fixed;
+                top: 50px;
         }
         #info.active{
             display:block;
