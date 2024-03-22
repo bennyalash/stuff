@@ -131,3 +131,18 @@ function checkWord(word) {
             return false; // Reject the promise with false
         });
 }
+
+const info = document.getElementById("info");
+const helpButton = document.getElementById("help");
+
+// Toggle class active on #info when HELP button is clicked
+helpButton.addEventListener("click", function() {
+    info.classList.toggle("active");
+});
+
+// Hide #info when clicking anywhere on the document while it's visible
+document.addEventListener("click", function(event) {
+    if (info.classList.contains("active") && event.target !== helpButton) {
+        info.classList.remove("active");
+    }
+});
