@@ -1,8 +1,16 @@
 const wordSets = [
-    { startWord: 'BEAN', endWord: 'CART' },     // 
-    { startWord: 'LEAP', endWord: 'FROG' },     // January 2
-    { startWord: 'GOOD', endWord: 'SOCK' },   // December 30
-    { startWord: 'SNOW', endWord: 'IGLOO' }     // December 31
+    { startWord: 'BEAN', endWord: 'CART' },     // March 21
+    { startWord: 'LEAP', endWord: 'FROG' },     // March 22
+    { startWord: 'GOLD', endWord: 'SACK' },     // March 23
+    { startWord: 'DARK', endWord: 'MOON' },     // March 24
+    { startWord: 'PALM', endWord: 'TREE' },     // March 25 PALM SUNDAY
+    { startWord: 'HARD', endWord: 'NAIL' },     // March 26
+    { startWord: 'LOVE', endWord: 'BIRD' },     // March 27
+    { startWord: 'HIGH', endWord: 'JUMP' },     // March 28 
+    { startWord: 'GOOD', endWord: 'DEAD' },     // March 29 GOOD FRIDAY
+    { startWord: 'LONG', endWord: 'WALK' },     // March 30 
+    { startWord: 'LAMB', endWord: 'LIFE' },     // March 31 EASTER
+    { startWord: 'FOOL', endWord: 'DAYS' },     // April 1 APRIL FOOLS
 ];
 // Get the current date
 const currentDate = new Date();
