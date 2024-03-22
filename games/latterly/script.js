@@ -6,10 +6,10 @@ const wordSets = [
 ];
 // Get the current date
 const currentDate = new Date();
-const daysSinceMarch2024 = Math.floor((new Date() - new Date('2024-03-20')) / (1000 * 60 * 60 * 24));
+const daysSinceMarch032024 = Math.floor((new Date() - new Date('2024-03-20')) / (1000 * 60 * 60 * 24));
 
 // Retrieve the word set for the current day
-const wordSet = wordSets[daysSinceMarch2023];
+const wordSet = wordSets[daysSinceMarch032024];
 
 
 // Extract the startWord and endWord from the selected word set
