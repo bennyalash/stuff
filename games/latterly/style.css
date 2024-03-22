@@ -184,12 +184,11 @@ body {
             font-weight: 400;
         }
 #help{
-                position: absolute;
+               position: absolute;
     top: 8px;
     right: 10px;
     background: white;
     border-radius: 100px;
-    /* padding: 10px; */
     font-size: 20px;
     height: 25px;
     width: 30px;
@@ -197,4 +196,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    pointer-events: all;
+    cursor: pointer;
 }
