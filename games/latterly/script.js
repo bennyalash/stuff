@@ -12,7 +12,6 @@ dayOfYear = dayOfYear - 81;
 // Retrieve the word set for the current day
 const wordSet = wordSets[dayOfYear];
 
-console.log(dayOfYear);
 
 // Extract the startWord and endWord from the selected word set
 const startWord = wordSet.startWord;
@@ -52,6 +51,8 @@ function select(element, letterNum) {
 // Function to construct a word based on selected letters
 function getWord(textLetter, final) {
     const selectedLetters = document.querySelectorAll(final == 0 ? '#guess .letter' : '#target .letter');
+    console.log(selectedLetters);
+    console.log(textLetter);
     let word = "";
     let i = 1;
     selectedLetters.forEach(function (letter) {
@@ -77,7 +78,6 @@ const winner = getWord("!", 1); // Get the winning word
 // Add event listener to each key
 keys.forEach(function (key) {
     key.addEventListener('click', function () {
-        console.log(this.innerText);
         if (selectedLetter !== 0) {
             const newWord = getWord(this.innerText, 0);
             checkWord(newWord).then(isValid => {
@@ -107,7 +107,6 @@ keys.forEach(function (key) {
 
 // Function to check if a word exists
 function checkWord(word) {
-    console.log(word);
     word = word.replace(/[\r\n]+/g, '');
     return fetch('https://api.dictionaryapi.dev/api/v2/entries/en/' + word)
         .then(response => {
