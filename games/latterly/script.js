@@ -77,6 +77,7 @@ const winner = getWord("!", 1); // Get the winning word
 // Add event listener to each key
 keys.forEach(function (key) {
     key.addEventListener('click', function () {
+        console.log(this.innerText);
         if (selectedLetter !== 0) {
             const newWord = getWord(this.innerText, 0);
             checkWord(newWord).then(isValid => {
