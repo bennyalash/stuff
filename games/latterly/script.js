@@ -86,6 +86,7 @@
                 // Add a click event listener to each key
                 keys.forEach(function (key) {
                     key.addEventListener('click', function () {
+                      if(SelectedLetter != 0){
                         // Call TypeLetter function with the clicked letter
                         var newWord = GetWord(this.innerText, 0);
 
@@ -117,6 +118,7 @@
                             }
                         });
                     });
+                }
                 });
 
 
