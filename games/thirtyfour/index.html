@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Path Puzzle Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="logo">The Game called ThirtyFour<br />March 22, 2024 - Level 1</div>
+    <div class="container">
+        <div class="grid" id="grid">
+            <div class="gradient"></div>
+        </div>
+
+    </div>
+    <div id="response"></div>
+</body>
+</html>
+
+<style>
+    :root {
+        --primary: #494850;
+        --secondary: #2C2C34;
+        --opposite: white;
+        --accent: #D8D8F6;
+        --final: #B18FCF;
+    }
+    #logo{
+        color:var(--opposite)
+    }
+    body {
+        font-family: 'Crimson Pro', serif;
+        background-color: var(--secondary);
+    }
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .complete .gradient {
+        background: linear-gradient(135deg, #49E2FC,#4AC3FD, #4AA3FD,#8679FE,#C14FFF,#DA4FFF, #F34FFF);
+        z-index: -1;
+        background: repeating-linear-gradient(var(--angle),#49E2FC,#49E2FC,#4AC3FD, #4AA3FD,#8679FE,#C14FFF,#DA4FFF, #F34FFF,#F34FFF, #DA4FFF, #C14FFF, #8679FE, #4AA3FD, #4AC3FD, #49E2FC, #49E2FC var(--d));
+        background-size: calc(var(--d)/sin(var(--angle))) 100%;
+        animation: AnimationName 7s linear infinite reverse;
+    }
+    .gradient {
+        --d: 1000px;
+        --angle: 135deg;
+        position: absolute;
+        height: calc(6 * 50px);
+        width: calc(6 * 50px);
+        bottom: 0;
+        right: 0;
+        /*background: linear-gradient(135deg, #49E2FC,#4AC3FD, #4AA3FD,#8679FE,#C14FFF,#DA4FFF, #F34FFF);
+        z-index: -1;
+        background: repeating-linear-gradient(var(--angle),#49E2FC,#49E2FC,#4AC3FD, #4AA3FD,#8679FE,#C14FFF,#DA4FFF, #F34FFF,#F34FFF, #DA4FFF, #C14FFF, #8679FE, #4AA3FD, #4AC3FD, #49E2FC, #49E2FC var(--d));
+        background-size: calc(var(--d)/sin(var(--angle))) 100%;
+        animation: AnimationName 7s linear infinite reverse;*/
+        background: var(--accent);
+        z-index: -1;
+    }
+
+    @keyframes AnimationName {
+        0% {
+            background-position: calc(var(--d)/sin(var(--angle))) 0;
+        }
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(7, 50px);
+        grid-template-rows: repeat(7, 50px);
+        gap: 0;
+        position: relative;
+        margin-right: 50px;
+    }
+
+    .cell {
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary);
+        cursor: pointer;
+        font-size: 24px;
+        box-shadow: 0 0 0 0 #2c1c00;
+    }
+    .cell.active {
+        background: transparent;
+        box-shadow: 0 0 0 transparent;
+    }
+
+    .cell:not(.heading):not(.blank):hover {
+        filter: brightness(1.5);
+    }
+
+    .numbers {
+        display: flex;
+        flex-direction: column;
+        margin-left: 20px;
+    }
+
+    .heading, .blank {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 0;
+        margin-bottom: 2px;
+        background-color: transparent;
+        cursor: default;
+        color: var(--opposite);
+        font-size: 24px;
+        box-shadow: 0 0 0 transparent;
+        transition: 1s ease;
+    }
+    .fade{
+        opacity:0;
+    }
+    #response {
+        display: flex;
+        color: var(--opposite);
+        height: 100px;
+        font-size: 24px;
+        justify-content: center;
+        align-items: center;
+    }
+    #logo {
+        color: var(--opposite);
+        text-align: center;
+        font-size:18px;
+    }
+
+</style>
+<script>
+    //const cols = [0, 4, 4, 2, 3, 1, 1];
+    //const rows = [0, 2, 3, 3, 3, 3, 1];
+
+    const cols = [0, 3, 4, 3, 5, 1, 4];
+    const rows = [0, 3, 2, 5, 2, 5, 3];
+
+    boatj = 1;  boati = 1;
+    finalj = 6; finali = 1;
+  
+
+    var map = [];
+
+    for (var i = 0; i < 6; i++) {
+        map[i] = new Array(6).fill(0);
+    }
+
+    map[boatj-1][boati-1] = 1;
+    map[finali - 1][finalj - 1] = 1;
+
+    console.log(map);
+
+    const responsediv = document.getElementById('response');
+    const grid = document.getElementById('grid');
+
+    // Create grid and numbers
+    for (let i = 0; i < 7; i++) {
+        for (let j = 0; j < 7; j++) {
+
+            const cell = document.createElement('div');
+            cell.classList.add('cell');
+            cell.dataset.row = i;
+            cell.dataset.column = j;
+
+            if (i == boati && j == boatj) {
+                cell.classList.add('active');
+            }
+
+            if (i == finali && j == finalj) {
+                cell.classList.add('active');
+            }
+
+            if (i == 0 && j == 0) {
+                cell.classList.add('blank');
+            }
+            else {
+                if (i == 0) {
+                    cell.textContent = cols[j];
+                    cell.classList.add('heading');
+                    cell.classList.add('column-heading');
+                    cell.classList.remove('cell');
+                }
+                if (j == 0) {
+                    cell.textContent = rows[i];
+                    cell.classList.add('heading');
+                    cell.classList.add('row-heading');
+                    cell.classList.remove('cell');
+                }
+            }
+            
+            grid.appendChild(cell);
+        }
+    }
+
+    var cells = document.getElementsByClassName('cell');
+
+    for (var i = 0; i < cells.length; i++) {
+        cells[i].addEventListener('click', function () {
+
+            if ((this.dataset.row == boatj && this.dataset.column == boati) || (this.dataset.row == finali && this.dataset.column == finalj)) {
+                return;
+            }
+
+            if (this.classList.contains('active')) {
+
+                const c = document.querySelector('[data-row="0"][data-column="' + this.dataset.column + '"]');
+                const r = document.querySelector('[data-column="0"][data-row="' + this.dataset.row + '"]');
+
+                this.classList.toggle('active');
+
+                map[this.dataset.row - 1][this.dataset.column - 1] = 0;
+
+                if (c.textContent == "\u2713") {
+                    c.textContent = 0;
+                }
+                if (r.textContent == "\u2713") {
+                    r.textContent = 0;
+                }
+                c.classList.remove("fade");
+                r.classList.remove("fade");
+                c.textContent = 1 * c.textContent + 1;
+                r.textContent = 1 * r.textContent + 1;
+            }
+            else {
+                const c = document.querySelector('[data-row="0"][data-column="' + this.dataset.column + '"]');
+                const r = document.querySelector('[data-column="0"][data-row="' + this.dataset.row + '"]');
+
+                if (1 * c.textContent > 0 && 1 * r.textContent > 0) {
+                    this.classList.toggle('active');
+
+                    map[this.dataset.row - 1][this.dataset.column - 1] = 1;
+
+                    c.textContent = 1 * c.textContent - 1;
+                    r.textContent = 1 * r.textContent - 1;
+
+                    if (c.textContent == 0) {
+                        c.textContent = "\u2713";
+                        c.classList.add("fade");
+                    }
+                    if (r.textContent == 0) {
+                        r.textContent = "\u2713";
+                        r.classList.add("fade");
+                    }
+                }
+
+            }
+
+            // Initialize visited array
+            const visited = [];
+            for (let i = 0; i < 6; i++) {
+                visited[i] = new Array(6).fill(0);
+            }
+
+            completeNumbers = true;
+            const heading = document.querySelectorAll('.heading');
+            heading.forEach(h => {
+                // Do something with each cell
+                if (h.textContent != "\u2713") {
+                    completeNumbers = false;
+                }
+                console.log(h.textContent); // Example: Accessing text content of each cell
+            });
+            
+            // Call DFS from the starting point
+            const hasPath = dfs(map, visited, boati - 1, boatj - 1, finali - 1, finalj - 1);
+            var response = "";
+
+            if (hasPath && completeNumbers) {
+                console.log("VICTORY");
+                response = "Congratulations!";
+                grid.classList.add("complete");
+            }
+
+            if (hasPath && !completeNumbers) {
+                response = "Place More Blocks.";
+            }
+
+            if (!hasPath && completeNumbers) {
+                response = "The Path is not Complete.";
+            }
+            responsediv.textContent = response;
+
+
+        });
+    }
+
+    function dfs(grid, visited, row, col, finalRow, finalCol) {
+        if (row < 0 || col < 0 || row >= grid.length || col >= grid[0].length || visited[row][col] || grid[row][col] === 0) {
+            return false;
+        }
+
+        visited[row][col] = true;
+
+        if (row === finalRow && col === finalCol) {
+            return true;
+        }
+
+        let neighbors = 0;
+        const directions = [[0, 1], [0, -1], [1, 0], [-1, 0]];
+        for (const [dx, dy] of directions) {
+            const newRow = row + dx;
+            const newCol = col + dy;
+            if (newRow >= 0 && newRow < grid.length && newCol >= 0 && newCol < grid[0].length && grid[newRow][newCol] !== 0) {
+                neighbors++;
+            }
+        }
+
+        // If the number of neighbors is not exactly 2, it's not a singular path
+        if (neighbors > 2) {
+            return false;
+        }
+
+        // Explore adjacent cells
+        for (const [dx, dy] of directions) {
+            if (dfs(grid, visited, row + dx, col + dy, finalRow, finalCol)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    
+
+
+</script>
