@@ -1,5 +1,9 @@
-const wordSets = require('wordSets.js');
-
+const wordSets = [
+    { startWord: 'BEAN', endWord: 'CART' },     // January 1
+    { startWord: 'JUMP', endWord: 'FROG' },     // January 2
+    { startWord: 'SLEEP', endWord: 'DREAM' },   // December 30
+    { startWord: 'SNOW', endWord: 'IGLOO' }     // December 31
+];
 // Get the current date
 const currentDate = new Date();
 const dayOfYear = Math.floor((currentDate - new Date(currentDate.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
