@@ -106,6 +106,7 @@ keys.forEach(function (key) {
 
 // Function to check if a word exists
 function checkWord(word) {
+    console.log(word);
     word = word.replace(/[\r\n]+/g, '');
     return fetch('https://api.dictionaryapi.dev/api/v2/entries/en/' + word)
         .then(response => {
