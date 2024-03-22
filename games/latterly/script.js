@@ -11,6 +11,8 @@ const dayOfYear = Math.floor((currentDate - new Date(currentDate.getFullYear(), 
 // Retrieve the word set for the current day
 const wordSet = wordSets[dayOfYear];
 
+console.log(dayOfYear);
+
 // Extract the startWord and endWord from the selected word set
 const startWord = wordSet.startWord;
 const endWord = wordSet.endWord;
