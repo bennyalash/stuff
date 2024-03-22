@@ -7,7 +7,7 @@ const wordSets = [
 // Get the current date
 const currentDate = new Date();
 var dayOfYear = Math.floor((currentDate - new Date(currentDate.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
-dayOfYear = dayOfYear - 80;
+dayOfYear = dayOfYear - 81;
 
 // Retrieve the word set for the current day
 const wordSet = wordSets[dayOfYear];
