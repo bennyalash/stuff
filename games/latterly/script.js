@@ -81,6 +81,7 @@ keys.forEach(function (key) {
             const newWord = getWord(this.innerText, 0);
             checkWord(newWord).then(isValid => {
                 if (isValid) {
+                    console.log(isValid);
                     totalMoves++;
                     numGuesses.innerText = totalMoves;
                     const selectedElement = document.querySelector('.selected');
