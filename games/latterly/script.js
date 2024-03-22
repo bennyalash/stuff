@@ -51,11 +51,11 @@ function select(element, letterNum) {
 
 // Function to construct a word based on selected letters
 function getWord(textLetter, final) {
-    const selectedLetters = document.querySelectorAll(final === 0 ? '#guess .letter' : '#target .letter');
+    const selectedLetters = document.querySelectorAll(final == 0 ? '#guess .letter' : '#target .letter');
     let word = "";
     let i = 1;
     selectedLetters.forEach(function (letter) {
-        if (i === selectedLetter && !final) {
+        if (i == selectedLetter && !final) {
             word += textLetter;
         } else {
             word += letter.innerText;
