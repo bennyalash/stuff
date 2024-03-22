@@ -1,6 +1,15 @@
-// Define the words
-const startWord = 'BEAN';
-const endWord = 'CART';
+const wordSets = require('wordSets.js');
+
+// Get the current date
+const currentDate = new Date();
+const dayOfYear = Math.floor((currentDate - new Date(currentDate.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+
+// Retrieve the word set for the current day
+const wordSet = wordSets[dayOfYear];
+
+// Extract the startWord and endWord from the selected word set
+const startWord = wordSet.startWord;
+const endWord = wordSet.endWord;
 
 // Function to create and append letter divs to the specified container
 function appendLetters(word, containerSelector) {
