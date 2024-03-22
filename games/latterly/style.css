@@ -168,3 +168,18 @@ body {
             letter-spacing: 2px;
             align-items: center;
         }
+#info {
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 0 1000px rgba(0,0,0,0.5);
+            z-index: 2;
+            display:none;
+        }
+        #info.active{
+            display:block;
+        }
+        #info p {
+            line-height: 24px;
+            font-size: 20px;
+            font-weight: 400;
+        }
