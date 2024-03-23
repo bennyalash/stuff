@@ -53,6 +53,9 @@
     #logo{
         color:var(--opposite)
     }
+    .locked{
+        background:var(--final);
+    }
     .complete *{
         pointer-events:none !important;
     }
@@ -309,10 +312,12 @@ console.log(d);
 
             if (i == boati && j == boatj) {
                 cell.classList.add('active');
+                cell.classList.add('locked');
             }
 
             if (i == finali && j == finalj) {
                 cell.classList.add('active');
+                cell.classList.add('locked');
             }
 
             if (i == 0 && j == 0) {
