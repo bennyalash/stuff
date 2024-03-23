@@ -10,6 +10,23 @@
 </head>
 <body>
     <div id="logo">The Game called ThirtyFour<br />March 23, 2024</div>
+    <script>
+        // Get the current date
+        var currentDate = new Date();
+
+        // Array of month names
+        var monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"];
+
+        // Get day, month, and year
+        var day = currentDate.getDate();
+        var monthIndex = currentDate.getMonth();
+        var year = currentDate.getFullYear();
+
+        // Update the date in the HTML
+        var logoElement = document.getElementById("logo");
+        logoElement.innerHTML = "The Game called ThirtyFour<br />" + monthNames[monthIndex] + " " + day + ", " + year;
+    </script>
     <div class="container">
         <div class="grid" id="grid">
             <div class="gradient"></div>
