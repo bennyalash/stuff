@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zooty</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Boogaloo&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="page">
+        <div class="header">
+            <img width="100" src="zooty.png" />
+            <div id="date">March 26, 2024</div>
+        </div>
+        <br />
+        <div id="bank-message">
+            Select an Animal
+        </div>
+        <div id="bank">
+            <div onclick="selectWord(1)" id="word1" class="word unused">Elephant</div>
+            <div onclick="selectWord(2)" id="word2" class="word unused">Shark</div>
+            <div onclick="selectWord(3)" id="word3" class="word unused">Bee</div>
+            <div onclick="selectWord(4)" id="word4" class="word unused">Butterfly</div>
+            <div onclick="selectWord(5)" id="word5" class="word unused">Chameleon</div>
+        </div>
+        <div id="fact-message">
+            Fill in all the Blanks
+        </div>
+        <div id="container">
+            <div class="fact" onclick="answer(1)" id="answer1">
+                <p>The <span class="fill here"></span> is the largest land animal.</p>
+                <div class="blank"></div>
+            </div>
+            <div class="fact" onclick="answer(2)" id="answer2">
+                <p>The <span class="fill here"></span> has a cartilage skeleton.</p>
+                <div class="blank"></div>
+            </div>
+            <div class="fact" onclick="answer(3)" id="answer3">
+                <p>The <span class="fill here"></span> communicates by dancing.</p>
+                <div class="blank"></div>
+            </div>
+            <div class="fact" onclick="answer(4)" id="answer4">
+                <p>The <span class="fill here"></span> tastes with its feet.</p>
+                <div class="blank"></div>
+            </div>
+        </div>
+        <div id="final" onclick="guess()">Complete</div>
+        <div id="guess" onclick="guess()">GUESS</div>
+        <div class="guesses-left">
+            Guesses Left:
+            <div id="hearts" class="three">
+                <img src="heart.png" class="heart" width="20" />
+                <img src="heart.png" class="heart" width="20" />
+                <img src="heart.png" class="heart" width="20" />
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+
+    var CurrentWordNum = 0;
+    var CurrentWord = 0;
+    var guesses = 0;
+
+    const page = document.getElementById("page");
+    const facts = document.getElementsByClassName("fact");
+    const words = document.getElementsByClassName("word");
+    const guessdiv = document.getElementById("guess");
+    const hearts = document.getElementsByClassName("heart");
+
+    const solution = {
+        1: 1,
+        2: 2,
+        3: 3,
+        4: 4
+    };
+
+    var arrayofanswers = {
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 0
+    };
+
+    function selectWord(num) {
+        CurrentWordNum = num;
+        Array.from(facts).forEach(fact => {
+            fact.classList.add("active");
+        });
+        Array.from(words).forEach(word => {
+            word.classList.remove("active");
+        });
+        var selection = document.getElementById("word" + num);
+        selection.classList.add("active");
+    }
+    function answer(num) {
+        if (CurrentWordNum > 0) {
+            arrayofanswers[num] = CurrentWordNum;
+
+            var selection = document.getElementById("word" + CurrentWordNum);
+            selection.classList.remove("active");
+
+            var blank = document.querySelector("#answer" + num + " .fill");
+            blank.innerHTML = selection.innerHTML;
+
+            Array.from(facts).forEach(fact => {
+                fact.classList.remove("active");
+            });
+            CurrentWordNum = 0;
+        }
+        if (areAllValuesNotZero()) {
+            guessdiv.classList.add("active");
+        }
+        else {
+            guessdiv.classList.remove("active");
+        }
+    }
+    function areAllValuesNotZero() {
+        for (var key in arrayofanswers) {
+            if (arrayofanswers.hasOwnProperty(key) && arrayofanswers[key] === 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    function guess() {
+
+        guesses++;
+
+        // Check if both objects have the same keys
+        const solutionKeys = Object.keys(solution);
+
+        var flag = 0;
+
+        // Check if the values for each key are the same
+        for (const key of solutionKeys) {
+            var selection = document.getElementById("answer" + key);
+            if (solution[key] !== arrayofanswers[key]) {
+                var blank = document.querySelector("#answer" + key + " .fill");
+                blank.innerHTML = "";
+                console.log("Incorrect: Values are different for key " + key);
+
+                flag = 1;
+            }
+            else {
+                selection.classList.add("correct");
+            }
+        }
+
+        if (flag) {
+            var i = 3;
+            Array.from(hearts).forEach(heart => {
+                console.log(guesses);
+                if (guesses >= i) {
+                    heart.classList.add("done");
+                }
+                i--;
+            });
+            return;
+        }
+
+        // If all checks passed, the objects are equal
+        page.classList.add("complete");
+    }
+
+
+</script>
+<style>
+    #final {
+        background: var(--accent);
+        pointer-events: none;
+        border-color: var(--accent);
+        color: var(--light);
+        padding: 10px 0;
+        box-shadow: 0 0 5px -5px var(--black);
+        border-radius: 5px;
+        margin: auto;
+        max-width: 90%;
+        text-align: center;
+        font-size: 32px;
+        margin-top: -20px;
+        display:none;
+    }
+    .complete #final{
+        display:block;
+    }
+    #page.complete *{
+        pointer-events:none;
+    }
+    .complete #bank{
+        display:none;
+    }
+    .complete #guess {
+        display: none;
+    }
+    .complete .guesses-left {
+        display: none;
+    }
+    #bank-message, #fact-message {
+        text-align: left;
+        width: calc(90% - 20px);
+        padding: 0 10px;
+        margin: 5px auto;
+        display:none;
+    }
+    .guesses-left {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin:20px 0;
+        gap:10px;
+    }
+    #hearts{
+        display:flex;
+        gap:5px;
+    }
+    :root {
+        --black: #8c4200;
+        --light: #f4f1de;
+        --accent: #81b29a;
+        --medium: #e07a5f;
+        --white: #f7dbaf;
+    }
+    body *{
+        transition:0s ease;
+    }
+    body {
+        font-family: "Boogaloo", Arial, sans-serif;
+        color: var(--black);
+        background: var(--white);
+        margin:0;
+    }
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .header img{
+        margin:10px;
+    }
+    #date {
+        padding: 5px 25px 5px 15px;
+        background: var(--black);
+        color: var(--light);
+        border-radius: 100px 0 0 100px;
+    }
+    .fill.here {
+        width: 100px;
+        display: inline-block;
+        height: 100%;
+        border-bottom: 1px dotted var(--black);
+        text-transform: uppercase;
+    }
+    .correct .fill.here{
+        border-color:var(--light);
+    }
+
+    #container {
+        margin: 0 auto 20px;
+        width: 90%;
+        max-width: 800px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .fact {
+        margin-bottom: 10px;
+        padding: 10px;
+        background: var(--light);
+        box-shadow: 0 0 5px -5px var(--black);
+        border-radius: 5px;
+        order:1;
+    }
+        .fact.active {
+            border-color: var(--black);
+            box-shadow: 0 0 5px -1px var(--black);
+        }
+        .fact.correct {
+            background: var(--accent);
+            pointer-events: none;
+            border-color: var(--accent);
+            color: var(--light);
+            box-shadow: 0 0 4px -2px #00000080 inset;
+            /*height: 0;
+            padding: 0 10px;
+            margin:0;
+            overflow: hidden;
+            order:2;*/
+        }
+
+    .blank {
+        border: 1px dashed var(--medium);
+        padding: 5px;
+        margin-top: 5px;
+        display: none;
+    }
+
+    #bank {
+        margin: 0 auto 20px;
+        width: calc(90% - 20px);
+        max-width: 800px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        background: var(--light);
+        padding: 10px;
+        border-radius: 5px;
+    }
+        #bank .active {
+            border-color: var(--black);
+            background: var(--black);
+            color: white;
+        }
+    .word {
+        display: inline-block;
+        border: 1px solid var(--medium);
+        padding: 2px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        text-transform: uppercase;
+        background: var(--medium);
+        color: var(--light);
+    }
+    body p {
+        margin:0;
+    }
+    #guess {
+        width: min-content;
+        margin: auto;
+        padding: 10px 40px;
+        color: var(--light);
+        border-radius: 5px;
+        background: var(--black);
+        opacity:0.5;
+        pointer-events:none;
+    }
+    #guess.active{
+        pointer-events:all;
+        opacity:1;
+    }
+    .done {
+        visibility: hidden;
+    }
+</style>
