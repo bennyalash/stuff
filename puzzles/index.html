@@ -15,8 +15,185 @@
   <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@500&amp;display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Gluten:wght@100..900&amp;family=Radley:ital@0;1&amp;display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Boogaloo&amp;display=swap" rel="stylesheet">
+   <style>
+        #page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: #333;
+            background: #f4f4f4;
+            font-family: "Noto Serif", sans-serif;
+            min-height: 100vh;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        #logo {
+            height: 40px;
+            width: auto;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+        }
+
+        h2 {
+            font-size: 60px;
+            margin-top: 50px;
+        }
+
+        #page .puzzle {
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            overflow: hidden;
+            width: 100%;
+            max-width: 400px;
+            border: 3px solid #eee;
+        }
+
+        #page .top {
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            padding: 30px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+
+        #page #zooty .top {
+            background: #f7dbaf;
+            font-family: "Boogaloo";
+            font-size: 36px;
+            text-transform: uppercase;
+            color: #e07a5f;
+        }
+
+        #page #thirtyfour .top {
+            background: #2c2c34;
+            color: #d8d8f6;
+            font-family: "Crimson Pro";
+            font-size: 40px;
+            padding: 15px;
+        }
+
+
+        #page #latterly .top {
+            font-family: "Gluten";
+            background: black;
+            color: white;
+            font-size: 35px;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 5px;
+        }
+
+        /*.special {
+            opacity: 0.8;
+            border-bottom: 2px solid black;
+        }*/
+        #page img {
+            width: auto;
+            height: 60px;
+            max-width: 100%;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        .link {
+            background: white;
+            border-radius: 0 !important;
+            font-size: 24px;
+            letter-spacing: 0;
+            font-weight: normal;
+            font-family: "Noto Sans", sans-serif !important;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+        }
+
+            .link a {
+                color: #333;
+                font-weight: 600;
+                text-decoration: none;
+                border: 2px solid #333;
+                border-radius: 100px;
+                width: 70%;
+                display: inline-block;
+            }
+
+                .link a.cs {
+                    pointer-events: none;
+                    border-color: transparent;
+                }
+
+        #page .description {
+            font-size: 20px;
+            letter-spacing: 0;
+            padding: 5px 20px;
+            margin-bottom: 10px;
+            display: block;
+            font-family: 'Noto Sans';
+        }
+    </style>
 </head>
 <body>
-  <p>This is your web app content!</p>
+  <div id="page">
+
+        <div>
+            <svg id="logo" width="345" height="116" viewBox="0 0 345 116" fill="none" xmlns="http://www.w3.org/2000/svg" class="active">
+                <path d="M24 58L49 58C62.8071 58 74 69.1929 74 83C74 96.8071 62.8071 108 49 108H33" stroke="#CB450B" stroke-width="16" stroke-linecap="square"></path>
+                <path d="M216 99V108" stroke="#FECD4E" stroke-width="16" stroke-linecap="square"></path>
+                <path d="M216 83C216 69.1929 204.807 58 191 58C177.193 58 166 69.1929 166 83L166 108" stroke="#EAB428" stroke-width="16" stroke-linecap="square"></path>
+                <path d="M136 58L145 58" stroke="#C5A1FF" stroke-width="16" stroke-linecap="square"></path>
+                <path d="M120 58C106.193 58 95 69.1929 95 83C95 96.8071 106.193 108 120 108L145 108" stroke="#9768E5" stroke-width="16" stroke-linecap="square"></path>
+                <path d="M17 108L8 108" stroke="#ED7B4A" stroke-width="16" stroke-linecap="square"></path>
+                <path d="M8 8L33 8C46.8071 8 58 19.1929 58 33C58 46.8071 46.8071 58 33 58H8" stroke="#CB450B" stroke-width="16" stroke-linecap="square"></path>
+                <path d="M286 99V108" stroke="#5FE9A7" stroke-width="16" stroke-linecap="square"></path>
+                <path d="M286 83C286 69.1929 274.807 58 261 58C247.193 58 236 69.1929 236 83L236 108" stroke="#3ACC86" stroke-width="16" stroke-linecap="square"></path>
+                <path d="M312 58L312 108" stroke="#9768E5" stroke-width="16" stroke-linecap="square"></path>
+                <path d="M337 17L337 7.99999" stroke="#ED7B4A" stroke-width="16" stroke-linecap="square"></path>
+                <path d="M337 33C337 46.8071 325.807 58 312 58C298.193 58 287 46.8071 287 33L287 8" stroke="#CB450B" stroke-width="16" stroke-linecap="square"></path>
+            </svg>
+        </div>
+        <h2>Daily Puzzles</h2>
+        <div id="latterly" class="puzzle">
+            <div class="top">
+                    <img src="lat.png" />
+                    <span>L<span class="special">a</span>tterly</span>                
+                
+            </div>
+            <div class="link">
+                <span class="description">Swap out letters from a word to create a new word.</span>
+            <a href="">Play</a></div>
+        </div>
+        <div id="thirtyfour" class="puzzle">
+            <div class="top">
+                <img src="tf.png" />
+                <span>ThirtyFour</span>
+                
+            </div>
+            <div class="link"><span class="description">Complete a singular, continuous path that connects two Blocks.</span>
+            <a href="">Play</a></div>
+        </div>
+        <div id="zooty" class="puzzle">
+            <div class="top">
+                <img src="lion.png" />
+                <span>Zooty</span>
+
+            </div>
+            
+            <div class="link"><span class="description">Match the Animals to their corresponding clues.</span>
+            <a class="cs" href="">Coming Soon</a></div>
+        </div>
+        </div>
 </body>
 </html>
