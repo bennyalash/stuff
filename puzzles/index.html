@@ -179,7 +179,7 @@
             </svg>
         </div>-->
         <h2>Daily Puzzles</h2>
-        <div id="latterly" class="puzzle">
+        <div id="latterly" class="puzzle" onclick="goto('https://bennyalashari.com/games/latterly')">
             <div class="top">
                 <img src="lat.png" />
                 <span>L<span class="special">a</span>tterly</span>
@@ -190,7 +190,7 @@
                 <a href="">Play</a>
             </div>
         </div>
-        <div id="thirtyfour" class="puzzle">
+        <div id="thirtyfour" class="puzzle" onclick="goto('https://bennyalashari.com/games/thirtyfour')">
             <div class="top">
                 <img src="ThirtyFour-Logo.png" />
                 <span>ThirtyFour</span>
@@ -239,4 +239,11 @@
         </div>
     </div>
 </body>
+    <footer>
+    <script>
+        function goto(url) {
+            window.open(url);
+        }
+    </script>
+</footer>
 </html>
