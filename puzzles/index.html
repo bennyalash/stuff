@@ -1,21 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daily Puzzles</title>
-  
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Daily Puzzles">
-  <link rel="apple-touch-icon" href="../icon2.png">
-  <link rel="icon" type="image/png" href="../icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;700&amp;family=Noto+Serif:wght@300;400;700&amp;display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@500&amp;display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Gluten:wght@100..900&amp;family=Radley:ital@0;1&amp;display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Boogaloo&amp;display=swap" rel="stylesheet">
-   <style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unica+One&family=Volkhov:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <title>Shortcut Link</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Your App Name">
+    <link rel="apple-touch-icon" href="path/to/your/icon.png">
+    <style>
+        /* Resetting default styles */
+        body {
+            margin: 0;
+        }
+
+        /* General page layout */
         #page {
             display: flex;
             flex-direction: column;
@@ -23,27 +21,29 @@
             gap: 10px;
             color: #333;
             background: #f4f4f4;
-            font-family: "Noto Serif", sans-serif;
+            font-family: "Volkhov", serif;
             min-height: 100vh;
         }
 
-        body {
-            margin: 0;
-        }
-
+        /* Logo */
         #logo {
             height: 40px;
-            width: auto;
+            width: 100%;
             position: fixed;
-            top: 10px;
-            left: 10px;
+            top: 0;
+            left: 0;
+            padding: 10px;
+            background: white;
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
         }
 
+        /* Heading styles */
         h2 {
-            font-size: 60px;
-            margin-top: 50px;
+            font-size: 40px;
+            margin-top: 80px;
         }
 
+        /* Puzzle container */
         #page .puzzle {
             border-radius: 20px;
             display: flex;
@@ -56,6 +56,7 @@
             border: 3px solid #eee;
         }
 
+        /* Top container */
         #page .top {
             width: 100%;
             max-width: 400px;
@@ -66,87 +67,87 @@
             justify-content: center;
             flex-direction: column;
             overflow: hidden;
+            color:white;
+            font-family:"Unica One";
+            text-transform:uppercase;
+            font-size:24px;
         }
 
-
+        /* Specific background colors for different sections */
         #page #zooty .top {
-            background: #f7dbaf;
-            font-family: "Boogaloo";
-            font-size: 36px;
-            text-transform: uppercase;
-            color: #e07a5f;
+            background: #CC8F0D; /*Yellow*/
         }
 
         #page #thirtyfour .top {
-            background: #2c2c34;
-            color: #d8d8f6;
-            font-family: "Crimson Pro";
-            font-size: 40px;
-            padding: 15px;
+            background: #1F5B73; /*Blue*/
         }
-
 
         #page #latterly .top {
-            font-family: "Gluten";
-            background: black;
-            color: white;
-            font-size: 35px;
-            text-transform: uppercase;
-            font-weight: bold;
-            letter-spacing: 5px;
+            background: #B23909; /*Red*/
         }
 
-        /*.special {
-            opacity: 0.8;
-            border-bottom: 2px solid black;
-        }*/
+        #page #green .top {
+            background: #244b23; /*Green*/
+        }
+
+        #page #purple .top {
+            background: #683A72; /*Purple*/
+        }
+
+        /* Image styling */
         #page img {
-            width: auto;
+            width: 60px;
             height: 60px;
             max-width: 100%;
             object-fit: contain;
             margin-bottom: 15px;
         }
 
+        /* Link styles */
         .link {
             background: white;
             border-radius: 0 !important;
-            font-size: 24px;
             letter-spacing: 0;
             font-weight: normal;
-            font-family: "Noto Sans", sans-serif !important;
             width: 100%;
             padding: 20px;
             text-align: center;
         }
 
             .link a {
-                color: #333;
-                font-weight: 600;
                 text-decoration: none;
                 border: 2px solid #333;
                 border-radius: 100px;
                 width: 70%;
+                max-width:100px;
                 display: inline-block;
+                font-size: 12px;
+                padding:2px 0;
             }
 
-                .link a.cs {
-                    pointer-events: none;
-                    border-color: transparent;
-                }
+        /* Link style for specific cases */
+        .link a.cs {
+            pointer-events: none;
+            border-color: transparent;
+        }
+        .cslink{
+            display:none;
+        }
 
+        /* Description text */
         #page .description {
             font-size: 20px;
             letter-spacing: 0;
             padding: 5px 20px;
             margin-bottom: 10px;
             display: block;
-            font-family: 'Noto Sans';
+            font-size: 12px;
         }
+
     </style>
 </head>
 <body>
-  <div id="page">
+    <div id="page">
 
         <div>
             <svg id="logo" width="345" height="116" viewBox="0 0 345 116" fill="none" xmlns="http://www.w3.org/2000/svg" class="active">
@@ -167,33 +168,59 @@
         <h2>Daily Puzzles</h2>
         <div id="latterly" class="puzzle">
             <div class="top">
-                    <img src="lat.png" />
-                    <span>L<span class="special">a</span>tterly</span>                
-                
+                <img src="lat.png" />
+                <span>L<span class="special">a</span>tterly</span>
             </div>
             <div class="link">
                 <span class="description">Swap out letters from a word to create a new word.</span>
-            <a href="">Play</a></div>
+                <a href="">Play</a>
+            </div>
         </div>
         <div id="thirtyfour" class="puzzle">
             <div class="top">
-                <img src="tf.png" />
+                <img src="ThirtyFour-Logo.png" />
                 <span>ThirtyFour</span>
-                
+
             </div>
-            <div class="link"><span class="description">Complete a singular, continuous path that connects two Blocks.</span>
-            <a href="">Play</a></div>
+            <div class="link">
+                <span class="description">Complete a singular, continuous path that connects two Blocks.</span>
+                <a href="">Play</a>
+            </div>
         </div>
+        <h2>Coming Soon!</h2>
         <div id="zooty" class="puzzle">
             <div class="top">
-                <img src="lion.png" />
+                <img src="Zooty-Logo.png" />
                 <span>Zooty</span>
 
             </div>
-            
-            <div class="link"><span class="description">Match the Animals to their corresponding clues.</span>
-            <a class="cs" href="">Coming Soon</a></div>
+
+            <div class="link cslink">
+                <span class="description">Match the Animals to their corresponding clues.</span>
+                <a class="cs" href="">Coming Soon</a>
+            </div>
         </div>
+
+        <div id="green" class="puzzle">
+            <div class="top">
+                <img src="Summaze1.png" />
+                <span>Summaze</span>
+            </div>
+            <div class="link cslink">
+                <span class="description">Swap out letters from a word to create a new word.</span>
+                <a class="cs" href="">Coming Soon</a>
+            </div>
         </div>
+        <div id="purple" class="puzzle">
+            <div class="top">
+                <img src="MRE.png" />
+                <span>Mr. Equation</span>
+            </div>
+            <div class="link cslink">
+                <span class="description">Swap out letters from a word to create a new word.</span>
+                <a class="cs" href="">Coming Soon</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
