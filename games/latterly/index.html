@@ -1,257 +1,79 @@
-<html>
-<head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Latterly - Letter Swap Game</title>
+        <link rel="icon" type="image/png" href="latterly.png">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Radley:ital@0;1&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Gluten:wght@100..900&family=Radley:ital@0;1&display=swap" rel="stylesheet">  
+        <link rel="stylesheet" href="https://bennyalashari.com/games/latterly/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Unica+One&family=Volkhov:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <title>Benny's Puzzles</title>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="Benny's Puzzles">
-    <link rel="apple-touch-icon" href="appleicon.png">
-    <style>
-        /* Resetting default styles */
-        body {
-            margin: 0;
-            background: #f4f4f4;
-        }
-
-        /* General page layout */
-        #page {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            color: #333;
-            background: #f4f4f4;
-            font-family: "Volkhov", serif;
-            min-height: 100vh;
-            padding-bottom: 10vh;
-        }
-
-        /* Logo */
-        #logo {
-            height: 40px;
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            padding: 10px;
-            background: white;
-            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Heading styles */
-        h2 {
-            font-size: 80px;
-            margin-top: 90px;
-        }
-
-        /* Puzzle container */
-        #page .puzzle {
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            overflow: hidden;
-            width: 100%;
-            max-width: 800px;
-            border: 3px solid #eee;
-            align-items: stretch;
-            justify-content: center;
-            flex-direction: row;
-        }
-
-        /* Top container */
-        #page .top {
-            width: 100%;
-            max-width: 800px;
-            text-align: center;
-            padding: 30px 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            overflow: hidden;
-            color: white;
-            font-family: "Unica One";
-            text-transform: uppercase;
-            font-size: 80px;
-        }
-
-        /* Specific background colors for different sections */
-        #page #zooty .top {
-            background: #CC8F0D; /*Yellow*/
-        }
-
-        #page #thirtyfour .top {
-            background: #1F5B73; /*Blue*/
-        }
-
-        #page #latterly .top {
-            background: #B23909; /*Red*/
-        }
-
-        #page #green .top {
-            background: #244b23; /*Green*/
-        }
-
-        #page #purple .top {
-            background: #683A72; /*Purple*/
-        }
-
-        /* Image styling */
-        #page img {
-            width: 100px;
-            height: 100px;
-            max-width: 100%;
-            object-fit: contain;
-            margin: 15px 0;
-        }
-
-        /* Link styles */
-        .link {
-            background: white;
-            border-radius: 0 !important;
-            letter-spacing: 0;
-            font-weight: normal;
-            width: 100%;
-            padding: 20px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-            .link a {
-                text-decoration: none;
-                border: 2px solid #333;
-                border-radius: 100px;
-                width: 70%;
-                max-width: 100px;
-                display: inline-block;
-                font-size: 40px;
-                padding: 2px 0;
-            }
-
-
-                /* Link style for specific cases */
-                .link a.cs {
-                    pointer-events: none;
-                    border-color: transparent;
-                }
-
-        .cslink, .link {
-            display: none;
-        }
-
-        /* Description text */
-        #page .description {
-            font-size: 20px;
-            letter-spacing: 0;
-            padding: 5px 20px;
-            margin: 10px 0;
-            display: block;
-            font-size: 30px;
-            font-family: "Volkhov", serif;
-            text-transform: none;
-            opacity: 0.8;
-        }
-        #page.hide{
-            display:none;
-        }
-        .game-holder{
-            display:none;
-        }
-        .game-holder.show {
-            display: block;
-        }
-        iframe{
-            border:0;
-            padding:0;
-            width:100%;
-            height:100%;
-        }
-    </style>
-</head>
-<body>
-    <div id="page">
-        <h2>Daily Puzzles</h2>
-        <div id="latterly" class="puzzle" onclick="goto('latterly')">
-            <div class="top">
-                <img src="lat.png" />
-                <span>L<span class="special">a</span>tterly</span>
-                <span class="description">Connect Words</span>
-            </div>
-            <div class="link">
-                <span class="description">Swap out letters from a word to create a new word.</span>
-                <a href="">Play</a>
-            </div>
+    <link href="https://fonts.googleapis.com/css2?family=Adamina&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div id="game">
+            <div id="past-guesses"></div>
+            <div id="guess"><div class="current"></div></div>
+            <div id="target"></div>
+            <p id="result"></p>
         </div>
-        <div id="thirtyfour" class="puzzle" onclick="goto('thirtyfour')">
-            <div class="top">
-                <img src="ThirtyFour-Logo.png" />
-                <span>ThirtyFour</span>
-                <span class="description">Build a Bridge</span>
-            </div>
-            <div class="link">
-                <span class="description">Complete a singular, continuous path that connects two Blocks.</span>
-                <a href="">Play</a>
-            </div>
-        </div>
-        <h2>Coming Soon!</h2>
-        <div id="zooty" class="puzzle">
-            <div class="top">
-                <img src="Zooty-Logo.png" />
-                <span>Zooty</span>
-                <span class="description">Animal Facts</span>
-            </div>
-
-            <div class="link cslink">
-                <span class="description">Match the Animals to their corresponding clues.</span>
-                <a class="cs" href="">Coming Soon</a>
-            </div>
-        </div>
-
-        <div id="green" class="puzzle">
-            <div class="top">
-                <img src="Summaze1.png" />
-                <span>Summaze</span>
-                <span class="description">Equation Escape</span>
-            </div>
-            <div class="link cslink">
-                <span class="description">Swap out letters from a word to create a new word.</span>
-                <a class="cs" href="">Coming Soon</a>
-            </div>
-        </div>
-        <div id="purple" class="puzzle">
-            <div class="top">
-                <img src="MRE.png" />
-                <span>Mr. Equation</span>
-                <span class="description">Pattern Recognition</span>
-            </div>
-            <div class="link cslink">
-                <span class="description">Swap out letters from a word to create a new word.</span>
-                <a class="cs" href="">Coming Soon</a>
-            </div>
-        </div>
+     <div id="info" class="">
+        <h1>Instructions</h1>
+        <p>Welcome to Letterly!</p>
+        <p>Your objective is to transform the starting word into the target word displayed below it.</p>
+        <p>Here are the rules:</p>
+        <ol>
+            <li>You can only change one letter at a time.</li>
+            <li>Each step you take must result in a valid English word.</li>
+            <li>To make a change, click on the letter in the starting word that you want to replace, then type the new letter.</li>
+        </ol>
     </div>
-    <div id="latterly-game" class="game-holder">
-        <iframe src="https://bennyalashari.com/games/latterly"></iframe>
-    </div>
-    <div id="thirtyfour-game" class="game-holder">
-        <iframe src="https://bennyalashari.com/games/thirtyfour"></iframe>
-    </div>
-</body>
-<footer>
-    <script>
-        const home = document.getElementById("page");
-        function goto(page) {
-            const game = document.getElementById(page + "-game");
-            console.log(game);
-            game.classList.add("show");
-            home.classList.add("hide");
-        }
-    </script>
-</footer>
+
+        <div class="keyboard">
+            <div class="row">
+                <div class="key"><span>Q</span></div>
+                <div class="key"><span>W</span></div>
+                <div class="key"><span>E</span></div>
+                <div class="key"><span>R</span></div>
+                <div class="key"><span>T</span></div>
+                <div class="key"><span>Y</span></div>
+                <div class="key"><span>U</span></div>
+                <div class="key"><span>I</span></div>
+                <div class="key"><span>O</span></div>
+                <div class="key"><span>P</span></div>
+            </div>
+            <div class="row">
+                <div class="key"><span>A</span></div>
+                <div class="key"><span>S</span></div>
+                <div class="key"><span>D</span></div>
+                <div class="key"><span>F</span></div>
+                <div class="key"><span>G</span></div>
+                <div class="key"><span>H</span></div>
+                <div class="key"><span>J</span></div>
+                <div class="key"><span>K</span></div>
+                <div class="key"><span>L</span></div>
+            </div>
+            <div class="row">
+                <div class="key"><span>Z</span></div>
+                <div class="key"><span>X</span></div>
+                <div class="key"><span>C</span></div>
+                <div class="key"><span>V</span></div>
+                <div class="key"><span>B</span></div>
+                <div class="key"><span>N</span></div>
+                <div class="key"><span>M</span></div>
+            </div>
+        </div>
+        <div id="overlay">
+            <div id="logo">L<span class="special">a</span>tterly</div>
+            <div id="subheader"><span class="guesses">0</span></div>
+            <div id="help">?</div>
+        </div>
+        <script src="https://bennyalashari.com/games/latterly/script.js"></script>
+    </body>
 </html>
