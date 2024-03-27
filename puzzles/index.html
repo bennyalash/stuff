@@ -242,9 +242,23 @@
     <footer>
     <script>
         function goto(page) {
-            window.history.pushState({ page: page }, "", page); // Change the URL
-    // Refresh the page
-    window.location.reload();
+            // Create a new AJAX request
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        // If the request is successful, inject the fetched content into the current page
+                        document.getElementById('latterly-game').innerHTML = xhr.responseText;
+                    } else {
+                        // Handle errors if the request fails
+                        console.error('Error fetching content:', xhr.status);
+                    }
+                }
+            };
+            // Open the request to fetch content from the specified page
+            xhr.open('GET', page, true);
+            // Send the request
+            xhr.send();
         }
     </script>
 </footer>
