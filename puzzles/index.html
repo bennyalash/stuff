@@ -1,10 +1,10 @@
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Unica+One&family=Volkhov:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <title>Benny's Puzzles</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Benny's Puzzles">
     <link rel="apple-touch-icon" href="appleicon.png">
@@ -25,6 +25,7 @@
             background: #f4f4f4;
             font-family: "Volkhov", serif;
             min-height: 100vh;
+            padding: 20px;
             padding-bottom: 10vh;
         }
 
@@ -42,8 +43,7 @@
 
         /* Heading styles */
         h2 {
-            font-size: 80px;
-            margin-top: 90px;
+            font-size: 40px;
         }
 
         /* Puzzle container */
@@ -67,7 +67,7 @@
             width: 100%;
             max-width: 800px;
             text-align: center;
-            padding: 30px 10px;
+            padding: 5px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -76,7 +76,7 @@
             color: white;
             font-family: "Unica One";
             text-transform: uppercase;
-            font-size: 80px;
+            font-size: 40px;
         }
 
         /* Specific background colors for different sections */
@@ -102,8 +102,8 @@
 
         /* Image styling */
         #page img {
-            width: 100px;
-            height: 100px;
+            width: 60px;
+            height: 60px;
             max-width: 100%;
             object-fit: contain;
             margin: 15px 0;
@@ -131,7 +131,7 @@
                 width: 70%;
                 max-width: 100px;
                 display: inline-block;
-                font-size: 40px;
+                font-size: 20px;
                 padding: 2px 0;
             }
 
@@ -153,25 +153,29 @@
             padding: 5px 20px;
             margin: 10px 0;
             display: block;
-            font-size: 30px;
+            font-size: 15px;
             font-family: "Volkhov", serif;
             text-transform: none;
             opacity: 0.8;
         }
-        #page.hide{
-            display:none;
+
+        #page.hide {
+            display: none;
         }
-        .game-holder{
-            display:none;
+
+        .game-holder {
+            display: none;
         }
-        .game-holder.show {
-            display: block;
-        }
-        iframe{
-            border:0;
-            padding:0;
-            width:100%;
-            height:100%;
+
+            .game-holder.show {
+                display: block;
+            }
+
+        iframe {
+            border: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
