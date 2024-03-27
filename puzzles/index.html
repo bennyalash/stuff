@@ -241,8 +241,10 @@
 </body>
     <footer>
     <script>
-        function goto(url) {
-            window.open(url);
+        function goto(page) {
+            window.history.pushState({ page: page }, "", page); // Change the URL
+    // Refresh the page
+    window.location.reload();
         }
     </script>
 </footer>
