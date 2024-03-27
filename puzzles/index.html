@@ -11,6 +11,7 @@
         /* Resetting default styles */
         body {
             margin: 0;
+            background: #f4f4f4;
         }
 
         /* General page layout */
@@ -39,7 +40,7 @@
 
         /* Heading styles */
         h2 {
-            font-size: 60px;
+            font-size: 80px;
             margin-top: 80px;
         }
 
@@ -52,14 +53,17 @@
             flex-direction: column;
             overflow: hidden;
             width: 100%;
-            max-width: 400px;
+            max-width: 800px;
             border: 3px solid #eee;
+            align-items: stretch;
+            justify-content: center;
+            flex-direction: row;
         }
 
         /* Top container */
         #page .top {
             width: 100%;
-            max-width: 400px;
+            max-width: 800px;
             text-align: center;
             padding: 30px 10px;
             display: flex;
@@ -70,7 +74,7 @@
             color:white;
             font-family:"Unica One";
             text-transform:uppercase;
-            font-size:32px;
+            font-size:50px;
         }
 
         /* Specific background colors for different sections */
@@ -96,11 +100,11 @@
 
         /* Image styling */
         #page img {
-            width: 60px;
-            height: 60px;
+            width: 100px;
+            height: 100px;
             max-width: 100%;
             object-fit: contain;
-            margin-bottom: 15px;
+            margin: 15px;
         }
 
         /* Link styles */
@@ -112,6 +116,10 @@
             width: 100%;
             padding: 20px;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
             .link a {
@@ -121,9 +129,10 @@
                 width: 70%;
                 max-width:100px;
                 display: inline-block;
-                font-size: 12px;
+                font-size: 30px;
                 padding:2px 0;
             }
+
 
         /* Link style for specific cases */
         .link a.cs {
@@ -141,7 +150,7 @@
             padding: 5px 20px;
             margin-bottom: 10px;
             display: block;
-            font-size: 16px;
+            font-size: 30px;
         }
 
     </style>
