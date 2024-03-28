@@ -11,6 +11,7 @@ body {
             height: 100vh;
             font-weight: 700;
             color:#2D2D2A;
+            background:#B23909;
         }
 h1{
             text-transform:uppercase;
@@ -46,7 +47,7 @@ h1{
 
         .keyboard {
             position: fixed;
-            bottom: 0;
+            bottom:10px;
             width: 100%;
         }
 
@@ -210,3 +211,5 @@ h1{
     cursor: pointer;
     color: #b23909;
 }
+.main-container{
+            background:white;
