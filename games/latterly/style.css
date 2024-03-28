@@ -154,10 +154,7 @@ h1{
             pointer-events:none;
             
         }
-        #logo .special{
-            opacity:0.8;
-            border-bottom:2px solid white;
-        }
+
         #subheader {
             width: 100vw;
             height: 50px;
