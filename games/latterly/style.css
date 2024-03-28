@@ -211,6 +211,21 @@ h1{
     cursor: pointer;
     color: #b23909;
 }
+#help{
+                   position: absolute;
+    top: 8px;
+    left: 10px;
+    border-radius: 100px;
+    font-size: 20px;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: all;
+    cursor: pointer;
+    color: white;
+}
 .main-container{
             background:white;
             height:100%;
