@@ -195,7 +195,7 @@
 </head>
 <body>
     <div id="page">
-         <div id="addToHomeScreenMessage" style="display: none;">
+         <div id="addToHomeScreenMessage" style="display: none;" onclick="shareapp()">
             To add this app to your home screen, tap the Share button and then "Add to Home Screen".
         </div>
 
@@ -285,6 +285,24 @@
             // Show the div to prompt the user
             var addToHomeScreenDiv = document.getElementById('addToHomeScreenMessage');
             addToHomeScreenDiv.style.display = 'block';
+        }
+        function shareapp() {
+            if (navigator.share) {
+                navigator.share({
+                    title: "Benny's Puzzles",
+                    text: "Check out Benny's Puzzles!",
+                    url: window.location.href
+                })
+                .then(() => {
+                    console.log('Web app shared successfully');
+                })
+                .catch((error) => {
+                    console.error('Error sharing web app:', error);
+                });
+            } else {
+                console.log('Web share API is not supported in this browser');
+                // Handle fallback behavior, e.g., show a message to manually share the web app
+            }
         }
 
         // Call the function when the page loads
