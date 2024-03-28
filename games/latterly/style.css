@@ -13,7 +13,9 @@ body {
             background:white;
             color:#2D2D2A;
         }
-
+h1{
+            text-transform:uppercase;
+}
         .current, #target {
             display: flex;
             gap: 10px;
