@@ -177,11 +177,25 @@
             width: 100%;
             height: 100%;
         }
+         #addToHomeScreenMessage {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ffffff;
+            border: 1px solid #000000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
     <div id="page">
-                <button id="install-button" style="display: none;">Add to Home Screen</button>
+         <div id="addToHomeScreenMessage" style="display: none;">
+            To add this web app to your home screen, tap the Share button and then "Add to Home Screen".
+        </div>
 
         <h2>Daily Puzzles</h2>
         <div id="latterly" class="puzzle" onclick="goto('latterly')">
@@ -259,57 +273,20 @@
             game.classList.add("show");
             home.classList.add("hide");
         }
-    let deferredPrompt;
 
-        window.addEventListener('beforeinstallprompt', (event) => {
-            // Prevent the default prompt
-            event.preventDefault();
+        function addToHomeScreen() {
+            if (window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches) {
+                // Web app is already installed and launched in standalone mode
+                return;
+            }
 
-            // Stash the event so it can be triggered later
-            deferredPrompt = event;
-
-            // Optionally, show your own custom "Add to Home Screen" button
-            showInstallPrompt();
-        });
-
-        function showInstallPrompt() {
-            // Show your custom "Add to Home Screen" button
-            const installButton = document.getElementById('install-button');
-            installButton.style.display = 'block';
-
-            installButton.addEventListener('click', () => {
-                // Show the installation prompt
-                deferredPrompt.prompt();
-
-                // Wait for the user to respond to the prompt
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('User accepted the installation prompt');
-                    } else {
-                        console.log('User dismissed the installation prompt');
-                    }
-
-                    // Clear the deferredPrompt variable
-                    deferredPrompt = null;
-                });
-            });
+            // Show the div to prompt the user
+            var addToHomeScreenDiv = document.getElementById('addToHomeScreenMessage');
+            addToHomeScreenDiv.style.display = 'block';
         }
 
-    </script>
-    <script type="application/json" id="webapp-manifest">
-        {
-            "name": "My Web App",
-            "short_name": "My App",
-            "start_url": "/",
-            "display": "standalone",
-            "icons": [
-                {
-                    "src": "icon.png",
-                    "sizes": "192x192",
-                    "type": "image/png"
-                }
-            ]
-        }
+        // Call the function when the page loads
+        window.addEventListener('load', addToHomeScreen);
     </script>
 </footer>
 </html>
