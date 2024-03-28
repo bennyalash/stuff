@@ -72,10 +72,6 @@ body {
             padding-top: 5px;
         }
 
-            .key:hover {
-                background-color: #e0e0e0;
-            }
-
             .key span {
                 font-size: 20px;
             }
@@ -166,7 +162,7 @@ body {
             border-radius: 0 0 20px 20px;
             font-size: 40px;
             margin: -1px auto;
-            background: black;
+            background: #B23909;
             display: flex;
             justify-content: center;
             color: white;
