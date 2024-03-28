@@ -9,6 +9,22 @@
     <meta name="apple-mobile-web-app-title" content="Benny's Puzzles">
     <link rel="apple-touch-icon" href="appleicon.png">
     <style>
+        
+        #back {
+            position: absolute;
+            top: 8px;
+            left: 10px;
+            border-radius: 100px;
+            font-size: 20px;
+            height: 30px;
+            width: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: all;
+            cursor: pointer;
+            color: white;
+        }
         /* Resetting default styles */
         body {
             margin: 0;
@@ -260,6 +276,7 @@
         </div>
     </div>
     <div id="latterly-game" class="game-holder">
+        <div id="back" onclick="gohome('latterly')">&#11207;</div>
         <iframe src="https://bennyalashari.com/games/latterly"></iframe>
     </div>
     <div id="thirtyfour-game" class="game-holder">
@@ -288,6 +305,12 @@
         }
         function shareapp() {
             alert('Tap the Share button and then "Add to Home Screen"');
+        }
+
+        function gohome(page) {
+            const game = document.getElementById(page + "-game");
+            game.classList.remove("show");
+            home.classList.remove("hide");
         }
 
         // Call the function when the page loads
