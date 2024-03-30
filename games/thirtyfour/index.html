@@ -292,10 +292,9 @@
         map[i] = new Array(6).fill(0);
     }
 
-    map[boatj-1][boati-1] = 1;
+    map[boati - 1][boatj - 1] = 1;
     map[finali - 1][finalj - 1] = 1;
 
-    console.log(map);
 
     const responsediv = document.getElementById('response');
     const grid = document.getElementById('grid');
@@ -352,7 +351,7 @@
     for (var i = 0; i < cells.length; i++) {
         cells[i].addEventListener('click', function () {
             console.log(this);
-            if ((this.dataset.row == boatj && this.dataset.column == boati) || (this.dataset.row == finali && this.dataset.column == finalj)) {
+            if ((this.dataset.row == boati && this.dataset.column == boatj) || (this.dataset.row == finali && this.dataset.column == finalj)) {
                 return;
             }
 
@@ -413,7 +412,6 @@
                 if (h.textContent != "\u2713") {
                     completeNumbers = false;
                 }
-                console.log(h.textContent); // Example: Accessing text content of each cell
             });
             
             // Call DFS from the starting point
