@@ -325,12 +325,18 @@
             else {
                 if (i == 0) {
                     cell.textContent = cols[j];
+                    if(cols[i] == 0){
+                        cell.classList.add('fade');
+                    }
                     cell.classList.add('heading');
                     cell.classList.add('column-heading');
                     cell.classList.remove('cell');
                 }
                 if (j == 0) {
                     cell.textContent = rows[i];
+                    if(rows[i] == 0){
+                        cell.classList.add('fade');
+                    }
                     cell.classList.add('heading');
                     cell.classList.add('row-heading');
                     cell.classList.remove('cell');
