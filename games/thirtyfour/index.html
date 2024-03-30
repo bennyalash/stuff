@@ -34,7 +34,9 @@
 
     </div>
     <div id="response"></div>
-    <div id="rules">
+    <div id="info">
+    <h1>Instructions</h1>
+    <p>Welcome to ThirtyFour!</p>
     <p>Complete a singular, continuous path that connects the two starting Blocks.</p>
     <p>You must also fulfill the requirements for the number of Blocks in each row and column.</p>
     <p>Tap one of the 34 squares to add/remove a Block.</p>
@@ -58,6 +60,15 @@
     pointer-events: all;
     cursor: pointer;
     color: var(--secondary);
+}
+    #info {
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 0 1000px rgba(0,0,0,0.5);
+    z-index: 2;
+    display: none;
+    position: fixed;
+    top: 50px;
 }
     :root {
         --primary: #4FAACF;
@@ -491,7 +502,20 @@
         return false;
     }
 
-    
+    const info = document.getElementById("info");
+const helpButton = document.getElementById("help");
+
+// Toggle class active on #info when HELP button is clicked
+helpButton.addEventListener("click", function() {
+    info.classList.toggle("active");
+});
+
+// Hide #info when clicking anywhere on the document while it's visible
+document.addEventListener("click", function(event) {
+    if (info.classList.contains("active") && event.target !== helpButton) {
+        info.classList.remove("active");
+    }
+});
 
 
 </script>
