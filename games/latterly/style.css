@@ -24,7 +24,8 @@ h1{
     color: white;
     font-family: 'Unica One';
     text-transform: uppercase;
-    bottom: 100%;
+        top: 100%;
+    transform: translateY(calc(-100% - 75px));
     margin: auto;
     left: 0;
     right: 0;
