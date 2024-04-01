@@ -17,7 +17,8 @@
         google.accounts.id.initialize({
             client_id: '988090643567-dqnkfnnfjrkq11ct44gd9i5jk9tqhuld.apps.googleusercontent.com',
             callback: handleCredentialResponse,
-            ux_mode: 'redirect'
+            ux_mode: 'redirect',
+            login_uri: 'https://bennyalashari.com/puzzles/handle.html'
         });
 
         google.accounts.id.renderButton(document.getElementById('google-signin-button'), {
