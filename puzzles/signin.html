@@ -1,23 +1,34 @@
-<html>
-  <head>
-    <script src="https://accounts.google.com/gsi/client" onload="console.log('TODO: add onload function')">
-</script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<div id="google-signin-button"></div>
+<script>
+    function init() {
+        gapi.load('auth2', function () {
+            gapi.auth2.init({
+                client_id: '988090643567-dqnkfnnfjrkq11ct44gd9i5jk9tqhuld.apps.googleusercontent.com'
+            });
+        });
+    }
 
-   <meta name="google-signin-client_id" content="988090643567-dqnkfnnfjrkq11ct44gd9i5jk9tqhuld.apps.googleusercontent.com">
-
-  </head>
-  <body>
-    <div class="g-signin2" data-onsuccess="onSignIn">SIGN IN</div>
-  </body>
-  <footer>
-    <script>
     function onSignIn(googleUser) {
-  var profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-}
-      </script>
-  </footer>
-</html>
+        var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    }
+
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+        });
+    }
+
+    function onLoad() {
+        gapi.load('auth2', function () {
+            gapi.auth2.init();
+        });
+        document.getElementById('google-signin-button').innerHTML = '<div class="g-signin2" data-onsuccess="onSignIn"></div>';
+    }
+</script>
+<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
