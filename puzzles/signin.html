@@ -1,34 +1,34 @@
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<div id="google-signin-button"></div>
-<script>
-    function init() {
-        gapi.load('auth2', function () {
-            gapi.auth2.init({
-                client_id: '988090643567-dqnkfnnfjrkq11ct44gd9i5jk9tqhuld.apps.googleusercontent.com'
-            });
-        });
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Sign-In</title>
+    <script src="https://accounts.google.com/gsi/client"></script>
+</head>
+<body>
+    <div id="google-signin-button"></div>
+    <script>
+        function handleCredentialResponse(response) {
+            console.log(response.credential);
+            // Handle the credential response as needed
+        }
 
-    function onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    }
-
-    function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-            console.log('User signed out.');
+        google.accounts.id.initialize({
+            client_id: '988090643567-dqnkfnnfjrkq11ct44gd9i5jk9tqhuld.apps.googleusercontent.com',
+            callback: handleCredentialResponse,
+            ux_mode: 'redirect'
         });
-    }
 
-    function onLoad() {
-        gapi.load('auth2', function () {
-            gapi.auth2.init();
+        google.accounts.id.renderButton(document.getElementById('google-signin-button'), {
+            theme: 'outline',
+            size: 'large',
+            text: 'sign_in_with',
+            type: 'standard',
+            shape: 'rectangular',
+            width: 'wide',
+            height: 36
         });
-        document.getElementById('google-signin-button').innerHTML = '<div class="g-signin2" data-onsuccess="onSignIn"></div>';
-    }
-</script>
-<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+    </script>
+</body>
+</html>
