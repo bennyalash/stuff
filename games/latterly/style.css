@@ -29,16 +29,12 @@ h1{
     left: 0;
     right: 0;
     width: fit-content;
-    opacity: 1;
-    display: none;
+    opacity: 0;
     transition: 1s ease;
-    transition-delay: 0.5s;
     pointer-events: none;
 }
 #tip.active{
-    opacity: 0;
-    transform: translateY(-50px);
-    display: block;
+    opacity: 1;
 }
         .current, #target {
             display: flex;
