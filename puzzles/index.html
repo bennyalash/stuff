@@ -387,6 +387,12 @@
                 console.log( 'All images loaded!' );
             }
         }
+
+        // Get the User-Agent string
+        var userAgent = navigator.userAgent;
+
+        // Display it on the screen
+        document.getElementById('header').innerText = userAgent;
     </script>
 </footer>
 </html>
