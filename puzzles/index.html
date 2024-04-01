@@ -219,31 +219,32 @@
         </div>
 
         <h2>Daily Puzzles</h2>
-        <div id="latterly" class="puzzle" onclick="goto('latterly')">
-            <div class="top">
-                <img src="lat.png" />
-                <span>L<span class="special">a</span>tterly</span>
-                <span class="description">Connect Words</span>
+        <div class="puzzles">
+            <div id="latterly" class="puzzle" onclick="goto('latterly')">
+                <div class="top">
+                    <img src="lat.png" />
+                    <span>L<span class="special">a</span>tterly</span>
+                    <span class="description">Connect Words</span>
+                </div>
+                <div class="link">
+                    <span class="description">Swap out letters from a word to create a new word.</span>
+                    <a href="">Play</a>
+                </div>
             </div>
-            <div class="link">
-                <span class="description">Swap out letters from a word to create a new word.</span>
-                <a href="">Play</a>
+             <div id="thirtyfour" class="puzzle" onclick="goto('thirtyfour')">
+                <div class="top">
+                    <img src="ThirtyFour-Logo.png" />
+                    <span>ThirtyFour</span>
+                    <span class="description">Build a Bridge</span>
+                </div>
+                <div class="link">
+                    <span class="description">Complete a singular, continuous path that connects two Blocks.</span>
+                    <a href="">Play</a>
+                </div>
             </div>
         </div>
-         <div id="thirtyfour" class="puzzle" onclick="goto('thirtyfour')">
-            <div class="top">
-                <img src="ThirtyFour-Logo.png" />
-                <span>ThirtyFour</span>
-                <span class="description">Build a Bridge</span>
-            </div>
-            <div class="link">
-                <span class="description">Complete a singular, continuous path that connects two Blocks.</span>
-                <a href="">Play</a>
-            </div>
-        </div>
-        
         <h2>Coming Soon!</h2>
-       
+       <div class="puzzles">
         <div id="zooty" class="puzzle">
             <div class="top">
                 <img src="Zooty-Logo.png" />
@@ -279,6 +280,7 @@
                 <a class="cs" href="">Coming Soon</a>
             </div>
         </div>
+           </div>
     </div>
     <div id="latterly-game" class="game-holder">
         <div id="back" onclick="gohome('latterly')">
