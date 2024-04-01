@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Sign-In Redirect</title>
+    <script>
+        // Function to parse query parameters from URL
+        function parseQueryParams(url) {
+            const queryParams = {};
+            url.slice(url.indexOf('?') + 1).split('&').forEach(param => {
+                const [key, value] = param.split('=');
+                queryParams[key] = decodeURIComponent(value);
+            });
+            return queryParams;
+        }
+
+        // Function to handle authentication response
+        function handleAuthenticationResponse() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const credential = parseQueryParams(window.location.href);
+
+            // Display the authentication response
+            console.log('Authentication Response:', credential);
+
+            // Here you can perform additional actions, such as storing user data,
+            // setting session cookies, or redirecting the user to another page.
+        }
+
+        // Call the handleAuthenticationResponse function when the page loads
+        window.onload = handleAuthenticationResponse;
+    </script>
+</head>
+<body>
+    <h1>Redirecting...</h1>
+    <!-- Optional: Provide visual feedback to the user -->
+    <p>Please wait while we process your authentication...</p>
+</body>
+</html>
