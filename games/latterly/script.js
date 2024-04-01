@@ -80,12 +80,14 @@ let totalMoves = 0;
 const keys = document.querySelectorAll('.key');
 const numGuesses = document.querySelector('.guesses');
 const pastGuesses = document.getElementById('past-guesses');
+const tip = document.getElementById('tip');
 const winner = getWord("!", 1); // Get the winning word
 
 // Add event listener to each key
 keys.forEach(function (key) {
     key.addEventListener('click', function () {
         if (selectedLetter !== 0) {
+            tip.classList.remove("active");
             const newWord = getWord(this.innerText, 0);
             checkWord(newWord).then(isValid => {
                 if (isValid) {
@@ -108,6 +110,9 @@ keys.forEach(function (key) {
                     }
                 }
             });
+        }
+        else{
+            tip.classList.add("active");
         }
     });
 });
