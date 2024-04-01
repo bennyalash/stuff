@@ -16,6 +16,30 @@ body {
 h1{
             text-transform:uppercase;
 }
+#tip{
+                position: absolute;
+    background: #b23909;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Unica One';
+    text-transform: uppercase;
+    bottom: 100%;
+    margin: auto;
+    left: 0;
+    right: 0;
+    width: fit-content;
+    opacity: 1;
+    display: none;
+    transition: 1s ease;
+    transition-delay: 0.5s;
+    pointer-events: none;
+}
+#tip.active{
+    opacity: 0;
+    transform: translateY(-50px);
+    display: block;
+}
         .current, #target {
             display: flex;
             gap: 10px;
