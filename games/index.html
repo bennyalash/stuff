@@ -190,24 +190,42 @@
     ];
 
     // Function to populate leaderboard table
-    function populateLeaderboard() {
-        var leaderboardTable = document.getElementById("leaderboard");
-        var tbody = leaderboardTable.querySelector("tbody");
-        tbody.innerHTML = ""; // Clear existing rows
-        var num = 0;
-        var rank = 0;
-        var lastScore = 0;
-        leaderboardData.forEach(function(player) {
-            num++;
-            if(lastScore != player.points){
-                rank = num;
-            }
-            lastScore = player.points;
-            
-            var row = "<tr><td>" + rank + "</td><td>" + player.name + "</td><td>" + player.points + "</td><td>" + player.weeksPlayed + "</td></tr>";
-            tbody.innerHTML += row;
-        });
-    }
+    // Function to populate leaderboard table
+function populateLeaderboard() {
+    var leaderboardTable = document.getElementById("leaderboard");
+    var tbody = leaderboardTable.querySelector("tbody");
+    tbody.innerHTML = ""; // Clear existing rows
+    
+    // Sort the leaderboardData array
+    leaderboardData.sort(function(a, b) {
+        // Sort by points (descending)
+        if (a.points !== b.points) {
+            return b.points - a.points;
+        }
+        // Then by weeks played (descending)
+        if (a.weeksPlayed !== b.weeksPlayed) {
+            return b.weeksPlayed - a.weeksPlayed;
+        }
+        // Then by name (ascending)
+        return a.name.localeCompare(b.name);
+    });
+    
+    // Populate the sorted leaderboard
+    var num = 0;
+    var rank = 0;
+    var lastScore = 0;
+    leaderboardData.forEach(function(player) {
+        num++;
+        if(lastScore != player.points){
+            rank = num;
+        }
+        lastScore = player.points;
+        
+        var row = "<tr><td>" + rank + "</td><td>" + player.name + "</td><td>" + player.points + "</td><td>" + player.weeksPlayed + "</td></tr>";
+        tbody.innerHTML += row;
+    });
+}
+
 
     // Call the function to populate leaderboard initially
     populateLeaderboard();
