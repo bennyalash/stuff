@@ -244,7 +244,7 @@
         </div>
 
         <h2>Daily Puzzles</h2>
-        <h4>{Current Date}</h4>
+        <div id="currentDate"></div>
         <div class="puzzles">
             <div id="latterly" class="puzzle" onclick="goto('latterly')">
                 <div class="top">
@@ -389,6 +389,22 @@
                 console.log( 'All images loaded!' );
             }
         }
+
+        <script>
+    // Get the current date
+    var currentDate = new Date();
+
+    // Format the date as desired (e.g., "April 15, 2024")
+    var formattedDate = currentDate.toLocaleDateString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric'
+    });
+
+    // Display the formatted date in the designated element
+    document.getElementById('currentDate').innerText = formattedDate;
+</script>
+
 
         // Get the User-Agent string
         var userAgent = navigator.userAgent;
