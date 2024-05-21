@@ -33,7 +33,8 @@
                 // Split the content into an array of words (assuming each word is on a separate line)
                 const dictionaryContent = xhr.responseText;
                 const dictionary = dictionaryContent.split('\n');
-        
+
+                console.log("check");
                 // Check if the word exists in the dictionary
                 return wordExists(wordToCheck, dictionary);
             } else {
