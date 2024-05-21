@@ -43,6 +43,7 @@
         function replaceOneLetter(word) {
             const outputDiv = document.getElementById('output');
             outputDiv.innerText += word + '\n';
+            console.log(word);
             const nextWords = getValidNextWords(word);
             if (nextWords.length === 0) {
                 outputDiv.innerText += "No more valid words.";
