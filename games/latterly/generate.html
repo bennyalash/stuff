@@ -16,9 +16,9 @@
         
         // Function to load the dictionary file and perform the check
         function isValidWord(wordToCheck) {
-            // Assuming you have a dictionary file named dictionary.txt
+
             const fs = require('fs');
-            const dictionaryFilePath = 'dictionary.txt';
+            const dictionaryFilePath = 'words_alpha.txt';
         
             // Read the dictionary file
             const dictionaryContent = fs.readFileSync(dictionaryFilePath, 'utf8');
