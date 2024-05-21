@@ -33,6 +33,9 @@
 
         // Function to get all valid words that are one letter away from the given word
         function getValidNextWords(word) {
+            if(total > 100){
+                return;
+            }
             const nextWords = [];
             for (let i = 0; i < word.length; i++) {
                 for (let j = 97; j <= 122; j++) { // ASCII codes for lowercase letters
@@ -47,13 +50,13 @@
 
         // Function to replace one letter at a time
         function replaceOneLetter(word) {
+            if(total > 100){
+                return;
+            }
             const outputDiv = document.getElementById('output');
             outputDiv.innerText += word + '\n';
             console.log(word);
             total++;
-            if(total > 100){
-                return;
-            }
             const nextWords = getValidNextWords(word);
             if (nextWords.length === 0) {
                 outputDiv.innerText += "No more valid words.";
