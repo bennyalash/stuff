@@ -9,22 +9,26 @@
     <script>
         var total = 0;
         
-        // Function to check if a word is in the dictionary
+        // Function to check if a word is in the dictionary (synchronous version)
         function isValidWord(word) {
-            word = word.replace(/[\r\n]+/g, '');
-            return fetch('https://api.dictionaryapi.dev/api/v2/entries/en/' + word)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Word not found');
-                    }
-                    return response.json(); // Parse response body as JSON
-                })
-                .then(data => {
-                    return true; // Resolve the promise with true
-                })
-                .catch(error => {
-                    return false; // Reject the promise with false
-                });
+            // Create a synchronous XMLHttpRequest
+            const request = new XMLHttpRequest();
+            
+            // Construct the URL
+            const url = 'https://api.dictionaryapi.dev/api/v2/entries/en/' + word;
+        
+            // Open the request
+            request.open('GET', url, false); // false makes the request synchronous
+        
+            // Send the request
+            request.send(null);
+        
+            // Check the status and return true if the word is found, false otherwise
+            if (request.status === 200) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
         // Function to get all valid words that are one letter away from the given word
