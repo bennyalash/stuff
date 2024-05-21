@@ -1,39 +1,63 @@
-<script>
-  // Function to check if a word is in the dictionary
-function isValidWord(word) {
-    return true;
-}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Word Replacement</title>
+</head>
+<body>
+    <div id="output"></div>
 
-// Function to get all valid words that are one letter away from the given word
-function getValidNextWords(word) {
-    const nextWords = [];
-    for (let i = 0; i < word.length; i++) {
-        for (let j = 97; j <= 122; j++) { // ASCII codes for lowercase letters
-            const newWord = word.substring(0, i) + String.fromCharCode(j) + word.substring(i + 1);
-            if (isValidWord(newWord) && newWord !== word) {
-                nextWords.push(newWord);
-            }
+    <script>
+        // Function to check if a word is in the dictionary
+        function isValidWord(word) {
+            word = word.replace(/[\r\n]+/g, '');
+            return fetch('https://api.dictionaryapi.dev/api/v2/entries/en/' + word)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Word not found');
+                    }
+                    return response.json(); // Parse response body as JSON
+                })
+                .then(data => {
+                    return true; // Resolve the promise with true
+                })
+                .catch(error => {
+                    return false; // Reject the promise with false
+                });
         }
-    }
-    return nextWords;
-}
 
-// Function to replace one letter at a time
-function replaceOneLetter(word) {
-    console.log(word);
-    const nextWords = getValidNextWords(word);
-    if (nextWords.length === 0) {
-        console.log("No more valid words.");
-        return;
-    }
-    const randomIndex = Math.floor(Math.random() * nextWords.length);
-    const nextWord = nextWords[randomIndex];
-    replaceOneLetter(nextWord);
-}
+        // Function to get all valid words that are one letter away from the given word
+        function getValidNextWords(word) {
+            const nextWords = [];
+            for (let i = 0; i < word.length; i++) {
+                for (let j = 97; j <= 122; j++) { // ASCII codes for lowercase letters
+                    const newWord = word.substring(0, i) + String.fromCharCode(j) + word.substring(i + 1);
+                    if (isValidWord(newWord) && newWord !== word) {
+                        nextWords.push(newWord);
+                    }
+                }
+            }
+            return nextWords;
+        }
 
-// Starting word
-const startingWord = "tale";
+        // Function to replace one letter at a time
+        function replaceOneLetter(word) {
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerText += word + '\n';
+            const nextWords = getValidNextWords(word);
+            if (nextWords.length === 0) {
+                outputDiv.innerText += "No more valid words.";
+                return;
+            }
+            const randomIndex = Math.floor(Math.random() * nextWords.length);
+            const nextWord = nextWords[randomIndex];
+            replaceOneLetter(nextWord);
+        }
 
-// Start replacing letters
-replaceOneLetter(startingWord);
-</script>
+        // Starting word
+        const startingWord = "tale";
+
+        // Start replacing letters
+        replaceOneLetter(startingWord);
+    </script>
+</body>
+</html>
