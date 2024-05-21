@@ -34,6 +34,7 @@
 
                     // Start replacing letters
                     const startingWord = "tale";
+                    console.log(dictionary);
                     replaceOneLetter(startingWord);
                 } else {
                     console.error('Failed to load the dictionary file.');
@@ -42,6 +43,8 @@
 
             // Send the request
             xhr.send();
+
+            
         }
 
         // Function to get all valid words that are one letter away from the given word
