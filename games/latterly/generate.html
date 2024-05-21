@@ -16,7 +16,7 @@
         }
 
         // Function to load the dictionary file and populate the dictionary array
-        function loadDictionary(callback) {
+        function loadDictionary() {
             // Assuming you have a dictionary file named words_alpha.txt
             const dictionaryFilePath = 'words_alpha.txt';
 
@@ -32,9 +32,11 @@
                     // Split the content into an array of words (assuming each word is on a separate line)
                     const dictionaryContent = xhr.responseText;
                     dictionary = dictionaryContent.split('\n').map(word => word.trim());
-                    if (typeof callback === 'function') {
-                        callback();
-                    }
+
+                    // Start replacing letters
+                    const startingWord = "tale";
+                    console.log(dictionary);
+                    replaceOneLetter(startingWord);
                 } else {
                     console.error('Failed to load the dictionary file.');
                 }
@@ -42,6 +44,8 @@
 
             // Send the request
             xhr.send();
+
+            
         }
 
         // Function to get all valid words that are one letter away from the given word
@@ -59,33 +63,22 @@
         }
 
         // Function to replace one letter at a time
-        function replaceOneLetter(startingWord) {
+        function replaceOneLetter(word) {
             const outputDiv = document.getElementById('output');
-            outputDiv.innerText += startingWord + '\n';
+            outputDiv.innerText += word + '\n';
             total++;
-
-            const queue = [startingWord];
-            while (queue.length > 0 && total < 10000) {
-                const word = queue.shift();
-                const nextWords = getValidNextWords(word);
-                for (const nextWord of nextWords) {
-                    outputDiv.innerText += nextWord + '\n';
-                    total++;
-                    if (total >= 10000) {
-                        outputDiv.innerText += "Reached 10000 words limit.";
-                        return;
-                    }
-                    queue.push(nextWord);
-                }
-            }
-
-            if (total < 10000) {
+            const nextWords = getValidNextWords(word);
+            if (nextWords.length === 0 || total > 100) {
                 outputDiv.innerText += "No more valid words.";
+                return;
             }
+            const randomIndex = Math.floor(Math.random() * nextWords.length);
+            const nextWord = nextWords[randomIndex];
+            replaceOneLetter(nextWord);
         }
 
         // Load the dictionary and start the process
-        loadDictionary(replaceOneLetter);
+        loadDictionary();
     </script>
 </body>
 </html>
