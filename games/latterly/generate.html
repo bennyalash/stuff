@@ -31,7 +31,7 @@
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     // Split the content into an array of words (assuming each word is on a separate line)
-                    dictionary = xhr.responseText;
+                    const dictionaryContent = xhr.responseText;
                     dictionary = dictionaryContent.split('\n').map(word => word.trim());
 
                     // Start replacing letters
