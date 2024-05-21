@@ -1,20 +1,38 @@
 const wordSets = [
-    { startWord: 'BEAN', endWord: 'CART' },     // March 21
-    { startWord: 'LEAP', endWord: 'FROG' },     // March 22
-    { startWord: 'GOLD', endWord: 'SACK' },     // March 23
-    { startWord: 'DARK', endWord: 'MOON' },     // March 24
-    { startWord: 'PALM', endWord: 'TREE' },     // March 25 PALM SUNDAY
-    { startWord: 'HARD', endWord: 'NAIL' },     // March 26
-    { startWord: 'LOVE', endWord: 'BIRD' },     // March 27
-    { startWord: 'HIGH', endWord: 'JUMP' },     // March 28 
-    { startWord: 'GOOD', endWord: 'DEAD' },     // March 29 GOOD FRIDAY
-    { startWord: 'LONG', endWord: 'WALK' },     // March 30 
-    { startWord: 'LAMB', endWord: 'LIFE' },     // March 31 EASTER
-    { startWord: 'FOOL', endWord: 'DAYS' },     // April 1 APRIL FOOLS
+    { startWord: 'BEAN', endWord: 'CART' },    
+    { startWord: 'LEAP', endWord: 'FROG' },
+    { startWord: 'GOLD', endWord: 'SACK' },
+    { startWord: 'DARK', endWord: 'MOON' },
+    { startWord: 'PALM', endWord: 'TREE' },
+    { startWord: 'HARD', endWord: 'NAIL' },
+    { startWord: 'LOVE', endWord: 'BIRD' },
+    { startWord: 'HIGH', endWord: 'JUMP' },
+    { startWord: 'GOOD', endWord: 'DEAD' },
+    { startWord: 'LONG', endWord: 'WALK' },
+    { startWord: 'LAMB', endWord: 'LIFE' },
+    { startWord: 'FOOL', endWord: 'DAYS' },
+    { startWord: 'TALE', endWord: 'FUNK' },
+    { startWord: 'SUNK', endWord: 'MOSS' },
+    { startWord: 'COOK', endWord: 'LOGO' },
+    { startWord: 'JOKE', endWord: 'GOLF' },
+    { startWord: 'CAPE', endWord: 'COLD' },
+    { startWord: 'LANE', endWord: 'DICE' },
+    { startWord: 'MAYO', endWord: 'BANS' },
+    { startWord: 'HOSE', endWord: 'LAWS' },
+    { startWord: 'WISE', endWord: 'SASH' },
+    { startWord: 'SAVE', endWord: 'FOLD' },
+    { startWord: 'BONE', endWord: 'CHIN' },
+    { startWord: 'SOOT', endWord: 'HOLY' },
+    { startWord: 'GOAT', endWord: 'HOAX' },
+    { startWord: 'WAND', endWord: 'NOSE' },
+    { startWord: 'LONG', endWord: 'BALL' },
+    { startWord: 'VAST', endWord: 'RENT' },
+    { startWord: 'PARK', endWord: 'TURN' },
+    { startWord: 'HONK', endWord: 'ZEST' },
 ];
 // Get the current date
 const currentDate = new Date();
-const daysSinceMarch032024 = Math.floor((new Date() - new Date('2024-03-20')) / (1000 * 60 * 60 * 24)) - 1;
+const daysSinceMarch032024 = Math.floor((new Date() - new Date('2024-05-22')) / (1000 * 60 * 60 * 24)) - 1;
 
 // Retrieve the word set for the current day
 const wordSet = wordSets[daysSinceMarch032024];
