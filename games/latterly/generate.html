@@ -7,6 +7,8 @@
     <div id="output"></div>
 
     <script>
+        var total = 0;
+        
         // Function to check if a word is in the dictionary
         function isValidWord(word) {
             word = word.replace(/[\r\n]+/g, '');
@@ -44,6 +46,10 @@
             const outputDiv = document.getElementById('output');
             outputDiv.innerText += word + '\n';
             console.log(word);
+            total++;
+            if(total > 100){
+                return;
+            }
             const nextWords = getValidNextWords(word);
             if (nextWords.length === 0) {
                 outputDiv.innerText += "No more valid words.";
