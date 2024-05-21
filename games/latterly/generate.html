@@ -1,0 +1,39 @@
+<script>
+  // Function to check if a word is in the dictionary
+function isValidWord(word) {
+    return dictionary.includes(word);
+}
+
+// Function to get all valid words that are one letter away from the given word
+function getValidNextWords(word) {
+    const nextWords = [];
+    for (let i = 0; i < word.length; i++) {
+        for (let j = 97; j <= 122; j++) { // ASCII codes for lowercase letters
+            const newWord = word.substring(0, i) + String.fromCharCode(j) + word.substring(i + 1);
+            if (isValidWord(newWord) && newWord !== word) {
+                nextWords.push(newWord);
+            }
+        }
+    }
+    return nextWords;
+}
+
+// Function to replace one letter at a time
+function replaceOneLetter(word) {
+    console.log(word);
+    const nextWords = getValidNextWords(word);
+    if (nextWords.length === 0) {
+        console.log("No more valid words.");
+        return;
+    }
+    const randomIndex = Math.floor(Math.random() * nextWords.length);
+    const nextWord = nextWords[randomIndex];
+    replaceOneLetter(nextWord);
+}
+
+// Starting word
+const startingWord = "ball";
+
+// Start replacing letters
+replaceOneLetter(startingWord);
+</script>
