@@ -34,7 +34,7 @@
                 const dictionaryContent = xhr.responseText;
                 const dictionary = dictionaryContent.split('\n');
 
-                console.log("check");
+                console.log(wordToCheck);
                 // Check if the word exists in the dictionary
                 return wordExists(wordToCheck, dictionary);
             } else {
