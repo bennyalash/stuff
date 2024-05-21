@@ -13,7 +13,7 @@
         // Function to check if a word is in the dictionary
         function wordExists(word) {
             console.log(word);
-            return dictionary.includes(word + "\r");
+            return dictionary.includes(word);
         }
 
         // Function to load the dictionary file and populate the dictionary array
@@ -31,7 +31,8 @@
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     // Split the content into an array of words (assuming each word is on a separate line)
-                    dictionary = xhr.responseText.split('\n');
+                    dictionary = xhr.responseText;
+                    dictionary = dictionaryContent.split('\n').map(word => word.trim());
 
                     // Start replacing letters
                     const startingWord = "tale";
