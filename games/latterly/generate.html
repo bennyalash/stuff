@@ -16,21 +16,30 @@
         
         // Function to load the dictionary file and perform the check
         function isValidWord(wordToCheck) {
-
-            const fs = require('fs');
+            // Assuming you have a dictionary file named dictionary.txt
             const dictionaryFilePath = 'words_alpha.txt';
         
-            // Read the dictionary file
-            const dictionaryContent = fs.readFileSync(dictionaryFilePath, 'utf8');
+            // Create a new XMLHttpRequest object
+            const xhr = new XMLHttpRequest();
         
-            // Split the content into an array of words (assuming each word is on a separate line)
-            const dictionary = dictionaryContent.split('\n');
+            // Open a new GET request to the dictionary file
+            xhr.open('GET', dictionaryFilePath, false); // The third parameter 'false' makes the request synchronous
         
-            // Check if the word exists in the dictionary
-            const isWordInDictionary = wordExists(wordToCheck, dictionary);
+            // Send the request
+            xhr.send();
         
-            // Return true if the word exists, false otherwise
-            return isWordInDictionary;
+            // Check if the request was successful (status code 200)
+            if (xhr.status === 200) {
+                // Split the content into an array of words (assuming each word is on a separate line)
+                const dictionaryContent = xhr.responseText;
+                const dictionary = dictionaryContent.split('\n');
+        
+                // Check if the word exists in the dictionary
+                return wordExists(wordToCheck, dictionary);
+            } else {
+                // If the request fails, return false
+                return false;
+            }
         }
 
         // Function to get all valid words that are one letter away from the given word
