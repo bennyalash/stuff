@@ -4,11 +4,10 @@
     <title>Word Replacement</title>
 </head>
 <body>
-    <div id="output"></div>
-
     <script>
         var total = 0;
         var dictionary = [];
+        const myWords = [];
 
         // Function to check if a word is in the dictionary
         function wordExists(word) {
@@ -64,12 +63,11 @@
 
         // Function to replace one letter at a time
         function replaceOneLetter(word) {
-            const outputDiv = document.getElementById('output');
-            outputDiv.innerText += word + '\n';
             total++;
+            myWords.push(word);
             const nextWords = getValidNextWords(word);
             if (nextWords.length === 0 || total > 100) {
-                outputDiv.innerText += "No more valid words.";
+                console.log(myWords);
                 return;
             }
             const randomIndex = Math.floor(Math.random() * nextWords.length);
