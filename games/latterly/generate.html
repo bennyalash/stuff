@@ -68,7 +68,7 @@
             outputDiv.innerText += word + '\n';
             total++;
             const nextWords = getValidNextWords(word);
-            if (nextWords.length === 0 || total > 10000) {
+            if (nextWords.length === 0 || total > 1000) {
                 outputDiv.innerText += "No more valid words.";
                 return;
             }
