@@ -70,7 +70,7 @@
             total++;
             console.log(total);
             const nextWords = getValidNextWords(word);
-            if (nextWords.length === 0 || total > 100) {
+            if (nextWords.length === 0 || total > 10000) {
                 outputDiv.innerText += "No more valid words.";
                 return;
             }
