@@ -8,51 +8,49 @@
 
     <script>
         var total = 0;
-        
+        var dictionary = [];
+
         // Function to check if a word is in the dictionary
-        function wordExists(word, dictionary) {
-            console.log(word + ": " + dictionary.includes(word));
-            return dictionary.includes(word+"\r");
+        function wordExists(word) {
+            return dictionary.includes(word);
         }
-        
-        // Function to load the dictionary file and perform the check
-        function isValidWord(wordToCheck) {
-            // Assuming you have a dictionary file named dictionary.txt
+
+        // Function to load the dictionary file and populate the dictionary array
+        function loadDictionary() {
+            // Assuming you have a dictionary file named words_alpha.txt
             const dictionaryFilePath = 'words_alpha.txt';
-        
+
             // Create a new XMLHttpRequest object
             const xhr = new XMLHttpRequest();
-        
+
             // Open a new GET request to the dictionary file
-            xhr.open('GET', dictionaryFilePath, false); // The third parameter 'false' makes the request synchronous
-        
+            xhr.open('GET', dictionaryFilePath, true); // Make the request asynchronous
+
+            // Define what happens on successful data retrieval
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    // Split the content into an array of words (assuming each word is on a separate line)
+                    dictionary = xhr.responseText.split('\n');
+
+                    // Start replacing letters
+                    const startingWord = "tale";
+                    replaceOneLetter(startingWord);
+                } else {
+                    console.error('Failed to load the dictionary file.');
+                }
+            };
+
             // Send the request
             xhr.send();
-        
-            // Check if the request was successful (status code 200)
-            if (xhr.status === 200) {
-                // Split the content into an array of words (assuming each word is on a separate line)
-                const dictionaryContent = xhr.responseText;
-                const dictionary = dictionaryContent.split('\n');
-
-                // Check if the word exists in the dictionary
-                return wordExists(wordToCheck, dictionary);
-            } else {
-                // If the request fails, return false
-                return false;
-            }
         }
 
         // Function to get all valid words that are one letter away from the given word
         function getValidNextWords(word) {
-            if(total > 100){
-                return;
-            }
             const nextWords = [];
             for (let i = 0; i < word.length; i++) {
                 for (let j = 97; j <= 122; j++) { // ASCII codes for lowercase letters
                     const newWord = word.substring(0, i) + String.fromCharCode(j) + word.substring(i + 1);
-                    if (isValidWord(newWord) && newWord !== word) {
+                    if (wordExists(newWord) && newWord !== word) {
                         nextWords.push(newWord);
                     }
                 }
@@ -62,15 +60,11 @@
 
         // Function to replace one letter at a time
         function replaceOneLetter(word) {
-            if(total > 100){
-                return;
-            }
             const outputDiv = document.getElementById('output');
             outputDiv.innerText += word + '\n';
-            console.log(word);
             total++;
             const nextWords = getValidNextWords(word);
-            if (nextWords.length === 0) {
+            if (nextWords.length === 0 || total > 100) {
                 outputDiv.innerText += "No more valid words.";
                 return;
             }
@@ -79,11 +73,8 @@
             replaceOneLetter(nextWord);
         }
 
-        // Starting word
-        const startingWord = "tale";
-
-        // Start replacing letters
-        replaceOneLetter(startingWord);
+        // Load the dictionary and start the process
+        loadDictionary();
     </script>
 </body>
 </html>
