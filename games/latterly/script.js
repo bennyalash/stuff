@@ -32,7 +32,7 @@ const wordSets = [
 ];
 // Get the current date
 const currentDate = new Date();
-const daysSinceMay222024 = Math.floor((new Date() - new Date('2024-05-22')) / (1000 * 60 * 60 * 24)) - 1;
+const daysSinceMay222024 = Math.floor((new Date() - new Date('2024-05-21')) / (1000 * 60 * 60 * 24)) - 1;
 
 // Retrieve the word set for the current day
 const wordSet = wordSets[daysSinceMay222024];
