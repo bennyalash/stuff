@@ -1,3 +1,44 @@
-<script>
-  console.log("test");
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fetch Spotify Token</title>
+</head>
+<body>
+  <script>
+    function fetchSpotifyToken() {
+      const clientId = 'your-client-id';
+      const clientSecret = 'your-client-secret';
+      const url = 'https://accounts.spotify.com/api/token';
+
+      const data = {
+        grant_type: 'client_credentials',
+        client_id: clientId,
+        client_secret: clientSecret
+      };
+
+      const params = new URLSearchParams();
+      for (const key in data) {
+        params.append(key, data[key]);
+      }
+
+      const requestOptions = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: params
+      };
+
+      fetch(url, requestOptions)
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+    }
+
+    // Call the function when the page loads
+    fetchSpotifyToken();
+  </script>
+</body>
+</html>
