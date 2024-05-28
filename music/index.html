@@ -3,19 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fetch Spotify Token</title>
+  <title>Spotify Playlist Search</title>
+  <style>
+    #searchResults {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+    #searchResults a {
+      display: block;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+      text-decoration: none;
+      color: black;
+    }
+    #searchResults a:hover {
+      background-color: #ddd;
+    }
+  </style>
 </head>
 <body>
+  <div>
+    <input type="text" id="searchInput" placeholder="Search for a song...">
+    <div id="searchResults"></div>
+  </div>
+  <div id="playlistOptions"></div>
+
   <script>
-    // Replace 'your-access-token' with a valid access token obtained using OAuth or another authentication method
     const accessToken = 'BQCpmo7LJcRENmcRVyPGgFn-OOZw5ZCGAXACvWyWEMPjsm2U3a3e4GHO-OrFaeKLPV34ZGOfsDf15yE5ILFLeNO-j0Js6DOY9n2lCu1Nj9Wc88Z6ugA';
-    const songName = 'Pluto-Projector';
 
-    const limit = 50; // Number of results to return
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+    const playlistOptions = document.getElementById('playlistOptions');
 
-    // Function to search for playlists containing a specific song
-    function searchPlaylistsContainingSong(songName, accessToken, limit) {
-      const searchUrl = `https://api.spotify.com/v1/search?q=${encodeURIComponent(songName)}&type=playlist&limit=${limit}&offset=0&market=US`;
+    function searchForSongs(query) {
+      const searchUrl = `https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=track`;
 
       const requestOptions = {
         method: 'GET',
@@ -27,9 +51,11 @@
       return fetch(searchUrl, requestOptions)
         .then(response => response.json())
         .then(data => {
-          // Filter playlists where owner is not Spotify
-          const filteredPlaylists = data.playlists.items.filter(playlist => playlist.owner.id !== 'spotify');
-          return filteredPlaylists;
+          return data.tracks.items.map(item => ({
+            name: item.name,
+            album: item.album.name,
+            id: item.id
+          }));
         })
         .catch(error => {
           console.error('Error:', error);
@@ -37,47 +63,61 @@
         });
     }
 
-    // Example usage:
-    searchPlaylistsContainingSong(songName, accessToken, limit)
-      .then(playlists => {
-        console.log('Playlists containing the song:');
-        playlists.forEach(playlist => {
-          console.log(playlist);
+    function displaySongOptions(songs) {
+      searchResults.innerHTML = '';
+      songs.forEach(song => {
+        const songOption = document.createElement('a');
+        songOption.href = '#';
+        songOption.textContent = `${song.name} - ${song.album}`;
+        songOption.addEventListener('click', () => {
+          displayPlaylistsForSong(song.id);
         });
+        searchResults.appendChild(songOption);
       });
-
-    /*function fetchSpotifyToken() {
-      const clientId = 'e79269b8c74c444598eae4a79f42ff33';
-      const clientSecret = '6996b24be1f144debc97d9dd04ca352c';
-      const url = 'https://accounts.spotify.com/api/token';
-
-      const data = {
-        grant_type: 'client_credentials',
-        client_id: clientId,
-        client_secret: clientSecret
-      };
-
-      const params = new URLSearchParams();
-      for (const key in data) {
-        params.append(key, data[key]);
-      }
-
-      const requestOptions = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: params
-      };
-
-      fetch(url, requestOptions)
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error('Error:', error));
+      searchResults.style.display = 'block';
     }
 
-    // Call the function when the page loads
-    fetchSpotifyToken();*/
+    async function displayPlaylistsForSong(songId) {
+      const playlists = await getPlaylistsForSong(songId);
+      playlistOptions.innerHTML = '<h3>Playlists containing the song:</h3>';
+      playlists.forEach(playlist => {
+        const playlistOption = document.createElement('div');
+        playlistOption.textContent = playlist.name;
+        playlistOptions.appendChild(playlistOption);
+      });
+    }
+
+    async function getPlaylistsForSong(songId) {
+      const playlistsUrl = `https://api.spotify.com/v1/tracks/${songId}/playlists`;
+
+      const requestOptions = {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        }
+      };
+
+      const response = await fetch(playlistsUrl, requestOptions);
+      const data = await response.json();
+      return data.items;
+    }
+
+    searchInput.addEventListener('input', async () => {
+      const query = searchInput.value;
+      if (query.length === 0) {
+        searchResults.style.display = 'none';
+        return;
+      }
+      const songs = await searchForSongs(query);
+      displaySongOptions(songs);
+    });
+
+    // Close the search results when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!searchResults.contains(e.target) && !searchInput.contains(e.target)) {
+        searchResults.style.display = 'none';
+      }
+    });
   </script>
 </body>
 </html>
