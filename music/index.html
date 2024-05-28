@@ -27,9 +27,9 @@
       return fetch(searchUrl, requestOptions)
         .then(response => response.json())
         .then(data => {
-          // Extract relevant information from the response
-          const playlists = data.playlists.items;
-          return playlists;
+          // Filter playlists where owner is not Spotify
+          const filteredPlaylists = data.playlists.items.filter(playlist => playlist.owner.id !== 'spotify');
+          return filteredPlaylists;
         })
         .catch(error => {
           console.error('Error:', error);
