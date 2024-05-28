@@ -11,9 +11,11 @@
     const accessToken = 'BQCpmo7LJcRENmcRVyPGgFn-OOZw5ZCGAXACvWyWEMPjsm2U3a3e4GHO-OrFaeKLPV34ZGOfsDf15yE5ILFLeNO-j0Js6DOY9n2lCu1Nj9Wc88Z6ugA';
     const songName = 'Pasadena';
 
+    const limit = 100; // Number of results to return
+
     // Function to search for playlists containing a specific song
-    function searchPlaylistsContainingSong(songName, accessToken) {
-      const searchUrl = `https://api.spotify.com/v1/search?q=${encodeURIComponent(songName)}&type=playlist`;
+    function searchPlaylistsContainingSong(songName, accessToken, limit) {
+      const searchUrl = `https://api.spotify.com/v1/search?q=${encodeURIComponent(songName)}&type=playlist&limit=${limit}&offset=0&market=US`;
 
       const requestOptions = {
         method: 'GET',
@@ -36,11 +38,11 @@
     }
 
     // Example usage:
-    searchPlaylistsContainingSong(songName, accessToken)
+    searchPlaylistsContainingSong(songName, accessToken, limit)
       .then(playlists => {
         console.log('Playlists containing the song:');
         playlists.forEach(playlist => {
-          console.log(playlist);
+          console.log(playlist.name);
         });
       });
 
