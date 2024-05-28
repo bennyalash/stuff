@@ -88,6 +88,7 @@
     }
 
     async function displaySelectedSongs() {
+      console.log(selectedSongs);
       selectedSongsContainer.innerHTML = '<h3>Selected Songs:</h3>';
       selectedSongs.forEach(song => {
         const selectedSongDiv = document.createElement('div');
