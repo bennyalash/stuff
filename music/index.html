@@ -7,7 +7,44 @@
 </head>
 <body>
   <script>
-    function fetchSpotifyToken() {
+    // Replace 'your-access-token' with a valid access token obtained using OAuth or another authentication method
+    const accessToken = 'BQCpmo7LJcRENmcRVyPGgFn-OOZw5ZCGAXACvWyWEMPjsm2U3a3e4GHO-OrFaeKLPV34ZGOfsDf15yE5ILFLeNO-j0Js6DOY9n2lCu1Nj9Wc88Z6ugA';
+    const songName = 'Pasadena';
+
+    // Function to search for playlists containing a specific song
+    function searchPlaylistsContainingSong(songName, accessToken) {
+      const searchUrl = `https://api.spotify.com/v1/search?q=${encodeURIComponent(songName)}&type=playlist`;
+
+      const requestOptions = {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        }
+      };
+
+      return fetch(searchUrl, requestOptions)
+        .then(response => response.json())
+        .then(data => {
+          // Extract relevant information from the response
+          const playlists = data.playlists.items;
+          return playlists;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          return [];
+        });
+    }
+
+    // Example usage:
+    searchPlaylistsContainingSong(songName, accessToken)
+      .then(playlists => {
+        console.log('Playlists containing the song:');
+        playlists.forEach(playlist => {
+          console.log(playlist.name);
+        });
+      });
+
+    /*function fetchSpotifyToken() {
       const clientId = 'e79269b8c74c444598eae4a79f42ff33';
       const clientSecret = '6996b24be1f144debc97d9dd04ca352c';
       const url = 'https://accounts.spotify.com/api/token';
@@ -38,7 +75,7 @@
     }
 
     // Call the function when the page loads
-    fetchSpotifyToken();
+    fetchSpotifyToken();*/
   </script>
 </body>
 </html>
