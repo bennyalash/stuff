@@ -94,47 +94,6 @@
         selectedSongDiv.textContent = `${song.name} - ${song.album}`;
         selectedSongsContainer.appendChild(selectedSongDiv);
       });
-      if (selectedSongs.length > 0) {
-        await displayPlaylistsForSongs(selectedSongs.map(song => song.id));
-      } else {
-        playlistOptions.innerHTML = '';
-      }
-    }
-
-    async function displayPlaylistsForSongs(songIds) {
-      // Fetch playlists for each song and find common playlists
-      const playlistSets = await Promise.all(songIds.map(songId => getPlaylistsForSong(songId)));
-      const commonPlaylists = getCommonPlaylists(playlistSets);
-      
-      playlistOptions.innerHTML = '<h3>Common Playlists:</h3>';
-      commonPlaylists.forEach(playlist => {
-        const playlistOption = document.createElement('div');
-        playlistOption.textContent = playlist.name;
-        playlistOptions.appendChild(playlistOption);
-      });
-    }
-
-    function getCommonPlaylists(playlistSets) {
-      if (playlistSets.length === 0) return [];
-      const commonPlaylists = playlistSets.reduce((accumulator, currentValue) => {
-        return accumulator.filter(playlist => currentValue.some(item => item.id === playlist.id));
-      });
-      return commonPlaylists;
-    }
-
-    async function getPlaylistsForSong(songId) {
-      const playlistsUrl = `https://api.spotify.com/v1/tracks/${songId}/playlists`;
-
-      const requestOptions = {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${accessToken}`
-        }
-      };
-
-      const response = await fetch(playlistsUrl, requestOptions);
-      const data = await response.json();
-      return data.items;
     }
 
     searchInput.addEventListener('input', async () => {
