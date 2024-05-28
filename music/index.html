@@ -12,14 +12,13 @@
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
       z-index: 1;
     }
-    #searchResults a {
+    #searchResults label {
       display: block;
       padding: 10px;
       border-bottom: 1px solid #ccc;
-      text-decoration: none;
-      color: black;
+      cursor: pointer;
     }
-    #searchResults a:hover {
+    #searchResults label:hover {
       background-color: #ddd;
     }
   </style>
@@ -29,14 +28,16 @@
     <input type="text" id="searchInput" placeholder="Search for a song...">
     <div id="searchResults"></div>
   </div>
+  <div id="selectedSongs"></div>
   <div id="playlistOptions"></div>
 
   <script>
-    const accessToken = 'BQCpmo7LJcRENmcRVyPGgFn-OOZw5ZCGAXACvWyWEMPjsm2U3a3e4GHO-OrFaeKLPV34ZGOfsDf15yE5ILFLeNO-j0Js6DOY9n2lCu1Nj9Wc88Z6ugA';
-
+    const accessToken = 'your-access-token';
     const searchInput = document.getElementById('searchInput');
     const searchResults = document.getElementById('searchResults');
+    const selectedSongsContainer = document.getElementById('selectedSongs');
     const playlistOptions = document.getElementById('playlistOptions');
+    let selectedSongs = [];
 
     function searchForSongs(query) {
       const searchUrl = `https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=track`;
@@ -66,25 +67,58 @@
     function displaySongOptions(songs) {
       searchResults.innerHTML = '';
       songs.forEach(song => {
-        const songOption = document.createElement('a');
-        songOption.href = '#';
-        songOption.textContent = `${song.name} - ${song.album}`;
-        songOption.addEventListener('click', () => {
-          displayPlaylistsForSong(song.id);
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.value = song.id;
+        checkbox.addEventListener('change', () => {
+          if (checkbox.checked) {
+            selectedSongs.push(song);
+          } else {
+            selectedSongs = selectedSongs.filter(selectedSong => selectedSong.id !== song.id);
+          }
+          displaySelectedSongs();
         });
-        searchResults.appendChild(songOption);
+        const label = document.createElement('label');
+        label.textContent = `${song.name} - ${song.album}`;
+        label.appendChild(checkbox);
+        searchResults.appendChild(label);
       });
       searchResults.style.display = 'block';
     }
 
-    async function displayPlaylistsForSong(songId) {
-      const playlists = await getPlaylistsForSong(songId);
-      playlistOptions.innerHTML = '<h3>Playlists containing the song:</h3>';
-      playlists.forEach(playlist => {
+    async function displaySelectedSongs() {
+      selectedSongsContainer.innerHTML = '<h3>Selected Songs:</h3>';
+      selectedSongs.forEach(song => {
+        const selectedSongDiv = document.createElement('div');
+        selectedSongDiv.textContent = `${song.name} - ${song.album}`;
+        selectedSongsContainer.appendChild(selectedSongDiv);
+      });
+      if (selectedSongs.length > 0) {
+        await displayPlaylistsForSongs(selectedSongs.map(song => song.id));
+      } else {
+        playlistOptions.innerHTML = '';
+      }
+    }
+
+    async function displayPlaylistsForSongs(songIds) {
+      // Fetch playlists for each song and find common playlists
+      const playlistSets = await Promise.all(songIds.map(songId => getPlaylistsForSong(songId)));
+      const commonPlaylists = getCommonPlaylists(playlistSets);
+      
+      playlistOptions.innerHTML = '<h3>Common Playlists:</h3>';
+      commonPlaylists.forEach(playlist => {
         const playlistOption = document.createElement('div');
         playlistOption.textContent = playlist.name;
         playlistOptions.appendChild(playlistOption);
       });
+    }
+
+    function getCommonPlaylists(playlistSets) {
+      if (playlistSets.length === 0) return [];
+      const commonPlaylists = playlistSets.reduce((accumulator, currentValue) => {
+        return accumulator.filter(playlist => currentValue.some(item => item.id === playlist.id));
+      });
+      return commonPlaylists;
     }
 
     async function getPlaylistsForSong(songId) {
