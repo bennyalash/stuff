@@ -54,9 +54,7 @@
         .then(response => response.json())
         .then(data => {
           return data.tracks.items.map(item => ({
-            name: item.name,
-            album: item.album.name,
-            id: item.id
+            ...item
           }));
         })
         .catch(error => {
