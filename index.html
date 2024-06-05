@@ -43,16 +43,16 @@
     gap: 20px;
                 margin-bottom: -10px;
         }
-        #gibbs{
+        #gibbs, .gibbs{
             background:#990C0C;
         }
-        #puzzles{
+        #puzzles, .puzzles{
             background:#23A0D1;
         }
-        #design{
+        #design, .design{
             background:#C87229;
         }
-        #bg{
+        #bg, .bg{
             background:#3E4C5E;
         }
         .logo img{
@@ -85,6 +85,8 @@
     </div>
 </body>
     <footer>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
         <script>
     function go(destination) {
         switch(destination) {
@@ -104,6 +106,15 @@
                 console.error('Invalid destination');
         }
     }
+$(document).ready(function(){
+    $(".item").hover(function(){
+        var itemId = $(this).attr("id");
+        $("#container").addClass(itemId);
+    }, function(){
+        var itemId = $(this).attr("id");
+        $("#container").removeClass(itemId);
+    });
+});
 </script>
     </footer>
 </html>
