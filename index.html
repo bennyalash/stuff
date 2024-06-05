@@ -109,10 +109,10 @@
 $(document).ready(function(){
     $(".item").hover(function(){
         var itemId = $(this).attr("id");
-        $("#container").addClass(itemId);
+        $("body").addClass(itemId);
     }, function(){
         var itemId = $(this).attr("id");
-        $("#container").removeClass(itemId);
+        $("body").removeClass(itemId);
     });
 });
 </script>
