@@ -1,155 +1,257 @@
 <html>
-  <head>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1" user-scalable="no">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Orelega+One&display=swap" rel="stylesheet"> <style>
-      body {
-        font-family: "Montserrat", "Segoe UI", Arial, sans-serif;
-        margin: 20px;
-        padding: 0;
-        background:#FFF6EC;
-      }
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Orelega+One&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Montserrat", "Segoe UI", Arial, sans-serif;
+            margin: 0px;
+            padding: 0;
+            padding-bottom: 50vh;
+            background: #FFECD9;
+        }
 
-      .rules-content {
-        max-width: 800px;
-        margin: 0 auto;
-      }
+        .rules-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-      h1 {
-        text-align: center;
-      }
-  h1, h2{
-    font-family: "Orelega One", "Segoe UI", Arial, sans-serif;
-    color: #530D00;
-    font-weight:normal;
-  }
+        h1 {
+            text-align: center;
+        }
 
-      .rules-section {
-        margin-bottom: 20px;
-    padding: 20px;
-    background: #fffbf6;
-    border-radius: 5px;
-      }
+        h1, h2 {
+            font-family: "Orelega One", "Segoe UI", Arial, sans-serif;
+            color: #963E0D;
+            font-weight: normal;
+            margin-top:0px;
+        }
 
-      .rules-item {
-        margin-bottom: 10px;
-      }
-      .sub-item{
-        margin-left:20px;
-      }
-      p, ul, li {
-            color: #530d00;
-    font-size: 0.9em;
-    font-weight: 500;
-      }
+        .rules-section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #ffffff99;
+            border-radius: 24px;
+            border: 2px solid #963E0D;
+        }
+
+        .rules-item {
+            margin-bottom: 10px;
+        }
+
+        .sub-item {
+            margin-left: 20px;
+        }
+
+        p, ul, li {
+            color: #530D00;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        #your-turn ul {
+            list-style: decimal;
+            padding-left: 20px;
+        }
+
+        #your-turn li {
+            margin: 15px 0;
+        }
+
+        table, tr, td, th {
+            border: 1px solid;
+            border-collapse: collapse;
+            padding: 5px 10px;
+            text-align: left;
+            border-radius: 5px;
+            border-color: #963E0D;
+        }
+
+            table th p {
+                font-weight: 600;
+            }
+
+        a {
+            color: #ffffff;
+            background-color: #224422;
+            font-weight: 600;
+            padding: 4px 8px;
+            text-decoration: none;
+            margin-bottom: 2px;
+            display: inline-block;
+            border-radius: 2px;
+        }
+
+            a:hover {
+                color: #ffffff;
+                background-color: #1A8418;
+                font-weight: 600;
+            }
+        #banner {
+            background: #963E0D;
+            color: white;
+            padding: 20px 0;
+        }
+        @media (max-width: 800px) {
+
+            .rules-section {
+                border: 0;
+                background: #ffffffcc;
+            }
+        }
     </style>
-  </head>
+</head>
   <body>
-    <div class="rules-content">
-      <h1>Feed 'Yer Mama Rules</h1>
 
-      <div class="rules-section">
-        <h2>Game Contents</h2>
-        <div class="rules-item">
-          <p>55 Cards</p>
-          <div class="sub-item">
-            <p>1 Rules Card</p>
+      <div class="rules-content">
+          <h1 id="banner">Feed 'Yer Mama Rules</h1>
+          <div id="table-of-contents" class="rules-section">
+              <h2>Table of Contents</h2>
+              <div class="rules-item">
+                  <a href="#setup">Setup Instructions</a>
+              </div>
+              <div class="rules-item">
+                  <a href="#your-turn">Your Turn</a>
+              </div>
+              <div class="rules-item">
+                  <a href="#winning">Winning</a>
+              </div>
+              <div class="rules-item">
+                  <a href="#other-rules">Rules and Exceptions</a>
+              </div>
+              <div class="rules-item">
+                  <a href="#card-clarifications">Card Clarifications</a>
+              </div>
+              <div class="rules-item">
+                  <a href="#game-contents">Game Contents</a>
+              </div>
           </div>
-          <div class="sub-item">
-            <p>1 Point Tracking Card ('Yer Points)</p>
+          <div id="setup" class="rules-section">
+              <h2>Setup</h2>
+              <div class="rules-item">
+                  <p>Deal every player 3 Cards and give every player 1 Coin.</p>
+                  <p>Set all player markers at the start of the Feed 'Yer Mama Point Tracking Card.</p>
+                  <p>Set the Feed ‘Yer Mama Food Board to the Start Space.</p>
+                  <p>Everyone Rolls the Dice, Highest roller goes first</p>
+                  <p>
+                      Give out bonus resources to each player depending on turn order:
+                  </p>
+                  <table>
+                      <thead>
+                          <tr>
+                              <th colspan="1">
+                                  <p>Turn Order</p>
+                              </th>
+                              <th colspan="1">
+                                  <p>Bonus Resources</p>
+                              </th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr><td><p>Player 1</p></td><td><p></p></td></tr>
+                          <tr><td><p>Player 2</p></td><td><p>1 Card</p></td></tr>
+                          <tr><td><p>Player 3</p></td><td><p>1 Coin</p></td></tr>
+                          <tr><td><p>Player 4</p></td><td><p>1 Food</p></td></tr>
+                          <tr><td><p>Player 5</p></td><td><p>1 Card and 1 Coin</p></td></tr>
+                      </tbody>
+                  </table>
+              </div>
           </div>
-          <div class="sub-item">
-            <p>1 How Much Mama Eats Card</p>
+          <div id="your-turn" class="rules-section">
+              <h2>Your Turn</h2>
+              <div class="rules-item">
+                  <p>These steps must be done in order, but each step is optional.</p>
+                  <ul>
+                      <li><b>GAIN 2 COINS</b> or <b>DRAW 1 CARD</b> or <b>GAIN 1 FOOD</b></li>
+                      <li><b>USE YOUR CARDS' ABILITIES</b><br />In any order and each is optional.</li>
+                      <li><b>PLAY CARD(S)</b><br />Pay for them using the cost in the top corners of the card. The top left is the coin cost and the top right is the food cost.</li>
+                      <li><b>FEED 'YER MAMA</b><br />Pay the current amount that is on the next space of the Feed ‘Yer Mama Food Board. Then, move your player and the marker up one space on the Feed 'Yer Mama Point Tracking Card. You may only do this once per turn.</li>
+                  </ul>
+              </div>
           </div>
-          <div class="sub-item">
-            <p>24 Plant Cards (3 of Each)</p>
+
+          <div id="winning" class="rules-section">
+              <h2>Winning</h2>
+              <div class="rules-item">
+                  <p>If you reach the winning Space on the point tracking card, you have Fully Fed 'Yer Mama and you win the game!</p>
+                  <p>The Winning Space depends on the number of players playing.</p>
+                  
+                  <table>
+                      <thead>
+                          <tr>
+                              <th colspan="1">
+                                  <p>Players</p>
+                              </th>
+                              <th colspan="1">
+                                  <p>Number of Times to Feed 'Yer Mama</p>
+                              </th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr><td><p>2 Players</p></td><td><p>6 Times</p></td></tr>
+                          <tr><td><p>3 Players</p></td><td><p>5 Times</p></td></tr>
+                          <tr><td><p>4 Players</p></td><td><p>4 Times</p></td></tr>
+                          <tr><td><p>5 Players</p></td><td><p>4 Times</p></td></tr>
+                      </tbody>
+                  </table>
+              </div>
           </div>
-          <div class="sub-item">
-            <p>28 Animal Cards (3 of Each, except only 1 Horse)</p>
+          <div id="other-rules" class="rules-section">
+              <h2>Rules & Exceptions</h2>
+              <div class="rules-item">
+                  <p>If you ever get to gain Coins and there are no Coins left, steal Coins from other players.</p>
+                  <p>If you ever get to gain Food and there are no Food left, steal Food from other players. See <a href="#pig">Pig</a> for Exception</p>
+                  <p>If you ever get to draw cards and there are none left, do nothing.</p>
+                  <p>If the cards run out, reshuffle all discarded, destroyed, and killed cards.</p>
+                  <p>Abilities in italics are not part of each turn’s action, but something that is always true of the card.</p>
+              </div>
           </div>
-        </div>
-         <div class="rules-item">
-          <p>25 Hamburger Pieces</p>
-         </div>
-        <div class="rules-item">
-          <p>50 Coin Pieces</p>
-         </div>
-      </div>
-      
 
-      <div class="rules-section">
-        <h2>Setup</h2>
-        <div class="rules-item">
-          <p>Deal every player 5 Cards.</p>
-          <p>Set all player markers at the start of the board and set the How Much Mama Eats to the Start Space (Next Space is 1 Food).</p>
-          <p>Everyone Rolls the Dice, Highest roller goes first...</p>
-          <p>Give the first player 1 Coin, the second player 2 Coins, the third player 3 Coins, and so on...</p>
-        </div>
-      </div>
 
-      <div class="rules-section">
-        <h2>Start the Game</h2>
-        <div class="rules-item">
-          <p>The first player takes their first turn (See Section E: Gameplay)</p>
-        </div>
-      </div>
-
-      <div class="rules-section">
-        <h2>Winning</h2>
-        <div class="rules-item">
-          <p>If you reach the winning Space on the point tracking card, you have Fully Fed 'Yer Mama!</p>
-          <p>The Winning Space depends on the number of players playing.</p>
-          <p># of Times to Feed Mama:</p>
-          <ul>
-            <li>2 Players - Feed 'Yer Mama 6 Times</li>
-            <li>3 Players - Feed 'Yer Mama 5 Times</li>
-            <li>4 Players - Feed 'Yer Mama 4 Times</li>
-            <li>5 Players - Feed 'Yer Mama 3 Times</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="rules-section">
-        <h2>Gameplay</h2>
-        <div class="rules-item">
-          <h3>Your Turn</h3>
-          <p>THESE STEPS MUST BE DONE IN ORDER, BUT EACH STEP IS OPTIONAL.</p>
-          <p>1. GAIN 2 COINS or 1 CARD or 1 FOOD</p>
-          <p>2. USE YOUR CARDS' ABILITIES: In any order and each is optional.</p>
-          <p>3. PLAY CARD(S): Pay for them using the cost in the top corners of the card. The top left is the coin cost and the top right is the food cost.</p>
-          <p>4. KILL 1 OF YOUR ANIMALS: Pay the Coin Cost in the top left corner of the Animal. Place it on the Bottom of the Deck.</p>
-          <p>5. FEED 'YER MAMA: Pay the current amount that is on the next space of the Feed ‘Yer Mama Tracking Card. Then, move your player and the marker up one space. You may do this multiple times, but each time you must pay the new cost.</p>
-          <p>If at any point you have reached the # of Times to Feed Mama, you Win Immediately!</p>
-        </div>
-      </div>
-
-      <div class="rules-section">
-        <h2>Other Rules / Explanations</h2>
-        <div class="rules-item">
-          <p>If you ever get to gain Coins(s) and there are no Coins left, steal Coin(s) from the player with the most Coins. If you have the most Coins, do nothing.</p>
-          <p>If you ever get to gain food and there is no Food left, steal Food from the player with the most Food. If you have the most Food, do nothing. *See Pig for Exception</p>
-          <p>If you ever get to draw cards and there are none left, do nothing.</p>
-          <p>Abilities in italics are not part of each turn’s action, but something that is always true of the card.</p>
-        </div>
-      </div>
-
-      <div class="rules-section">
-        <h2>Card Clarifications</h2>
-        <div class="rules-item">
-          <p>Dog: The Wolf can kill the Dog. Once the Dog is dead, your other animals can also be killed.</p>
-          <p>Goat: You decide which plant to destroy after rolling the die. Example: You roll a die and get a 5. You can now destroy any player's, including your own, Cabbage, Carrot, Corn, or Onion. If you do destroy a plant and only if you do, gain 1 Food.</p>
-          <p>Fox: You cannot copy one of your own animals. You must do exactly as the card you are copying says., for example: Copying the Pig - If you choose the second option of placing 1 Food on the Pig, you either can put the Food on a Pig that you have or on an opponent’s pig, but you cannot put Food on the Fox. Only copy the part of the ability that is not italicized, for example if you copy the Horse, ignore the italics about opponents’s dice rolls.
+          <div id="card-clarifications" class="rules-section">
+              <h2>Card Clarifications</h2>
+              <div class="rules-item">
+                  <p><b>Dog:</b> The Wolf can kill the Dog. Once the Dog is dead, your other animals can also be killed. You can kill your own pig even if you have a dog.</p>
+                  <p><b>Goat:</b> You decide which plant to destroy AFTER rolling the die.</p>
+                  <p>
+                      <b>Corn:</b> You cannot copy another player's animal. Only copy the part of the ability that is not italicized
+                  </p>
+                  <p>
+                      <b>Fox:</b> You cannot copy one of your own animals. Only copy the part of the ability that is not italicized, for example if you copy the Dog, ignore the italics about your other animals.
 </p>
-          <p>Pig: The pig is the only exception to rule B.2. In the specific case where there is not enough food in the bank after killing the Pig, you do not take additional food from another player, even if there isn't enough for you.
-</p>
-          <p>Horse: All rolls for every opponent are now 1 less. This includes the Goat, Wolf, and Cow.
-</p>
-          <p>Wolf: You decide which animal to destroy after rolling the die. Example: You roll a die and get a 6. You can now destroy any player's animal, including your own, Cat, Chicken, Raccoon, Dog, Goat, Fox, or Pig (Assuming there is not a Horse in play). If you do destroy an animal and only if you do, gain 1 Food.</p>
-          <p>Cow: If you kill the Cow, by paying 7 Coins, immediately Feed ‘Yer Mama. Move your piece up one step and also move the How Much Mama Eats counter up one step.
-</p>
-        </div>
+                  <p id="pig">
+                      <b>Pig:</b> Gain 1 Food and place it on the Pig card. Food here cannot be spent. It also cannot be stolen from the raccoon or from other players when the food runs out*. You can kill your own pig even if you have a dog.
+                      <br /><i>*It can be stolen if that is the only way a player can gain food, meaning no one else has food</i>
+                  </p>
+                  <p><b>Wolf:</b> You decide which animal to destroy after rolling the die. When deciding if you can kill an animal, ignore the food cost and only compare the dice roll with the Coin cost.</p>
+              </div>
+          </div>
+          <div id="game-contents" class="rules-section">
+              <h2>Game Contents</h2>
+              <div class="rules-item">
+                  <p>36 Cards</p>
+                  <div class="sub-item">
+                      <p>3 Rules Cards</p>
+                  </div>
+                  <div class="sub-item">
+                      <p>1 Point Tracking Card ('Yer Points)</p>
+                  </div>
+                  <div class="sub-item">
+                      <p>14 Plant Cards (2 of Each)</p>
+                  </div>
+                  <div class="sub-item">
+                      <p>18 Animal Cards (2 of Each, except only 1 Horse)</p>
+                  </div>
+              </div>
+              <div class="rules-item">
+                  <p>20 Brown Hamburger Pieces</p>
+              </div>
+              <div class="rules-item">
+                  <p>20 Silver Coin Pieces</p>
+              </div>
+          </div>
       </div>
-
-    </div>
   </body>
 </html>
