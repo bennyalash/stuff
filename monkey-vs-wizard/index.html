@@ -1,0 +1,196 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1" user-scalable="no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon_mvw.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Feed 'Yer Mama">
+    <link rel="apple-touch-icon" href="apple.png">
+    <style>
+        body {
+            font-family: "Mulish", "Segoe UI", Arial, sans-serif;
+            margin: 0px;
+            padding: 0;
+            padding-bottom: 50vh;
+            background: #B7DFD6;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .rules-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h1, h2 {
+            font-family: "Luckiest Guy", "Segoe UI", Arial, sans-serif;
+            color: #337868;
+            font-weight: normal;
+            margin-top: 0px;
+            font-size: 30px;
+            text-transform: uppercase;
+        }
+
+        .rules-section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #ffffff99;
+            border-radius: 12px;
+            border: 5px solid #337868;
+        }
+
+        .rules-item {
+            margin-bottom: 10px;
+        }
+
+        .sub-item {
+            margin-left: 20px;
+        }
+
+        p, ul, li {
+            color: #2E6C5E;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        #your-turn ul {
+            list-style: decimal;
+            padding-left: 20px;
+        }
+
+        #your-turn li {
+            margin: 15px 0;
+        }
+
+        table, tr, td, th {
+            border: 1px solid;
+            border-collapse: collapse;
+            padding: 5px 10px;
+            text-align: left;
+            border-radius: 5px;
+            border-color: #2E6C5E;
+        }
+
+            table th p {
+                font-weight: 600;
+            }
+
+        a {
+            color: #EBD6FC;
+            background-color: #7F50A4;
+            font-weight: bold;
+            padding: 4px 8px;
+            text-decoration: none;
+            margin-bottom: 2px;
+            display: inline-block;
+            border-radius: 2px;
+        }
+
+            a:hover {
+                color: #FFF1CD;
+                background-color: #C6B03F;
+            }
+
+        #banner {
+            background: #337868;
+            color: #D4F0EA;
+            padding: 20px 0;
+        }
+
+        @media (max-width: 800px) {
+
+            .rules-section {
+                border: 0;
+                background: #ffffff99;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="rules-content">
+        <h1 id="banner">Monkey vs Wizard Rules</h1>
+        <div id="table-of-contents" class="rules-section">
+            <h2>Table of Contents</h2>
+            <div class="rules-item">
+                <a href="#setup">Setup</a>
+            </div>
+            <div class="rules-item">
+                <a href="#your-turn">Gameplay</a>
+            </div>
+            <div class="rules-item">
+                <a href="#winning">Winning</a>
+            </div>
+            <div class="rules-item">
+                <a href="#game-contents">Game Contents</a>
+            </div>
+        </div>
+        <div id="setup" class="rules-section">
+            <h2>Setup</h2>
+            <div class="rules-item">
+                <p>Deal every player 2 Cards.</p>
+                <p>Discard cards from the deck at random. These should be set aside and not looked at. See the chart below to know how many cards to discard.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="1">
+                                <p>Players</p>
+                            </th>
+                            <th colspan="1">
+                                <p>Number of Cards to Discard</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><p>2 Players</p></td><td><p>20 Cards</p></td></tr>
+                        <tr><td><p>3 Players</p></td><td><p>15 Cards</p></td></tr>
+                        <tr><td><p>4 Players</p></td><td><p>10 Cards</p></td></tr>
+                        <tr><td><p>5 Players</p></td><td><p>4 Cards</p></td></tr>
+                        <tr><td><p>6 Players</p></td><td><p>6 Cards</p></td></tr>
+                        <tr><td><p>7 Players</p></td><td><p>5 Cards</p></td></tr>
+                        <tr><td><p>8 Players</p></td><td><p>6 Cards</p></td></tr>
+                    </tbody>
+                </table>
+                <p>Place the rest of the cards in the middle of playing area.</p>
+            </div>
+        </div>
+        <div id="your-turn" class="rules-section">
+            <h2>Gameplay</h2>
+            <div class="rules-item">
+                <p>Instead of taking turns, all players will do things at the same time.</p>
+                <p>Each round, take 1 card from your hand and put it face down on the table.</p>
+                <p>Once every player is ready, flip over all of the cards.</p>
+                <p>Resolve each card in ORDER, based on the ORDER on the card. Start with the lowest ORDER and move up.</p>
+                <p>When a card is resolved, do the action written on the card, if it is a passive action, then don't do anything.</p>
+                <p>If you do have a passive action, make sure you follow the instructions throughout the round.</p>
+                <p>After all of the cards have been resolved, whichever card has the highest POWER wins.</p>
+                <p>If there is a tie for POWER, whichever has a higher ORDER wins.</p>
+                <p>Note: If a card ends the round early and declares a winner, do not continue to do the actions.</p>
+            </div>
+        </div>
+
+        <div id="winning" class="rules-section">
+            <h2>Winning</h2>
+            <div class="rules-item">
+                <p>When all the cards run out, count your Victory Points in your pile. Whoever has the most points wins!</p>
+                <p>If you would like to play multiple rounds in one game, you can play to 50 Points and track points after each round. First to 50 wins!</p>
+            </div>
+        </div>
+        <div id="game-contents" class="rules-section">
+            <h2>Game Contents</h2>
+            <div class="rules-item">
+                <p>54 Game Cards</p>
+                <p>1 Rule Card</p>
+            </div>
+        </div>
+
+    
+    </div>
+</body>
+</html>
