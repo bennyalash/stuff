@@ -56,6 +56,12 @@
         #bg, .bg{
             background:#3E4C5E;
         }
+        #mvw, .mvw {
+            background: #337868;
+        }
+        #fym, .fym {
+            background: #530D00;
+        }
         .logo img{
             width: 40px;
         }
@@ -71,17 +77,21 @@
             <div class="logo"><img src="logos/gibbs.png" /></div>
             <div class="name">GIBBS</div>
         </div>
-        <div class="item" id="puzzles" onclick="go('puzzles')">
+        <!--<div class="item" id="puzzles" onclick="go('puzzles')">
             <div class="logo"><img src="logos/puzzles.png" /></div>
             <div class="name">Daily Puzzles</div>
         </div>
         <div class="item" id="design" onclick="go('design')">
             <div class="logo"><img src="logos/graphic.png" /></div>
             <div class="name">Graphic Design</div>
-        </div>
-        <div class="item" id="bg" onclick="go('bg')">
+        </div>-->
+        <div class="item" id="fym" onclick="go('fym')">
             <div class="logo"><img src="logos/bgb.png" /></div>
-            <div class="name">Board Games</div>
+            <div class="name">Feed 'Yer Mama</div>
+        </div>
+        <div class="item" id="mvw" onclick="go('mvw')">
+            <div class="logo"><img src="logos/bgb.png" /></div>
+            <div class="name">MONKEY vs WIZARD</div>
         </div>
     </div>
 </body>
@@ -102,6 +112,12 @@
                 break;
             case 'bg':
                 window.location.href = 'https://bennyalashari.com/games';
+                break;
+            case 'fym':
+                window.location.href = 'https://bennyalashari.com/feed-yer-mama';
+                break;
+            case 'mvw':
+                window.location.href = 'https://bennyalashari.com/monkey-vs-wizard';
                 break;
             default:
                 console.error('Invalid destination');
