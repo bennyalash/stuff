@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board Games</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: "Libre Franklin", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #d0d6e0;
+        }
+
+        .header {
+            display: block;
+            background: #3E4C5E;
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+            .header img {
+                height: 40px;
+            }
+
+            .header h1 {
+                margin: 0;
+            }
+
+        .board-games {
+            margin: 10px;
+        }
+
+        .board-game {
+            width: calc(100% - 50px);
+            padding: 20px;
+            margin: 5px;
+            background: #f8fafd;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+            .board-game .left {
+                width: 66%;
+            }
+
+            .board-game.fym h2 {
+                color: #4f1207;
+            }
+
+            .board-game.mvw h2 {
+                color: #347869;
+            }
+
+            .board-game .right {
+                width: 33%;
+                display: flex;
+                justify-content: center;
+            }
+
+                .board-game .right img {
+                    width: 75%;
+                    max-height: 200px;
+                    object-fit: contain;
+                }
+
+            .board-game.fym a {
+                text-decoration: none;
+                padding: 5px 10px;
+                color: white;
+                background: #4f1207;
+            }
+
+            .board-game.mvw a {
+                text-decoration: none;
+                padding: 5px 10px;
+                color: white;
+                background: #347869;
+            }
+
+        h2 {
+            font-size: 1.75em;
+            margin-top: 0;
+            text-wrap-mode: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="../logos/bgb.png" />
+        <h1>Board Games</h1>
+    </div>
+    <div class="board-games">
+        <div class="board-game fym">
+            <div class="left">
+                <h2>Feed 'Yer Mama</h2>
+                <p>Simple & exciting strategy card game. Race other farmers to Feed 'Yer Mama!</p>
+                <a href="../feed-yer-mama">View Rules</a>
+            </div>
+            <div class="right">
+                <img src="images/fym.png" />
+            </div>
+        </div>
+        <div class="board-game mvw">
+            <div class="left">
+                <h2>Monkey vs Wizard</h2>
+                <p>A fun twist on War - Choose the right fighter to outsmart your opponents!</p>
+                <a href="../monkey-vs-Wizard">View Rules</a>
+            </div>
+            <div class="right">
+                <img src="images/mvw.png" />
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
