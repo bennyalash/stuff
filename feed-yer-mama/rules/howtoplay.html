@@ -1,3 +1,91 @@
-<html>
-  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Gallery</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: black;
+      overflow: hidden;
+    }
+
+    .gallery {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.3s ease;
+    }
+
+    .hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .navigation {
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .left {
+      left: 0;
+    }
+
+    .right {
+      right: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="gallery">
+    <!-- Images -->
+    <img src="r1.jpg" id="slide-1" class="active">
+    <img src="r2.jpg" id="slide-2" class="hidden">
+    <img src="r3.jpg" id="slide-3" class="hidden">
+    <!-- Add more images as needed up to r13.jpg -->
+
+    <!-- Navigation -->
+    <div class="navigation left" onclick="changeSlide(-1)"></div>
+    <div class="navigation right" onclick="changeSlide(1)"></div>
+  </div>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 13;
+
+    function changeSlide(direction) {
+      // Hide current slide
+      document.getElementById(`slide-${currentSlide}`).classList.add('hidden');
+      
+      // Calculate next slide number
+      currentSlide += direction;
+      if (currentSlide < 1) currentSlide = totalSlides;
+      if (currentSlide > totalSlides) currentSlide = 1;
+
+      // Show the next slide
+      document.getElementById(`slide-${currentSlide}`).classList.remove('hidden');
+    }
+  </script>
+</body>
 </html>
