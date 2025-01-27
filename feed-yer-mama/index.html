@@ -3,33 +3,88 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" user-scalable="no">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Orelega+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Orelega+One&family=Libre+Baskerville&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="fymf.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Feed 'Yer Mama">
     <link rel="apple-touch-icon" href="fymf.png">
     <style>
         body{
-            max-width:800px;
-            margin:auto;
+    max-width: 800px;
+    margin: auto;
+    background: #530D00;
+    color: #FFFFFF;
+    height: calc(100vh - 20px);
+    display: flex
+;
+    align-items: center;
         }
+h1{
+font-family:"Orelega One";
+font-weight:normal;
+color:#530D00;
+text-align:left;
+font-size:2em;
+margin:10px 0 10px;
+}
+        p{
+color:#530D00;
+            font-family:"Libre Baskerville";
+font-weight:normal;
+        }
+.middle-stuff{
+background:#FFF6EC;
+border-radius:20px;
+margin:10px 0;
+padding:20px;
+}
+#game-explanation, .button-container{
+background:#FFF6EC;
+border-radius:20px;
+}
+.button-container{
+display:flex;
+gap:10px;
+}
+.button-container a{
+padding: 10px;
+color:white;
+text-align:center;
+flex-grow: 1;
+border-radius:10px;
+text-decoration:none;
+font-family:"Montserrat";
+font-weight:600;
+}
+.overview{
+background:#3F923D;
+}
+.clarifications{
+background:#963E0D;
+}
+hr{
+width:66%;
+margin:auto;
+height:2px;
+background:#530D00;
+}
     </style>
 </head>
   <body>
       <div class="middle-stuff">
-          <div id="game-explanation"><p>Welcome to the village, Farmer! Life here is simple: you grow crops, raise animals, and do your best to keep your very hungry Mama fed. Because let’s face it—Mama isn’t just hungry, she’s famished. And the more you feed her, the hungrier she gets. Each farmer in the village has their own Mama to feed, and trust us, they’re all bottomless pits of appetite.
+<h1>Feed 'Yer Mama</h1>
+          <div id="game-explanation">
+		<p>Welcome to the village, Farmer! Life here is simple: grow crops, raise animals, and most importantly—keep your very hungry Mama fed. But fair warning: Mama isn’t just hungry—she’s insatiable. And the more you feed her, the hungrier she gets.</p>
 
-Your job? Keep your Mama happy by feeding her everything from fresh corn to hearty stew. But beware—Mamas are known to get a little... demanding. One meal won’t cut it; you’ll need to out-farm, out-bake, and out-feed your neighbors to ensure your Mama is the first to feel truly satisfied (or as close as Mamas ever get).
+<p>Each farmer has their own bottomless-pit Mama to satisfy, and this isn’t about sharing. You’ll need to out-farm, out-bake, and out-feed your neighbors to keep your Mama happy. Serve her everything, but don’t get too comfy. Just when you think you’re ahead, she’ll ask, “Is that all you’ve got?”</p>
 
-Gather your crops, tend to your livestock, and watch your resources carefully. Every bite your Mama takes moves you closer to victory, but don’t get too comfortable. Just when you think you’ve caught up, Mama will ask, “Is that all you’ve got?”
+<p>Feed your Mama the most, the fastest, and you’ll claim victory. The rest? Let’s just say their Mamas won’t let them hear the end of it.</p>
 
-Remember, this isn’t about sharing or teamwork—this is about your Mama. The farmer who feeds their Mama the most, the fastest, wins the game. The rest? Well, let’s just say their Mamas will have some choice words for them later.
-
-So grab your pitchfork, stock up on food, and get ready to Feed ’Yer Mama!</p></div>
-          <div class="button-container">
-              <a href="" class="button"></a>
-          </div>
-      </div>
-      
+<p>So grab your pitchfork and get ready to Feed ’Yer Mama!</p></div>
+ 
+      <div class="button-container">
+              <a href="https://www.figma.com/proto/NAEl1C9Ofcn79Fsi7XLX1K/Feed-'Yer-Mama?node-id=1730-2&t=SBNIwHwgZfandT02-1" class="button overview">How to Play</a>
+		<a href="https://bennyalashari.com/feed-yer-mama/rules/" class="button clarifications">Full Rulebook</a>
+          </div></div>
   </body>
 </html>
