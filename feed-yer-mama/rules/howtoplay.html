@@ -32,7 +32,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       transition: opacity 0.3s ease;
     }
 
@@ -63,6 +63,16 @@
     <img src="r1.jpg" id="slide-1" class="active">
     <img src="r2.jpg" id="slide-2" class="hidden">
     <img src="r3.jpg" id="slide-3" class="hidden">
+<img src="r4.jpg" id="slide-4" class="hidden">
+<img src="r5.jpg" id="slide-5" class="hidden">
+<img src="r6.jpg" id="slide-6" class="hidden">
+<img src="r7.jpg" id="slide-7" class="hidden">
+<img src="r8.jpg" id="slide-8" class="hidden">
+<img src="r9.jpg" id="slide-9" class="hidden">
+<img src="r10.jpg" id="slide-10" class="hidden">
+<img src="r11.jpg" id="slide-11" class="hidden">
+<img src="r12.jpg" id="slide-12" class="hidden">
+<img src="r13.jpg" id="slide-13" class="hidden">
     <!-- Add more images as needed up to r13.jpg -->
 
     <!-- Navigation -->
@@ -73,6 +83,7 @@
   <script>
     let currentSlide = 1;
     const totalSlides = 13;
+    const endGalleryLink = "https://bennyalashari.com/feed-yer-mama/";
 
     function changeSlide(direction) {
       // Hide current slide
@@ -80,8 +91,16 @@
       
       // Calculate next slide number
       currentSlide += direction;
-      if (currentSlide < 1) currentSlide = totalSlides;
-      if (currentSlide > totalSlides) currentSlide = 1;
+
+      if (currentSlide > totalSlides) {
+        // Redirect to the link if at the end of the gallery
+        window.location.href = endGalleryLink;
+        return;
+      }
+
+      if (currentSlide < 1) {
+        currentSlide = totalSlides; // Loop back to the last slide
+      }
 
       // Show the next slide
       document.getElementById(`slide-${currentSlide}`).classList.remove('hidden');
