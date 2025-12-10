@@ -1,0 +1,88 @@
+.vines-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.columns-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: calc(100% - 4px);
+    gap: 3px;
+    margin-bottom: 20px;
+    margin:2px;
+    padding: 10px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: start;
+    height:200px;
+}
+.category-title {
+    font-weight: bold;
+    text-align: center;
+    padding: 4px 0 2px;
+    color: #2e7d32; /* greenish for correct */
+    font-size: 16px;
+    color:white;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    border-radius: 8px;
+    justify-content: space-evenly;
+    background: #FFD8F8;
+    overflow: hidden;
+    border: 2px solid transparent;
+}
+
+    .column.locked {
+        background: #407A29;
+        border-color: #407A29;
+    }
+
+.vine-word {
+    padding: 0;
+    min-height: 30px;
+    text-align: center;
+    border-radius: 0;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+    border: 2px solid transparent;
+    line-height: 0.9;
+    align-items: center;
+    transition: background 0.25s ease;
+    zoom: 1;
+    color: #000000dd;
+}
+
+    .vine-word.selected {
+        background: #EFC9ED;
+    }
+
+
+
+    .vine-word.swapped {
+        cursor: default;
+        background: #CFAAD5;
+        color: white;
+        /*        border: 2px solid #BF9AC9;
+*/
+    }
+    .vine-word.locked-word {
+        background: #BDE4AE;
+        cursor: default;
+        transition: 0;
+        zoom: 1;
+        color:#000000dd;
+    }
+
+.guess-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}

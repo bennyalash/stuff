@@ -1,0 +1,68 @@
+.stem {
+    height: 30px;
+    width: 4px;
+    background: #67a757;
+    left: calc(50% - 2px);
+    bottom: 0;
+    position: absolute;
+}
+.flower{
+    position:relative;
+    height:60px;
+    width:60px;
+}
+.middle {
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background: red;
+    position: absolute;
+    top: calc(30px - 5px);
+    left: calc(50% - 5px);
+}
+.petals {
+    height: 100%;
+    width: 100%;
+    transform-origin: 50% 50%;
+    transition: 5s ease;
+    animation: spin 5s linear forwards infinite;
+}
+.petal {
+    width: 12px;
+    height: 16px;
+    left: calc(50% - 6px);
+    top: calc(50% - 1px);
+    clip-path: ellipse(40% 40% at 50% 60%);
+    position: absolute;
+    transform-origin: 50% 6%;
+}
+.petal1 {
+    transform: rotate(0);
+}
+.petal2 {
+    transform: rotate(calc(72deg * 1));
+}
+.petal3 {
+    transform: rotate(calc(72deg * 2));
+}
+.petal4 {
+    transform: rotate(calc(72deg * 3));
+}
+.petal5 {
+    transform: rotate(calc(72deg * 4));
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(180deg) scale(1);
+
+    }
+
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}

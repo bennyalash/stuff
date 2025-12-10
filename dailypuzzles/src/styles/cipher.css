@@ -1,0 +1,140 @@
+:root {
+    --ciphercompletebg: black; /* 1 */
+    --cipherletter: grey; /* 23 */
+    --cipherlettercorrect: black; /* 23 */
+    --ciphergrid: lightgrey; /* 4 */
+    --cipherbg: white; /* 5 */
+    --cipherletterheader: white; /* 6 */
+}
+.cipher-game {
+    align-items: center;
+    margin:20px 0;
+}
+.cipher-game .message{
+    font-size: 16px;
+    color:black;
+    padding:0 10px;
+}
+.letter-grid {
+    display: inline-block;
+    user-select: none;
+    overflow: hidden;
+    position: relative;
+    border-radius: 5px;
+    background-color: var(--ciphercompletebg);
+    border: 4px solid var(--ciphercompletebg);
+    width: fit-content;
+    box-shadow: 0 0 10px 0 var(--cipherbg) inset;
+    background-clip: border-box;
+}
+.letter-grid-bg{
+    background:var(--cipherbg);
+}
+.game.complete .letter-grid::after, .game.complete .letter-grid::before {
+    display: none;
+}
+.game-complete .letter-grid-bg {
+    background-color: var(--ciphercompletebg);
+}
+.game.complete .grid-cell {
+    background: var(--ciphercompletebg) !important;
+    color: white !important;
+    transition:0 !important;
+}
+.letter-grid::after {
+    content: "";
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    height: 100%;
+    /*box-shadow: 0 0 4px 8px var(--cipherbg) inset;*/
+    pointer-events: none;
+}
+.letter-grid {
+    touch-action: none;
+}
+.game-complete .letter-grid::before, .game-complete .letter-grid::after{
+    display:none;
+}
+.letter-grid::before {
+    content: "";
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 75%;
+    height: 75%;
+    display: grid;
+    pointer-events: none;
+    /* Grid lines only inside, no outer border */
+    background-image: linear-gradient(to right, var(--ciphergrid) 1px, transparent 1px), linear-gradient(to bottom, var(--ciphergrid) 1px, transparent 1px);
+    background-size: calc(33% + 0.25px) calc(33% + 0.25px); /* adjust to prevent outer line */
+    background-position: 0 0;
+    background-repeat: repeat;
+}
+
+.hint .grid-cell.correct:not(.header) {
+    color: var(--cipherlettercorrect);
+}
+.header .grid-cell, .header.grid-cell {
+    background: var(--ciphercompletebg);
+    color: var(--cipherletterheader);
+    z-index: 999;
+}
+.still .grid-row{
+    transition:0.25s ease;
+}
+.still .grid-cell {
+    transition: 0.25s ease;
+}
+.grid-row {
+    display: flex;
+}
+
+.outside-grid-row {
+    display: flex;
+}
+.grid-cell {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: var(--cipherbg);
+    box-sizing: border-box;
+    font-size: 75%;
+    font-weight: bold;
+    text-align: center;
+    color: var(--cipherletter);
+}
+
+.cell-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    transition: none;
+}
+
+    .cell-inner.horizontal {
+        flex-direction: row;
+    }
+
+    .cell-inner.vertical {
+        flex-direction: column;
+    }
+
+.cell-letter {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.static {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
