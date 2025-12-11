@@ -100,7 +100,7 @@ export default function Latter() {
             return true;
 
         } catch {
-setMessage(`"${capitalize(word.toLowerCase())}" is not a valid word.`);
+            setMessage(`"${capitalize(word.toLowerCase())}" is not a valid word.`);
             setValid(false)
             return false;
         }
