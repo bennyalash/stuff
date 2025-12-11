@@ -174,7 +174,8 @@ nav .far svg{
     box-shadow: 0 0 3px 0 var(--llkey);
     bottom: 0;
     z-index: 1;
-    height: 200px
+    height: 200px;
+    position:fixed;
 }
 
 .message {
@@ -340,7 +341,7 @@ fill:black;
     content: "";
     position: absolute;
     bottom: 10%;
-    width: 70%;
+    width: 66%;
     height: 3px;
     background: var(--llcurrent);
     border-radius: 1px;

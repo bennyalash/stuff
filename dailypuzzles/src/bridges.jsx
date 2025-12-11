@@ -3,10 +3,10 @@ import "./styles/bridges.css";
 
 const levels = [
   {
-    cols: [1, 2, 4, 3, 4, 3],
-    scols: [1, 2, 4, 3, 4, 3],
-    rows: [3, 3, 1, 5, 2, 3],
-    srows: [3, 3, 1, 5, 2, 3],
+    cols: [1, 2, 4, 3, 4],
+    scols: [1, 2, 4, 3, 4],
+    rows: [3, 3, 1, 5, 2],
+    srows: [3, 3, 1, 5, 2],
     boatj: 1,
     boati: 1,
     finalj: 5,
