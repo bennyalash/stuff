@@ -9,7 +9,7 @@
     <meta name="apple-mobile-web-app-title" content="Benny's Puzzles">
     <link rel="apple-touch-icon" href="logo.png">
     <style>
-        
+
         #back {
             position: absolute;
             top: 16px;
@@ -25,9 +25,10 @@
             cursor: pointer;
             color: white;
         }
-        #back svg{
-            height:100%;
-        }
+
+            #back svg {
+                height: 100%;
+            }
         /* Resetting default styles */
         body {
             margin: 0;
@@ -44,13 +45,13 @@
             background: #f4f4f4;
             font-family: "Volkhov", serif;
             padding-bottom: 10vh;
-            max-width:500px;
-            margin:auto;
+            max-width: 500px;
+            margin: auto;
             box-shadow: 0 0 10px -5px #666;
-                position: fixed;
-    left: 0;
-    right: 0;
-    min-height: 100vh;
+            position: fixed;
+            left: 0;
+            right: 0;
+            min-height: 100vh;
         }
 
         /* Logo */
@@ -68,7 +69,7 @@
         /* Heading styles */
         h2 {
             font-size: 32px;
-            margin-bottom:0;
+            margin-bottom: 0;
         }
 
         /* Puzzle container */
@@ -82,9 +83,9 @@
             align-items: stretch;
             justify-content: center;
             flex-direction: row;
-    margin: 0 5px;
-/*                 perspective: 1000px;
-    perspective-origin: bottom; */
+            margin: 0 5px;
+            /*                 perspective: 1000px;
+        perspective-origin: bottom; */
         }
 
         /* Top container */
@@ -102,37 +103,35 @@
             font-family: "Unica One";
             text-transform: uppercase;
             font-size: 24px;
-                            border-radius: 20px;
-                
-/*     border-radius: 20px;
-    transform: rotateX(20deg) scale(0.9); */
-
+            border-radius: 20px;
+            /*     border-radius: 20px;
+        transform: rotateX(20deg) scale(0.9); */
         }
 
         /* Specific background colors for different sections */
         #page #zooty .top {
             background: #CC8F0D; /*Yellow*/
-/*             box-shadow: 0 2px 0 2px #b17a03, 0 10px 0 2px #b17a03, 0 0 5px 5px inset #b17a03; */
+            /*             box-shadow: 0 2px 0 2px #b17a03, 0 10px 0 2px #b17a03, 0 0 5px 5px inset #b17a03; */
         }
 
         #page #thirtyfour .top {
             background: #1F5B73; /*Blue*/
-/*             box-shadow: 0px 0 2px 2px #104154, 0 10px 0 2px #104154, 0 0 5px 5px inset #104154; */
+            /*             box-shadow: 0px 0 2px 2px #104154, 0 10px 0 2px #104154, 0 0 5px 5px inset #104154; */
         }
 
         #page #latterly .top {
             background: #B23909; /*Red*/
-/*             box-shadow: 0 0 2px 2px #962b00, 0 10px 0 2px #962b00, 0 0 5px 5px inset #962b00; */
+            /*             box-shadow: 0 0 2px 2px #962b00, 0 10px 0 2px #962b00, 0 0 5px 5px inset #962b00; */
         }
 
         #page #green .top {
             background: #244b23; /*Green*/
-/*             box-shadow: 0 2px 0 2px #104154, 0 10px 0 2px #104154, 0 0 5px 5px inset #104154; */
+            /*             box-shadow: 0 2px 0 2px #104154, 0 10px 0 2px #104154, 0 0 5px 5px inset #104154; */
         }
 
         #page #purple .top {
             background: #683A72; /*Purple*/
-/*             box-shadow: 0 2px 0 2px #104154, 0 10px 0 2px #104154, 0px 0px 5px 5px inset #104154; */
+            /*             box-shadow: 0 2px 0 2px #104154, 0 10px 0 2px #104154, 0px 0px 5px 5px inset #104154; */
         }
 
         /* Image styling */
@@ -192,7 +191,7 @@
             font-family: "Volkhov", serif;
             text-transform: none;
             opacity: 0.8;
-            display:none;
+            display: none;
         }
 
         #page.hide {
@@ -213,7 +212,8 @@
             width: 100%;
             height: 100%;
         }
-         #addToHomeScreenMessage {
+
+        #addToHomeScreenMessage {
             position: fixed;
             bottom: 20px;
             left: 50%;
@@ -222,130 +222,134 @@
             border: 1px solid #000000;
             padding: 10px 20px;
             border-radius: 5px;
-             font-size:16px;
+            font-size: 16px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             z-index: 1000;
-                 width: 85%;
+            width: 85%;
         }
+
         .puzzles {
-    display: flex;
-    overflow: scroll;
-    width: calc(100% - 20px);
-    gap: 10px;
-    padding: 10px;
-    justify-content: flex-start;
-}
-        .puzzles::-webkit-scrollbar {
-  width: 0px;
-}
+            display: flex;
+            overflow: scroll;
+            width: calc(100% - 20px);
+            gap: 10px;
+            padding: 10px;
+            justify-content: flex-start;
+        }
+
+            .puzzles::-webkit-scrollbar {
+                width: 0px;
+            }
     </style>
 </head>
 <body>
-    <div id="page">
-        <div id="header">
-            </div>
-         <div id="addToHomeScreenMessage" style="display: none;" onclick="shareapp()">
-            For best use, add this app to your home screen.
-        </div>
-
-        <h2>Daily Puzzles</h2>
-        <div id="currentDate"></div>
-        <div className="puzzles">
-            <div id="latterly" className="puzzle" onclick="goto('latterly')">
-                <div className="top">
-                    <img src="lat.png" />
-                    <span>L<span className="special">a</span>tterly</span>
-                    <span className="description">Connect Words</span>
+    <a href="https://puzzles.bennyalashari.com">Puzzles Moved Here</a>
+    <!--
+        <div id="page">
+            <div id="header">
                 </div>
-                <div className="link">
+             <div id="addToHomeScreenMessage" style="display: none;" onclick="shareapp()">
+                For best use, add this app to your home screen.
+            </div>
+
+            <h2>Daily Puzzles</h2>
+            <div id="currentDate"></div>
+            <div className="puzzles">
+                <div id="latterly" className="puzzle" onclick="goto('latterly')">
+                    <div className="top">
+                        <img src="lat.png" />
+                        <span>L<span className="special">a</span>tterly</span>
+                        <span className="description">Connect Words</span>
+                    </div>
+                    <div className="link">
+                        <span className="description">Swap out letters from a word to create a new word.</span>
+                        <a href="">Play</a>
+                    </div>
+                </div>
+                 <div id="thirtyfour" className="puzzle" onclick="goto('thirtyfour')">
+                    <div className="top">
+                        <img src="ThirtyFour-Logo.png" />
+                        <span>ThirtyFour</span>
+                        <span className="description">Build a Bridge</span>
+                    </div>
+                    <div className="link">
+                        <span className="description">Complete a singular, continuous path that connects two Blocks.</span>
+                        <a href="">Play</a>
+                    </div>
+                </div>
+            </div>
+            <h2>Coming Soon!</h2>
+           <div className="puzzles">
+            <div id="zooty" className="puzzle">
+                <div className="top">
+                    <img src="Zooty-Logo.png" />
+                    <span>Zooty</span>
+                    <span className="description">Animal Facts</span>
+                </div>
+
+                <div className="link cslink">
+                    <span className="description">Match the Animals to their corresponding clues.</span>
+                    <a className="cs" href="">Coming Soon</a>
+                </div>
+            </div>
+
+            <div id="green" className="puzzle">
+                <div className="top">
+                    <img src="Summaze1.png" />
+                    <span>Summaze</span>
+                    <span className="description">Equation Escape</span>
+                </div>
+                <div className="link cslink">
                     <span className="description">Swap out letters from a word to create a new word.</span>
-                    <a href="">Play</a>
+                    <a className="cs" href="">Coming Soon</a>
                 </div>
             </div>
-             <div id="thirtyfour" className="puzzle" onclick="goto('thirtyfour')">
+            <div id="purple" className="puzzle">
                 <div className="top">
-                    <img src="ThirtyFour-Logo.png" />
-                    <span>ThirtyFour</span>
-                    <span className="description">Build a Bridge</span>
+                    <img src="MRE.png" />
+                    <span>Mr. Equation</span>
+                    <span className="description">Pattern Recognition</span>
                 </div>
-                <div className="link">
-                    <span className="description">Complete a singular, continuous path that connects two Blocks.</span>
-                    <a href="">Play</a>
+                <div className="link cslink">
+                    <span className="description">Swap out letters from a word to create a new word.</span>
+                    <a className="cs" href="">Coming Soon</a>
                 </div>
             </div>
+               </div>
         </div>
-        <h2>Coming Soon!</h2>
-       <div className="puzzles">
-        <div id="zooty" className="puzzle">
-            <div className="top">
-                <img src="Zooty-Logo.png" />
-                <span>Zooty</span>
-                <span className="description">Animal Facts</span>
+        <div id="latterly-game" className="game-holder">
+            <div id="back" onclick="gohome('latterly')">
+                <svg width="125" height="201" viewBox="0 0 125 201" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_79_4)">
+                        <path d="M124.325 176.675L47.9919 100.175L124.325 23.6748L100.825 0.174808L0.825191 100.175L100.825 200.175L124.325 176.675Z" fill="white" />
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_79_4">
+                            <rect width="123.5" height="200" fill="white" transform="translate(0.825195 0.174805)" />
+                        </clipPath>
+                    </defs>
+                </svg>
             </div>
-
-            <div className="link cslink">
-                <span className="description">Match the Animals to their corresponding clues.</span>
-                <a className="cs" href="">Coming Soon</a>
-            </div>
+            <iframe src="https://bennyalashari.com/games/latterly"></iframe>
         </div>
-
-        <div id="green" className="puzzle">
-            <div className="top">
-                <img src="Summaze1.png" />
-                <span>Summaze</span>
-                <span className="description">Equation Escape</span>
+        <div id="thirtyfour-game" className="game-holder">
+            <div id="back" onclick="gohome('thirtyfour')">
+                <svg width="125" height="201" viewBox="0 0 125 201" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_79_4)">
+                        <path d="M124.325 176.675L47.9919 100.175L124.325 23.6748L100.825 0.174808L0.825191 100.175L100.825 200.175L124.325 176.675Z" fill="white" />
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_79_4">
+                            <rect width="123.5" height="200" fill="white" transform="translate(0.825195 0.174805)" />
+                        </clipPath>
+                    </defs>
+                </svg>
             </div>
-            <div className="link cslink">
-                <span className="description">Swap out letters from a word to create a new word.</span>
-                <a className="cs" href="">Coming Soon</a>
-            </div>
-        </div>
-        <div id="purple" className="puzzle">
-            <div className="top">
-                <img src="MRE.png" />
-                <span>Mr. Equation</span>
-                <span className="description">Pattern Recognition</span>
-            </div>
-            <div className="link cslink">
-                <span className="description">Swap out letters from a word to create a new word.</span>
-                <a className="cs" href="">Coming Soon</a>
-            </div>
-        </div>
-           </div>
-    </div>
-    <div id="latterly-game" className="game-holder">
-        <div id="back" onclick="gohome('latterly')">
-            <svg width="125" height="201" viewBox="0 0 125 201" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_79_4)">
-                    <path d="M124.325 176.675L47.9919 100.175L124.325 23.6748L100.825 0.174808L0.825191 100.175L100.825 200.175L124.325 176.675Z" fill="white" />
-                </g>
-                <defs>
-                    <clipPath id="clip0_79_4">
-                        <rect width="123.5" height="200" fill="white" transform="translate(0.825195 0.174805)" />
-                    </clipPath>
-                </defs>
-            </svg>
-        </div>
-        <iframe src="https://bennyalashari.com/games/latterly"></iframe>
-    </div>
-    <div id="thirtyfour-game" className="game-holder">
-        <div id="back" onclick="gohome('thirtyfour')">
-            <svg width="125" height="201" viewBox="0 0 125 201" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_79_4)">
-                    <path d="M124.325 176.675L47.9919 100.175L124.325 23.6748L100.825 0.174808L0.825191 100.175L100.825 200.175L124.325 176.675Z" fill="white" />
-                </g>
-                <defs>
-                    <clipPath id="clip0_79_4">
-                        <rect width="123.5" height="200" fill="white" transform="translate(0.825195 0.174805)" />
-                    </clipPath>
-                </defs>
-            </svg>
-        </div>
-        <iframe src="https://bennyalashari.com/games/thirtyfour"></iframe>
-    </div>
+            <iframe src="https://bennyalashari.com/games/thirtyfour"></iframe>
+        </div>-->
 </body>
-<footer>
-    <script>
+    <footer>
+        <script>
         const home = document.getElementById("page");
         function goto(page) {
             const game = document.getElementById(page + "-game");
@@ -380,14 +384,14 @@
         var imgs = document.images,
             len = imgs.length,
             counter = 0;
-        
+
         [].forEach.call( imgs, function( img ) {
             if(img.complete)
               incrementCounter();
             else
               img.addEventListener( 'load', incrementCounter, false );
         } );
-        
+
         function incrementCounter() {
             counter++;
             if ( counter === len ) {
@@ -414,6 +418,6 @@
 
         // Display it on the screen
         //document.getElementById('header').innerText = userAgent;
-    </script>
-</footer>
+        </script>
+    </footer>
 </html>

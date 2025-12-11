@@ -21,3 +21,7 @@ nav {
 nav a{
     color:black;
 }
+body{
+    overflow:hidden;
+    height:100vh;
+}
