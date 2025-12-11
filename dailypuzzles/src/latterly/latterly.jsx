@@ -153,11 +153,7 @@ export default function Latter() {
                 ))}
             </div>
             {!GO && <Keyboard onKeyPress={handleKeyPress} />}
-            {GO && <div className="keyboard">
-            <h2>Congrats!</h2>
-            <p>You Solved Roots in {moves} Moves!</p>
-            <Link to="/"><button>More Puzzles</button></Link>
-            </div>}
+           
         </div>
     );
 }

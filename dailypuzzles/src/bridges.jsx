@@ -89,7 +89,6 @@ export default function Bridges() {
 
   const [gameOver, setGameOver] = useState(false);
 
-  const [message, setMessage] = useState("");
 
   const [map, setMap] = useState(() => {
   const initial = Array.from({ length: level.scols.length }, () =>
@@ -124,12 +123,7 @@ const [remainingCols, setRemainingCols] = useState(() => [...level.cols]);
 
         if (hasValidPath(newMap, start, end)) {
           setGameOver(true);
-          setMessage("🎉 You Win!");
-        } else {
-          setMessage("The path from start to finish is incomplete");
-        }
-      } else {
-        setMessage(""); // clear message if not solved
+        } 
       }
 
       return newMap;
@@ -186,7 +180,6 @@ const [remainingCols, setRemainingCols] = useState(() => [...level.cols]);
           </div>
         ))}
       </div>
-      <div className="message">{message}</div>
     </div>
   );
 }

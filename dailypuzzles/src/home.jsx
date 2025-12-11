@@ -3,7 +3,6 @@ import { Routes, Route, Link } from "react-router-dom"
 export default function Home() {
     return (
         <div className="page">
-        <br />
             <h3>December 1, 2025</h3>
             <div className="game-card-list">
             <Link to="/bridges" className="game-card bridges">
@@ -51,14 +50,14 @@ export default function Home() {
                     
                 </div>
             </Link>
-            <Link to="/vines" className="game-card vines">
+            <Link to="/" className="game-card vines">
                 <div className="game-card-cover">
                     <div className="game-card-info">
                         <div className="game-card-name">
                             Vines
                         </div>
                         <div className="game-card-description">
-                           Group biblical terms that share a common thread.
+                           Coming Soon.
                         </div>
                     </div>
                     <div className="game-card-illustration">

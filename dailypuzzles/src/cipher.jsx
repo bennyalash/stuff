@@ -393,7 +393,7 @@ useEffect(() => {
                 return (
                   <div
                     key={c}
-                    className={`grid-cell  ${r*(SIZE+1)+c == 5 && "header"} ${letter == initialGrid[r*(SIZE+1)+c+5] && "correct"}`}
+                    className={`grid-cell correct ${r*(SIZE+1)+c == 5 && "header"} ${letter == initialGrid[r*(SIZE+1)+c+5] && "correct"}`}
                     onMouseDown={(e) => !gameOver && handlePointerDown(e, r, c)}
                     onTouchStart={(e) => !gameOver && handlePointerDown(e, r, c)}
                     style={{
@@ -417,8 +417,6 @@ useEffect(() => {
         })}
       </div>
       </div>
-      <br />
-       <div className="message">{gameOver ? "You Win!" : "Slide rows and columns to complete the word grid"}</div>
     </div>
   );
 }

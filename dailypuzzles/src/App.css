@@ -168,14 +168,16 @@ nav .far svg{
     justify-content: flex-start;
     align-items: center;
     gap: 4px;
-    width: 100%;
-    padding: 10px 0px;
+    width:100%;
+    max-width: 500px;
+    padding: 10px 0px 0;
     background: var(--lllight);
-    box-shadow: 0 0 3px 0 var(--llkey);
-    bottom: 0;
+    box-shadow: 0 -1px 0px 0px var(--llkey);
+    bottom: 10px;
     z-index: 1;
     height: 200px;
     position:fixed;
+    margin:auto;
 }
 
 .message {

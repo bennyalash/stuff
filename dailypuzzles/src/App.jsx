@@ -27,7 +27,7 @@ export default function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/latter" element={<Latter />} />
                 <Route path="/bridges" element={<Bridges />} />
-                <Route path="/vines" element={<Vines />} />
+                {/*<Route path="/vines" element={<Vines />} />*/}
                 <Route path="/cipher" element={<Cipher />} />
             </Routes>
             </Layout>

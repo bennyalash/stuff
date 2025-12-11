@@ -68,8 +68,8 @@
     display: grid;
     pointer-events: none;
     /* Grid lines only inside, no outer border */
-    background-image: linear-gradient(to right, var(--ciphergrid) 1px, transparent 1px), linear-gradient(to bottom, var(--ciphergrid) 1px, transparent 1px);
-    background-size: calc(33% + 0.25px) calc(33% + 0.25px); /* adjust to prevent outer line */
+    /*background-image: linear-gradient(to right, var(--ciphergrid) 1px, transparent 1px), linear-gradient(to bottom, var(--ciphergrid) 1px, transparent 1px);
+    background-size: calc(33% + 0.25px) calc(33% + 0.25px);*/ /* adjust to prevent outer line */
     background-position: 0 0;
     background-repeat: repeat;
 }
@@ -116,7 +116,9 @@
     display: flex;
     transition: none;
 }
-
+.game:not(.complete) .correct.header{
+    border-radius:5px;
+}
     .cell-inner.horizontal {
         flex-direction: row;
     }
