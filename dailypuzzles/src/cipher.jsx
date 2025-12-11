@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef } from "react";
+﻿import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./styles/cipher.css";
 
 const initialGrid = [
@@ -8,14 +8,7 @@ const initialGrid = [
   "N","O","D","S"
 ];
 
-function shuffle(array) {
-  const a = [...array];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
+
 function findMatch(array) {
   // inner 3x3 of the initial grid
   
@@ -119,7 +112,10 @@ const [CELL_SIZE, setCELL_SIZE] = useState(() =>Math.floor(Math.min(window.inner
   const [drag, setDrag] = useState(null);
   const [gameOver, setGameOver] = useState(false);
   const dragRef = useRef(null);
+
+ useEffect(() => {
   dragRef.current = drag;
+}, [drag]);
 
   // visual remainder (px) for each row/col while dragging
   const [remainderX, setRemainderX] = useState(Array(SIZE).fill(0)); // px
@@ -134,7 +130,7 @@ const shiftYRef = useRef(Array(SIZE).fill(0));
 const directionRef = useRef(null);
 
   // direction: "X" | "Y" | null
-  const [direction, setDirection] = useState(null);
+  const [_direction, setDirection] = useState(null);
 
   // rotate row to the right by `shift` (positive = right)
   const rotateRow = (row, shift) => {
@@ -324,11 +320,10 @@ const solvedInner = [
   initialGrid[13], initialGrid[14], initialGrid[15],
 ];
 
-function isPuzzleComplete(currentGrid) {
-
-  // currentGrid is your 9-tile inner grid
+const isPuzzleComplete = useCallback((currentGrid) => {
   return currentGrid.every((tile, idx) => tile === solvedInner[idx]);
-}
+}, []);
+
 
 useEffect(() => {
   const innerGrid = [
@@ -336,11 +331,18 @@ useEffect(() => {
     grid[3], grid[4], grid[5],
     grid[6], grid[7], grid[8],
   ];
-  if (isPuzzleComplete(innerGrid)) {
 
-    setGameOver(true);
+  if (isPuzzleComplete(innerGrid)) {
+    // Defer state update to avoid cascading renders
+    const id = setTimeout(() => {
+      setGameOver(true);
+    }, 0);
+
+    return () => clearTimeout(id); // cleanup
   }
-}, [grid]);
+}, [grid, isPuzzleComplete]);
+
+
 
   return (
     <div className={`cipher-game game hint ${gameOver && "complete"}`} style={{fontSize:CELL_SIZE/1.5+"px"}}>
@@ -378,18 +380,15 @@ useEffect(() => {
                 // during X drag, we render row-modular letters
                 // during Y drag, we render column-modular letters
                 let letter = grid[r * SIZE + c];
-                if (directionRef.current === "X" && dragRef.current) {
-                  const s = shiftX[r] || 0;
-                  letter = getRowLetter(r, c, s);
-                } else if (directionRef.current === "Y" && dragRef.current) {
-                  const s = shiftY[c] || 0;
-                  letter = getColLetter(r, c, s);
-                }
+                if (_direction === "X" && drag) {
+  const s = shiftX[r] || 0;
+  letter = getRowLetter(r, c, s);
+} else if (_direction === "Y" && drag) {
+  const s = shiftY[c] || 0;
+  letter = getColLetter(r, c, s);
+}
 
                 const ty = remainderY[c] || 0; // column remainder translateY
-                if(letter == initialGrid[r*SIZE+c]){
-                    
-                }
 
                 return (
                   <div

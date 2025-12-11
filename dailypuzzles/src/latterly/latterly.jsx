@@ -1,6 +1,6 @@
 ﻿import { useEffect, useState } from "react";
-import { Keyboard } from "./Keyboard";
-import Flowers from "../flowers";
+import { Keyboard } from "./keyboard.jsx";
+import Flowers from "../flowers.jsx";
 import { Home, MoveRight, MoveLeft, Target } from 'lucide-react';
 import { Routes, Route, Link } from "react-router-dom"
 
@@ -38,7 +38,6 @@ const wordSets = [
 ];
 
 export default function Latter() {
-    const [startWord, setStartWord] = useState("");
     const [endWord, setEndWord] = useState("");
     const [GO, setGO] = useState(false);
 
@@ -54,7 +53,6 @@ export default function Latter() {
         const days = Math.floor((new Date() - new Date("2024-05-21")) / (1000 * 60 * 60 * 24)) - 1;
         const puzzle = wordSets[days % wordSets.length];
 
-        setStartWord(puzzle.startWord);
         setEndWord(puzzle.endWord);
         setCurrentWord(puzzle.startWord);
     }, []);
@@ -154,7 +152,7 @@ setMessage(`"${capitalize(word.toLowerCase())}" is not a valid word.`);
                     </div>
                 ))}
             </div>
-            {!GO && <Keyboard onKeyPress={!GO && handleKeyPress} />}
+            {!GO && <Keyboard onKeyPress={handleKeyPress} />}
             {GO && <div className="keyboard">
             <h2>Congrats!</h2>
             <p>You Solved Roots in {moves} Moves!</p>

@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from "react";
+﻿import { useState, useCallback } from "react";
 import "./styles/vines.css";
 
 const initialWords = [
@@ -7,6 +7,7 @@ const initialWords = [
   "Jerusalem", "Bethlehem", "Nazareth", "Galilee",
   "ab", "Sabbath", "Prophecy", "Mordecai commanded"
 ];
+
 const COLUMN_SIZE = 4;
 const correctColumns = [];
 
@@ -14,10 +15,9 @@ for (let i = 0; i < initialWords.length; i += COLUMN_SIZE) {
   correctColumns.push(initialWords.slice(i, i + COLUMN_SIZE));
 }
 
-// Titles for the columns
 const categoryTitles = ["Virtues", "People", "Places", "Practices"];
 
-// Shuffle function
+// Pure shuffle
 function shuffle(array) {
   const newArr = [...array];
   for (let i = newArr.length - 1; i > 0; i--) {
@@ -27,42 +27,72 @@ function shuffle(array) {
   return newArr;
 }
 
+// Auto-fit long words
 function getFontSize(word, defaultFont = 14, maxLength = 12, minFont = 10) {
   const length = word.length;
-
-  if (length <= maxLength) {
-    return defaultFont; // normal size
-  } else {
-    // shrink proportionally, but not too small
-    const scale = Math.exp(-0.05 * (length - 1)); 
-    const fontSize = Math.round(minFont + (defaultFont - minFont) * scale);
-
-  return fontSize;
-  }
+  if (length <= maxLength) return defaultFont;
+  const scale = Math.exp(-0.05 * (length - 1));
+  return Math.round(minFont + (defaultFont - minFont) * scale);
 }
 
 export default function Vines() {
-  const [words, setWords] = useState([]);
+  // Initialize shuffled words once — no effect needed
+  const [words, setWords] = useState(() => shuffle(initialWords));
+
   const [firstSelected, setFirstSelected] = useState(null);
   const [message, setMessage] = useState("");
   const [lockedColumns, setLockedColumns] = useState([false, false, false, false]);
   const [swappedWords, setSwappedWords] = useState([]);
   const [revealedCategories, setRevealedCategories] = useState([null, null, null, null]);
 
-  useEffect(() => {
-    setWords(shuffle(initialWords));
-  }, []);
+  // submitGuess now takes the word list directly
+  const submitGuess = useCallback((currentWords) => {
+    let remainingCorrect = correctColumns.map((col, idx) => ({
+      words: [...col].sort(),
+      title: categoryTitles[idx],
+    }));
 
+    const newLockedColumns = [...lockedColumns];
+    const newRevealedCategories = [...revealedCategories];
+
+    for (let col = 0; col < 4; col++) {
+      if (newLockedColumns[col]) continue;
+
+      const start = col * 4;
+      const columnWords = currentWords.slice(start, start + 4).sort();
+
+      const matchIndex = remainingCorrect.findIndex(
+        correctCol => JSON.stringify(correctCol.words) === JSON.stringify(columnWords)
+      );
+
+      if (matchIndex !== -1) {
+        newLockedColumns[col] = true;
+        newRevealedCategories[col] = remainingCorrect[matchIndex].title;
+        remainingCorrect.splice(matchIndex, 1);
+      }
+    }
+
+    setLockedColumns(newLockedColumns);
+    setRevealedCategories(newRevealedCategories);
+
+    if (newLockedColumns.filter(Boolean).length === 4) {
+      setMessage("You Win!");
+    } else {
+      setMessage("");
+    }
+
+  }, [lockedColumns, revealedCategories]);
+
+  // Swap words
   const swapWords = (index) => {
     const colIndex = Math.floor(index / 4);
     if (lockedColumns[colIndex]) return;
 
     if (firstSelected === null) {
       setFirstSelected(index);
-    }else if(firstSelected == index){
-         setFirstSelected(null);
-    }
-        else {
+    } else if (firstSelected === index) {
+      setFirstSelected(null);
+    } else {
       const firstColIndex = Math.floor(firstSelected / 4);
       if (lockedColumns[firstColIndex]) {
         setFirstSelected(null);
@@ -71,7 +101,9 @@ export default function Vines() {
 
       const newWords = [...words];
       [newWords[firstSelected], newWords[index]] = [newWords[index], newWords[firstSelected]];
+
       setWords(newWords);
+      submitGuess(newWords); // run immediately after swap
 
       setSwappedWords([firstSelected, index]);
       setTimeout(() => setSwappedWords([]), 500);
@@ -80,70 +112,33 @@ export default function Vines() {
     }
   };
 
-  useEffect(() => {
-  submitGuess();
-}, [words]);
-
- const submitGuess = () => {
-  let remainingCorrect = correctColumns.map((col, idx) => ({ words: [...col].sort(), title: categoryTitles[idx] }));
-
-  const newLockedColumns = [...lockedColumns];
-  const newRevealedCategories = [...revealedCategories];
-  
-
-  for (let col = 0; col < 4; col++) {
-    if (lockedColumns[col]) continue;
-
-    const start = col * 4;
-    const columnWords = words.slice(start, start + 4).sort();
-
-    const matchIndex = remainingCorrect.findIndex(
-      correctCol => JSON.stringify(correctCol.words) === JSON.stringify(columnWords)
-    );
-
-    if (matchIndex !== -1) {
-      newLockedColumns[col] = true;
-      newRevealedCategories[col] = remainingCorrect[matchIndex].title;
-      remainingCorrect.splice(matchIndex, 1); // remove this category so it can't be reused
-    }
-  }
-
-  setLockedColumns(newLockedColumns);
-  setRevealedCategories(newRevealedCategories);
-
-  const lockedCount = newLockedColumns.filter(col => col === true).length;
-
-
-  if (lockedCount === 4) {
-    setMessage("You Win!");
-  } else {
-    setMessage(``);
-  }
-};
-
-
   return (
     <div className="vines-game game">
       <div className="columns-container">
         {[0, 1, 2, 3].map((col) => (
-          <div
-            key={col}
-            className={`column ${lockedColumns[col] ? "locked" : ""}`}
-          >
+          <div key={col} className={`column ${lockedColumns[col] ? "locked" : ""}`}>
             {revealedCategories[col] && (
-              <div className="category-title" style={{fontSize: getFontSize(revealedCategories[col]) + "px"}}>{revealedCategories[col]}</div>
+              <div
+                className="category-title"
+                style={{ fontSize: getFontSize(revealedCategories[col]) + "px" }}
+              >
+                {revealedCategories[col]}
+              </div>
             )}
+
             {words.slice(col * 4, col * 4 + 4).map((word, idx) => {
               const globalIndex = col * 4 + idx;
               const isSwapped = swappedWords.includes(globalIndex);
+
               return (
                 <div
                   id={`word-${globalIndex}`}
                   key={idx}
-                  style={{fontSize: getFontSize(word) + "px"}}
-                  className={`vine-word word ${firstSelected === globalIndex ? "selected" : ""} ${
-                    lockedColumns[col] ? "locked-word" : ""
-                  } ${isSwapped ? "swapped" : ""}`}
+                  style={{ fontSize: getFontSize(word) + "px" }}
+                  className={`vine-word word 
+                    ${firstSelected === globalIndex ? "selected" : ""} 
+                    ${lockedColumns[col] ? "locked-word" : ""} 
+                    ${isSwapped ? "swapped" : ""}`}
                   onClick={() => swapWords(globalIndex)}
                 >
                   {word}

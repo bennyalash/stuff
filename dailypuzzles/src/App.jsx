@@ -1,10 +1,10 @@
 import { Routes, Route, Link } from "react-router-dom"
-import Layout from "./layout"
-import Home from "./Home"
-import Latter from "./latterly/latterly"
-import Bridges from "./bridges"
-import Vines from "./vines"
-import Cipher from "./cipher"
+import Layout from "./layout.jsx"
+import Home from "./home.jsx"
+import Latter from "./latterly/latterly.jsx"
+import Bridges from "./bridges.jsx"
+import Vines from "./vines.jsx"
+import Cipher from "./cipher.jsx"
 import { ChevronLeft, MoveLeft, Target, CircleQuestionMark, Settings } from 'lucide-react';
 
 export default function App() {
