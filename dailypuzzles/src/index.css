@@ -7,18 +7,18 @@ body, h1, h2, h3, h4, h5, h6{
 h2{
     text-align:center;
 }
-nav {
+nav, .nav {
     width: 100%;
     background: white;
     height: 50px;
-    color: white;
+    color: black;
     box-shadow: 0px 1px 0 0 #ccc;
     z-index: 100;
     display: none;
     align-items: center;
     justify-content: space-between;
 }
-nav a{
+nav a, .nav a{
     color:black;
 }
 body{

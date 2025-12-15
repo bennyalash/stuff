@@ -2,7 +2,7 @@
     --ciphercompletebg: black; /* 1 */
     --cipherletter: grey; /* 23 */
     --cipherlettercorrect: black; /* 23 */
-    --ciphergrid: lightgrey; /* 4 */
+    --ciphergrid: black; /* 4 */
     --cipherbg: white; /* 5 */
     --cipherletterheader: white; /* 6 */
 }
@@ -68,8 +68,8 @@
     display: grid;
     pointer-events: none;
     /* Grid lines only inside, no outer border */
-    /*background-image: linear-gradient(to right, var(--ciphergrid) 1px, transparent 1px), linear-gradient(to bottom, var(--ciphergrid) 1px, transparent 1px);
-    background-size: calc(33% + 0.25px) calc(33% + 0.25px);*/ /* adjust to prevent outer line */
+    background-image: linear-gradient(to right, var(--ciphergrid) 2px, transparent 2px), linear-gradient(to bottom, var(--ciphergrid) 2px, transparent 1px);
+    background-size: calc(33% + 1px) calc(33% + 1px);
     background-position: 0 0;
     background-repeat: repeat;
 }

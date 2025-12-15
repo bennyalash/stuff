@@ -10,9 +10,38 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Text:ital@0;1&display=swap" rel="stylesheet">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
 </head>
-  <body>
+<body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-  </body>
+    <script>
+  window.onload = function () {
+    google.accounts.id.initialize({
+      client_id: "YOUR_GOOGLE_CLIENT_ID",
+      callback: handleCredentialResponse,
+      auto_select: false
+    });
+
+    google.accounts.id.renderButton(
+      document.getElementById("googleSignIn"),
+      {
+        theme: "outline",
+        size: "large",
+        shape: "pill"
+      }
+    );
+  };
+
+  function handleCredentialResponse(response) {
+    // ID token is here:
+    console.log("ID Token:", response.credential);
+
+    // Send response.credential to your backend for verification
+    // OR decode it client-side for user info.
+  }
+    </script>
+
+</body>
 </html>

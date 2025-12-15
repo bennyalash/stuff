@@ -1,159 +1,231 @@
 ﻿import { useEffect, useState } from "react";
 import { Keyboard } from "./keyboard.jsx";
 import Flowers from "../flowers.jsx";
-import { Home, MoveRight, MoveLeft, Target } from 'lucide-react';
-import { Routes, Route, Link } from "react-router-dom"
+import HelpModal from "../components/HelpModal.jsx";
+import { RootsHelp } from "../components/Help.jsx";
+import { RootsWin } from "../components/Win.jsx";
+import { fetchTodaysPuzzle, submitPuzzleStats } from "../components/FetchPuzzle.jsx";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
-const wordSets = [
-    { startWord: 'BEAN', endWord: 'CART' },
-    { startWord: 'LEAP', endWord: 'FROG' },
-    { startWord: 'GOLD', endWord: 'SACK' },
-    { startWord: 'DARK', endWord: 'MOON' },
-    { startWord: 'PALM', endWord: 'TREE' },
-    { startWord: 'HARD', endWord: 'NAIL' },
-    { startWord: 'LOVE', endWord: 'BIRD' },
-    { startWord: 'HIGH', endWord: 'JUMP' },
-    { startWord: 'GOOD', endWord: 'DEAD' },
-    { startWord: 'LONG', endWord: 'WALK' },
-    { startWord: 'LAMB', endWord: 'LIFE' },
-    { startWord: 'FOOL', endWord: 'DAYS' },
-    { startWord: 'TALE', endWord: 'FUNK' },
-    { startWord: 'SUNK', endWord: 'MOSS' },
-    { startWord: 'COOK', endWord: 'LOGO' },
-    { startWord: 'JOKE', endWord: 'GOLF' },
-    { startWord: 'CAPE', endWord: 'COLD' },
-    { startWord: 'LANE', endWord: 'DICE' },
-    { startWord: 'MAYO', endWord: 'BANS' },
-    { startWord: 'HOSE', endWord: 'LAWS' },
-    { startWord: 'WISE', endWord: 'SASH' },
-    { startWord: 'SAVE', endWord: 'FOLD' },
-    { startWord: 'BONE', endWord: 'CHIN' },
-    { startWord: 'SOOT', endWord: 'HOLY' },
-    { startWord: 'GOAT', endWord: 'HOAX' },
-    { startWord: 'WAND', endWord: 'NOSE' },
-    { startWord: 'LONG', endWord: 'BALL' },
-    { startWord: 'VAST', endWord: 'RENT' },
-    { startWord: 'PARK', endWord: 'TURN' },
-    { startWord: 'HONK', endWord: 'ZEST' }
-];
+export default function Latter({ modal, setModal }) {
+  const [loading, setLoading] = useState(true);
+  const [gameOver, setGameOver] = useState(false);
+  const [showWinModal, setShowWinModal] = useState(false);
 
-export default function Latter() {
-    const [endWord, setEndWord] = useState("");
-    const [GO, setGO] = useState(false);
+  const [startWord, setStartWord] = useState("");
+  const [endWord, setEndWord] = useState("");
+  const [currentWord, setCurrentWord] = useState("");
 
-    const [currentWord, setCurrentWord] = useState("");
-    const [selectedIndex, setSelectedIndex] = useState(null);
-    const [pastGuesses, setPastGuesses] = useState([]);
-    const [moves, setMoves] = useState(0);
-    const [message, setMessage] = useState("");
-    const [valid, setValid] = useState(true);
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [pastGuesses, setPastGuesses] = useState([]);
+  const [moves, setMoves] = useState(0);
 
-    // select puzzle of the day
-    useEffect(() => {
-        const days = Math.floor((new Date() - new Date("2024-05-21")) / (1000 * 60 * 60 * 24)) - 1;
-        const puzzle = wordSets[days % wordSets.length];
+  const [message, setMessage] = useState("");
+  const [valid, setValid] = useState(true);
 
-        setEndWord(puzzle.endWord);
-        setCurrentWord(puzzle.startWord);
-    }, []);
+  const [startTime, setStartTime] = useState(null);
+  const [puzztime, setPuzztime] = useState(null);
 
-    function handleLetterClick(index) {
-        setValid(true)
-        setSelectedIndex(index);
+  /* -------------------------------------------------- */
+  /* Load puzzle + restore stats (Bridges-style)        */
+  /* -------------------------------------------------- */
+
+  useEffect(() => {
+    async function loadPuzzle() {
+      const puzzle = await fetchTodaysPuzzle("Latter");
+
+      let puzzleData;
+      try {
+        puzzleData = puzzle?.Data ? JSON.parse(puzzle.Data) : null;
+      } catch {
+        puzzleData = null;
+      }
+
+      // fallback safety
+      if (!puzzleData) {
+        puzzleData = { startWord: "BEAN", endWord: "CART" };
+      }
+
+      setStartWord(puzzleData.startWord);
+      setEndWord(puzzleData.endWord);
+      setCurrentWord(puzzleData.startWord);
+      setStartTime(Date.now());
+
+      const username = localStorage.getItem("username") || "guest";
+      const today = new Date().toISOString().slice(0, 10);
+      const puzzleId = `${today}_Latter`;
+      console.log(`${username}_${puzzleId}`);
+      const statsRef = doc(db, "stats", `${username}_${puzzleId}`);
+      const statsSnap = await getDoc(statsRef);
+
+      if (statsSnap.exists()) {
+        const data = statsSnap.data();
+        console.log(data);
+        setCurrentWord(data.finalMap.finalWord);
+        setPastGuesses(data.finalMap.pastGuesses || []);
+        setMoves(data.finalMap.moves || 0);
+        setPuzztime(data.timeTaken);
+
+        setGameOver(true);
+        setShowWinModal(true);
+      }
+
+      setLoading(false);
     }
 
-    async function handleKeyPress(letter) {
-        setValid(true)
-        if (selectedIndex == null) return;
+    loadPuzzle();
+  }, []);
 
-        const newWord = currentWord
-            .split("")
-            .map((c, i) => (i === selectedIndex ? letter : c))
-            .join("");
+  /* -------------------------------------------------- */
+  /* Helpers                                           */
+  /* -------------------------------------------------- */
 
-        const isValid = await checkWord(newWord);
+  function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
 
-        if (!isValid) return;
+  async function checkWord(word) {
+    try {
+      const res = await fetch(
+        `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+      );
 
-        // valid move
-        setMoves(m => m + 1);
-        setPastGuesses(g => [currentWord, ...g]);
-        setCurrentWord(newWord);
-        //setSelectedIndex(null);
+      if (!res.ok) throw new Error("Invalid");
 
-        if (newWord.toLowerCase() === endWord.toLowerCase()) {
-            setGO(true);
-        }
+      setMessage("");
+      return true;
+    } catch {
+      setMessage(`"${capitalize(word.toLowerCase())}" is not a valid word.`);
+      setValid(false);
+      return false;
     }
+  }
 
-    function capitalize(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
+  /* -------------------------------------------------- */
+  /* Input handling                                    */
+  /* -------------------------------------------------- */
 
-    async function checkWord(word) {
-        try {
-            const res = await fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + word);
+  function handleLetterClick(index) {
+    if (gameOver) return;
+    setValid(true);
+    setSelectedIndex(index);
+  }
 
-            if (!res.ok) throw new Error("Invalid");
+  async function handleKeyPress(letter) {
+    if (gameOver || selectedIndex == null) return;
 
-            setMessage("");
-            return true;
+    setValid(true);
 
-        } catch {
-            setMessage(`"${capitalize(word.toLowerCase())}" is not a valid word.`);
-            setValid(false)
-            return false;
-        }
+    const newWord = currentWord
+      .split("")
+      .map((c, i) => (i === selectedIndex ? letter : c))
+      .join("");
+
+    const isValid = await checkWord(newWord);
+    if (!isValid) return;
+
+    const nextMoves = moves + 1;
+    const nextPast = [currentWord, ...pastGuesses];
+
+    setMoves(nextMoves);
+    setPastGuesses(nextPast);
+    setCurrentWord(newWord);
+
+    if (newWord.toLowerCase() === endWord.toLowerCase()) {
+      const endTime = Date.now();
+      const timeTaken = Math.floor((endTime - startTime) / 1000);
+
+      setGameOver(true);
+      setPuzztime(timeTaken);
+      setShowWinModal(true);
+
+      submitPuzzleStats(timeTaken, "Latter", {
+        finalWord: newWord,
+        pastGuesses: nextPast,
+        moves: nextMoves,
+      });
     }
-    //return ( <Flowers />);
-    return (
-        <div className={`latter-game game ${GO && 'game-over'}`}>  
-     
-                {message != "" && !GO && <div className="invalid">{message}</div>}
-                <div className="final-word word">
-                <div className="flowers-container">
-                {GO && <Flowers />}
-                </div>
-                                {/*<div className="row-icon"><Target size={28} /></div>*/}
+  }
 
-                    {endWord.split("").map((letter, i) => (
-                        <div
-                            key={i}
-                            className={`letter`}
-                        >
-                            {letter}
-                        </div>
-                    ))}
-                </div>              
-            <div className="current-word word">
-               {/* <div className="row-icon"><MoveRight size={24} /></div>*/}
-                {currentWord.split("").map((letter, i) => (
-                    <div
-                        key={i}
-                        className={`letter ${!valid && "notavalidword"} ${selectedIndex === i ? "selected" : ""}`}
-                        onClick={() => handleLetterClick(i)}
-                    >
-                        {selectedIndex === i ? letter : letter}
-                    </div>
-                ))}
-            </div>
-            <div className="past-guesses">
-                {pastGuesses.map((word, ip) => (
-                    <div className="past-word word" style={{filter: "brightness("+ (1 - (ip+2)/15) + ")"}}>
-                        {word.split("").map((letter, i) => (
-                            <div
-                                key={word+i}
-                                className={`letter`}
-                                
-                            >
-                                {letter}
-                            </div>
-                        ))}
-                    </div>
-                ))}
-            </div>
-            {!GO && <Keyboard onKeyPress={handleKeyPress} />}
-           
+  /* -------------------------------------------------- */
+  /* Render                                            */
+  /* -------------------------------------------------- */
+
+  if (loading) return <div className="latter-game game" />;
+
+  return (
+    <div className={`latter-game game ${gameOver ? "game-over" : ""}`}>
+      <HelpModal
+        open={modal}
+        onClose={() => setModal(false)}
+        title="How to Play"
+      >
+        <RootsHelp />
+      </HelpModal>
+
+      <HelpModal
+        open={showWinModal}
+        onClose={() => setShowWinModal(false)}
+        title="Congrats!"
+      >
+        <RootsWin puzztime={puzztime} />
+      </HelpModal>
+
+      {message && !gameOver && <div className="invalid">{message}</div>}
+
+      {/* Final word */}
+      <div className="final-word word">
+        <div className="flowers-container">
+          {gameOver && <Flowers />}
         </div>
-    );
+
+        {endWord.split("").map((letter, i) => (
+          <div key={i} className="letter">
+            {letter}
+          </div>
+        ))}
+      </div>
+
+      {/* Current word */}
+      <div className="current-word word">
+        {currentWord.split("").map((letter, i) => (
+          <div
+            key={i}
+            className={`letter 
+              ${!valid ? "notavalidword" : ""} 
+              ${selectedIndex === i ? "selected" : ""}`}
+            onClick={() => handleLetterClick(i)}
+          >
+            {letter}
+          </div>
+        ))}
+      </div>
+
+      {/* Past guesses */}
+      <div className="past-guesses">
+        {pastGuesses.map((word, ip) => (
+          <div
+            key={word + ip}
+            className="past-word word"
+            style={{ filter: `brightness(${1 - (ip + 2) / 15})` }}
+          >
+            {word.split("").map((letter, i) => (
+              <div key={i} className="letter">
+                {letter}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+
+      {!gameOver && <Keyboard onKeyPress={handleKeyPress} />}
+
+      {gameOver && !showWinModal && (
+        <div onClick={() => setShowWinModal(true)} className="keyboard">
+          <button className="alt">View Results</button>
+        </div>
+      )}
+    </div>
+  );
 }

@@ -25,7 +25,7 @@ body{
     max-width: 500px;
     margin: auto;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-grow: 1;
     overflow: hidden;
@@ -34,7 +34,19 @@ body{
 }
 nav .far svg{
     padding:0 5px;
+    font-size:16px;
 }
+.nav {
+    width:calc(100% - 20px);
+    font-size:12px;
+}
+    .nav a, .nav .a {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        font-weight: 600;
+        gap:2px;
+    }
 /* Home Page*/
 .page {
     height: calc(100% - 50px);
@@ -122,9 +134,12 @@ nav .far svg{
 .game-card-name {
     line-height: 1;
     color: #000;
-    font-family:"DM Serif Text";
-    font-size:30px;
-    margin-bottom:10px;
+    font-family: "DM Serif Text";
+    font-size: 30px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 .game-card-content {
     font-size: 16px;
@@ -360,10 +375,17 @@ fill:black;
         background:black;
         color:white;
         border:0;
-        padding: 8px 12px;
+        padding: 6px 12px;
         border-radius:120px;
+        border:2px solid black;
         cursor:pointer;
+        font-weight:500;
     }
+        button.alt {
+            margin-top:5px;
+            background: white;
+            color: black;
+        }
     p{
         margin:5px 0;
     }
@@ -380,6 +402,6 @@ fill:black;
         opacity: 1;
     }
 }
-.basic-layout:has(.game) nav{
+.basic-layout:has(.game) nav, .nav{
     display: flex;
 }
