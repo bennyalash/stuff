@@ -10,10 +10,12 @@ export default function Home() {
     const [games, setGames] = useState({});
 
     useEffect(() => {
-        async function loadBridges() {
-            const bridges = await fetchToday("Bridges", "bennyalash");
-            const roots = await fetchToday("Latter", "bennyalash");
-            const cipher = await fetchToday("Cipher", "bennyalash");
+        async function loadCompleted() {
+            const username = localStorage.getItem('username');
+
+            const bridges = await fetchToday("Bridges", username);
+            const roots = await fetchToday("Latter", username);
+            const cipher = await fetchToday("Cipher", username);
 
             setGames(prev => ({
                 ...prev,
@@ -23,7 +25,7 @@ export default function Home() {
             }));
         }
 
-        loadBridges();
+        loadCompleted();
     }, []);
 
     return (

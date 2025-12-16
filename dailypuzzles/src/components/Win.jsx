@@ -7,7 +7,6 @@ export function BridgesWin({puzztime}) {
 
 
       <Link to="/"><button>Play Another Puzzle</button></Link>
-            <br />
        <Link to="/leaders"><button className="alt">View Leaderboard</button></Link>
     </>
   );
@@ -20,7 +19,6 @@ export function RootsWin({ puzztime }) {
 
 
             <Link to="/"><button>Play Another Puzzle</button></Link>
-            <br />
             <Link to="/leaders"><button className="alt">View Leaderboard</button></Link>
         </>
     );
