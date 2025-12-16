@@ -32,7 +32,13 @@ export default function Home() {
         <div className="page">
         <div className="nav" style={{ height: "50px" }}>
                 <div className="far-left far">
-                <h3>December 1, 2025</h3>
+                <h3>
+                  {new Date().toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
+                </h3>
 
                 </div>
                 <div className="far-right far">

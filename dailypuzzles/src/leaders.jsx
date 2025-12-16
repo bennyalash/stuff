@@ -61,7 +61,13 @@ export default function Leaders() {
           </Link>
         </div>
         <div className="far-right far">
-          <h3>Leaderboard</h3>
+          <h3>
+                  {new Date().toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  })} - Leaderboard
+                </h3>
         </div>
       </div>
 
@@ -88,10 +94,10 @@ function LeaderGroup({ title, data, username }) {
   if (data.length === 0) return null;
 
   return (
-    <div className="leader-group">
+    <div className={`leader-group ${title}`}>
       <h2>{title}</h2>
 
-      {data.slice(0, 5).map((entry, index) => (
+      {data.slice(0, 3).map((entry, index) => (
         <div
           key={`${entry.userId}-${index}`}
           className={`leader-item ${username === entry.userId ? "me" : ""}`}

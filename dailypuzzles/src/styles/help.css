@@ -73,26 +73,42 @@ position:unset;
     padding:10px;
     border-radius:5px;
 }
-.leader-group h2{
-    margin:10px 0;
-}
+
+    .leader-group.Bridges {
+        background: #cde8ff;
+    }
+    .leader-group.Roots {
+        background: #ffca86;
+    }
+    .leader-group.Cipher {
+        background: #ebe0eb;
+    }
+    .leader-group h2 {
+        margin: 5px;
+        font-family: "DM Serif Text";
+        font-weight:500;
+        text-align:left;
+    }
 .leader-item{
     display:grid;
-    grid-template-columns: 30px 1fr 1fr;
+    grid-template-columns: 20px 1fr 1fr;
     padding:7px;
     max-width:100%;
-    font-size:18px;
+    font-size:16px;
     border-radius:10px;
     font-weight:300;
     background:white;
     border:3px solid white;
     color:#333;
 }
+.leader-item div:nth-of-type(1){
+    text-align:center;
+}
 .leader-item b{
     font-weight:bold;
 }
     .leader-item.me {
        /* background: black;
-        color:white;*/
-        border-color:#ccc;
+        color:white;
+        border-color:#ccc;*/
     }
