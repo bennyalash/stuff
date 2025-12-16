@@ -43,7 +43,7 @@ export default function Home() {
                 <div className="game-card-cover">
                     <div className="game-card-info">
                             <div className="game-card-name">
-                                {games.bridges && <BadgeCheck size={30} />} Bridges
+                                Bridges {games.bridges && <BadgeCheck size={30} />} 
                         </div>
                         <div className="game-card-description">
                             Place blocks to form a path from the start to the finish.
@@ -58,7 +58,7 @@ export default function Home() {
                 <div className="game-card-cover">
                     <div className="game-card-info">
                         <div className="game-card-name">
-                            {games.roots && <BadgeCheck size={30} />} Roots
+                             Roots {games.roots && <BadgeCheck size={30} />}
                         </div>
                         <div className="game-card-description">
                             Swap out one letter at a time to form a target word.
@@ -73,7 +73,7 @@ export default function Home() {
                 <div className="game-card-cover">
                     <div className="game-card-info">
                         <div className="game-card-name">
-                            {games.cipher && <BadgeCheck size={30} />} Cipher
+                             Cipher {games.cipher && <BadgeCheck size={30} />}
                         </div>
                         <div className="game-card-description">
                             Slide rows and columns to complete the word grid.
@@ -88,10 +88,10 @@ export default function Home() {
                 <div className="game-card-cover">
                     <div className="game-card-info">
                         <div className="game-card-name">
-                            Vines
+                            Coming Soon
                         </div>
                         <div className="game-card-description">
-                           Coming Soon.
+                           Vines.
                         </div>
                     </div>
                     <div className="game-card-illustration">

@@ -31,7 +31,6 @@ export function CipherWin({ puzztime }) {
         <>
             <h4>You completed the puzzle in {puzztime} seconds.</h4>
             <Link to="/"><button>Play Another Puzzle</button></Link>
-            <br />
             <Link to="/leaders"><button className="alt">View Leaderboard</button></Link>
         </>
     );

@@ -2,11 +2,12 @@
 import "./styles/cipher.css";
 import HelpModal from "./components/HelpModal.jsx";
 import { CipherHelp } from "./components/Help.jsx";
+import { doc, getDoc } from "firebase/firestore";
 
 // 🔽 Added for end-of-game stats
-import { RootsWin as CipherWin } from "./components/Win.jsx";
-import { submitPuzzleStats } from "./components/FetchPuzzle.jsx";
-import { auth } from "./firebase";
+import { CipherWin } from "./components/Win.jsx";
+import { submitPuzzleStats, fetchTodaysPuzzle } from "./components/FetchPuzzle.jsx";
+import { db, auth } from "./firebase";
 
 const initialGrid = [
   "Y","E","A","R",
@@ -84,9 +85,6 @@ export default function Cipher({ modal, setModal }) {
   const [winModal, setWinModal] = useState(false);
   const hasSubmittedRef = useRef(false);
 
-  useEffect(() => {
-    setStartTime(Date.now());
-  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -97,7 +95,54 @@ export default function Cipher({ modal, setModal }) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const [grid, setGrid] = useState(() => shuffleInner(initialGrid));
+  useEffect(() => {
+    async function loadPuzzle() {
+      const puzzle = await fetchTodaysPuzzle("Cipher");
+
+      let levelData;
+      try {
+        levelData = puzzle?.Data ? JSON.parse(puzzle.Data) : null;
+      } catch {
+        levelData = null;
+      }
+
+      if (!levelData) {
+        levelData = [
+          "Y","E","A","R",
+          "A","C","R","E",
+          "W","H","I","P",
+          "N","O","D","S"
+        ]
+      }
+
+      setGrid(shuffleInner(levelData));
+      setStartTime(Date.now());
+
+      const username = localStorage.getItem("username") || "guest";
+      const today = new Date().toISOString().slice(0, 10);
+      const puzzleId = `${today}_Cipher`;
+
+      const statsRef = doc(db, "stats", `${username}_${puzzleId}`);
+      const statsSnap = await getDoc(statsRef);
+
+      if (statsSnap.exists()) {
+        const data = statsSnap.data();
+        setPuzztime(data.timeTaken);
+        setGameOver(true);
+        setWinModal(true);
+      setGrid(levelData);
+
+      }
+      else{
+        setGrid(shuffleInner(levelData));
+
+      }
+    }
+
+    loadPuzzle();
+  }, []);
+
+  const [grid, setGrid] = useState(null);
 
   const [drag, setDrag] = useState(null);
   const [gameOver, setGameOver] = useState(false);
@@ -209,6 +254,8 @@ export default function Cipher({ modal, setModal }) {
   const isPuzzleComplete=useCallback((currentGrid)=>currentGrid.every((tile,idx)=>tile===solvedInner[idx]),[]);
 
   useEffect(()=>{
+        if(grid == null) return;
+
     const innerGrid=[
       grid[0],grid[1],grid[2],
       grid[3],grid[4],grid[5],
@@ -228,11 +275,12 @@ export default function Cipher({ modal, setModal }) {
     const timeTaken=Math.floor((endTime-startTime)/1000);
     setPuzztime(timeTaken);
     setWinModal(true);
-    const user=auth.currentUser;
-    if(user){
-      submitPuzzleStats({userId:user.uid,username:user.displayName||"Anonymous",timeTaken,type:"Cipher"});
-    }
+
+      submitPuzzleStats(timeTaken,"Cipher", null);
+
   },[gameOver,startTime]);
+
+  if(grid == null) return;
 
   return (
     <div className={`cipher-game game hint ${gameOver && "complete"}`} style={{fontSize:CELL_SIZE/1.5+"px"}}>
@@ -273,6 +321,11 @@ export default function Cipher({ modal, setModal }) {
           })}
         </div>
       </div>
+      {gameOver && !winModal && (
+        <div onClick={() => setWinModal(true)} className="keyboard">
+          <button className="alt">View Results</button>
+        </div>
+      )}
     </div>
   );
 }
