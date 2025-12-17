@@ -112,3 +112,29 @@ position:unset;
         color:white;
         border-color:#ccc;*/
     }
+
+    .switch{
+        width:80px;
+        height:30px;
+        margin:30px 0 5px;
+        position:relative;
+        background:#ccc;
+        border-radius:100px;
+        cursor:pointer;
+    }
+    .switch-toggle {
+        background: white;
+        width: 50%;
+        height: calc(100% - 10px);
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        border-radius: 100px;
+        transition:0.25s ease;
+    }
+    .switch.on {
+        background: #87CD6C;
+    }
+    .switch.on .switch-toggle{
+        left:calc(50% - 5px);
+    }

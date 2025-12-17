@@ -8,7 +8,10 @@
 }
 .cipher-game {
     align-items: center;
-    margin:20px 0;
+    margin:20px 0 70px;
+}
+.game.cipher-game {
+    justify-content: center;
 }
 .cipher-game .message{
     font-size: 16px;
@@ -74,7 +77,7 @@
     background-repeat: repeat;
 }
 
-.hint .grid-cell.correct:not(.header) {
+.hint .grid-row:not(.header) .grid-cell.correct {
     color: var(--cipherlettercorrect);
 }
 .header .grid-cell, .header.grid-cell {
@@ -96,7 +99,6 @@
     display: flex;
 }
 .grid-cell {
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -106,9 +108,11 @@
     font-size: 75%;
     font-weight: bold;
     text-align: center;
+    color: var(--cipherlettercorrect);
+}
+.hint .grid-row:not(.header) .grid-cell {
     color: var(--cipherletter);
 }
-
 .cell-inner {
     position: absolute;
     top: 0;

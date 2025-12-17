@@ -282,7 +282,7 @@ export default function Cipher({ modal, setModal }) {
   },[gameOver,startTime]);
 
   if(grid == null) return;
-
+  console.log(hint);
   return (
     <div className={`cipher-game game ${hint && "hint"} ${gameOver && "complete"}`} style={{fontSize:CELL_SIZE/1.5+"px"}}>
       <HelpModal open={modal} onClose={()=>setModal(false)} title="How to Play"><CipherHelp/></HelpModal>
@@ -307,7 +307,7 @@ export default function Cipher({ modal, setModal }) {
                     else if(_direction==="Y" && drag){letter=getColLetter(r,c,shiftY[c]||0);}
                     const ty=remainderY[c]||0;
                     return (
-                      <div key={c} className={`grid-cell correct ${r*(SIZE+1)+c===5 && "old-header"} ${letter===initialGrid[r*(SIZE+1)+c+5] && "correct"}`}
+                      <div key={c} className={`grid-cell ${r*(SIZE+1)+c===5 && "old-header"} ${letter===initialGrid[r*(SIZE+1)+c+5] && "correct"}`}
                         onMouseDown={(e)=>!gameOver&&handlePointerDown(e,r,c)}
                         onTouchStart={(e)=>!gameOver&&handlePointerDown(e,r,c)}
                         style={{width:CELL_SIZE+"px",height:CELL_SIZE+"px",display:"flex",alignItems:"center",justifyContent:"center",transform:`translateY(${ty}px)`,boxSizing:"border-box",cursor:"grab",userSelect:"none"}}
@@ -322,7 +322,11 @@ export default function Cipher({ modal, setModal }) {
           })}
         </div>
       </div>
-      <input type="checkbox" onChange={(e) => setHint(e.target.value)} />
+      {!gameOver && <div onClick={() => setHint(!hint)} className={`switch ${hint ? "on" : "off"}`}>
+        <div className="switch-toggle" />
+      </div>}
+      {!gameOver && <h5 style={{fontSize: "16px"}}>Hint Mode</h5>}
+      {/*<input type="checkbox" onChange={(e) => setHint(e.target.checked)} />*/}
       {gameOver && !winModal && (
         <div onClick={() => setWinModal(true)} className="keyboard">
           <button className="alt">View Results</button>
