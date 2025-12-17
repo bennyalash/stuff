@@ -83,6 +83,7 @@ export default function Cipher({ modal, setModal }) {
   const [startTime, setStartTime] = useState(null);
   const [puzztime, setPuzztime] = useState(null);
   const [winModal, setWinModal] = useState(false);
+  const [hint, setHint] = useState(false);
   const hasSubmittedRef = useRef(false);
 
 
@@ -283,7 +284,7 @@ export default function Cipher({ modal, setModal }) {
   if(grid == null) return;
 
   return (
-    <div className={`cipher-game game hint ${gameOver && "complete"}`} style={{fontSize:CELL_SIZE/1.5+"px"}}>
+    <div className={`cipher-game game ${hint && "hint"} ${gameOver && "complete"}`} style={{fontSize:CELL_SIZE/1.5+"px"}}>
       <HelpModal open={modal} onClose={()=>setModal(false)} title="How to Play"><CipherHelp/></HelpModal>
       <HelpModal open={winModal} onClose={()=>setWinModal(false)} title="Solved!"><CipherWin puzztime={puzztime}/></HelpModal>
 
@@ -321,6 +322,7 @@ export default function Cipher({ modal, setModal }) {
           })}
         </div>
       </div>
+      <input type="checkbox" onChange={(e) => setHint(e.target.value)} />
       {gameOver && !winModal && (
         <div onClick={() => setWinModal(true)} className="keyboard">
           <button className="alt">View Results</button>
