@@ -8,10 +8,11 @@ import { fetchToday } from './components/FetchPuzzle.jsx';
 export default function Home() {
 
     const [games, setGames] = useState({});
+    const [username, setUsername] = useState(localStorage.getItem('username'));
+
 
     useEffect(() => {
         async function loadCompleted() {
-            const username = localStorage.getItem('username');
 
             const bridges = await fetchToday("Bridges", username);
             const roots = await fetchToday("Latter", username);
@@ -42,11 +43,11 @@ export default function Home() {
 
                 </div>
                 <div className="far-right far">
-                        <GoogleSignIn><CircleUserRound /></GoogleSignIn>
-
+                        <GoogleSignIn username={username} setUsername={setUsername}><CircleUserRound /></GoogleSignIn>
                 </div>
             </div>
             <div className="game-card-list">
+           {username == null && <h5 align="center">Login to save your puzzle times</h5>}
             <Link to="/bridges" className="game-card bridges">
                 <div className="game-card-cover">
                     <div className="game-card-info">
@@ -92,7 +93,7 @@ export default function Home() {
                     
                 </div>
             </Link>
-            <Link to="/" className="game-card vines">
+            {/*<Link to="/" className="game-card vines">
                 <div className="game-card-cover">
                     <div className="game-card-info">
                         <div className="game-card-name">
@@ -106,7 +107,7 @@ export default function Home() {
                     </div>
                     
                 </div>
-            </Link>
+            </Link>*/}
             
             </div>
         </div>

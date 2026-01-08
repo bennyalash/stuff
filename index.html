@@ -6,136 +6,211 @@
     <title>Benny Al-Ashari</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fustat:ital,wght@0,200..800;1,100..900&display=swap" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <style>
         body {
-            font-family: 'Libre Franklin', sans-serif;
+            font-family: "Fustat";
+            color: #3D3D3D;
             margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
-            transition:0.5s ease;
         }
-        #container {
-            max-width: 800px;
-            margin: 0;
-            padding: 0;
-            background-color: #fff;
-            overflow:hidden;
-        }
+
         h1 {
-            color: #333;
+            font-weight: 800;
+            margin: 0;
+            font-size: 32px;
+            padding: 24px;
         }
-        p {
-            color: #666;
+
+        .section-title {
+            font-weight: 800;
+            font-size: 20px;
+            margin: 0 0 10px;
+            padding: 0 24px;
         }
-        .item{
-                width: 250px;
-    color: white;
-    padding: 30px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px;
-                margin-bottom: -10px;
-            cursor:pointer;
+
+        .image {
+            height: 150px;
+            width: 150px;
+            border-radius: 20px;
+            overflow: hidden;
         }
-        #gibbs, .gibbs{
-            background:#990C0C;
+        .section{
+            margin-bottom:40px;
         }
-        #puzzles, .puzzles{
-            background:#23A0D1;
+        .swiper {
+            display: flex;
+            gap: 10px;
+            max-width: 100%;
+            padding: 0 24px;
         }
-        #design, .design{
-            background:#C87229;
+        .swiper-slide{
+            width:150px;
         }
-        #bg, .bg{
-            background:#3E4C5E;
+
+        .content {
+            padding: 5px;
         }
-        #mvw, .mvw {
-            background: #337868;
+
+        .item-title {
+            font-size: 14px;
+            font-weight: 700;
         }
-        #fym, .fym {
-            background: #530D00;
+
+        .item-description {
+            font-size: 12px;
+            font-weight: 400;
         }
-        .logo img{
-            width: 40px;
-        }
-        .name{
-                font-size: 18px;
-    font-weight: 600;
+        .italic{
+            font-style:italic;
         }
     </style>
 </head>
 <body>
-    <div id="container">
-        <div className="item" id="gibbs" onclick="go('gibbs')">
-            <div className="logo"><img src="logos/gibbs.png" /></div>
-            <div className="name">GIBBS</div>
+    <div class="container">
+
+        <h1>Benny Al-Ashari</h1>
+        <div class="section">
+            <div class="section-title">Board Games</div>
+
+            <!-- Swiper container -->
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div id="fishtail" class="image">
+                            <img src="images/fishtail.png" />
+                        </div>
+                        <div class="content">
+                            <div class="item-title">Fishtail</div>
+                            <div class="item-description tag">Simple, Tactical</div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div id="fym" class="image">
+                            <img src="images/feedyermama.png" />
+                        </div>
+                        <div class="content">
+                            <div class="item-title">Feed 'Yer Mama</div>
+                            <div class="item-description tag">Family, Competitive</div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div id="mvw" class="image">
+                            <img src="images/monkeyvswizard.png" />
+                        </div>
+                        <div class="content">
+                            <div class="item-title">Monkey vs Wizard</div>
+                            <div class="item-description">Strategy, Luck</div>
+                        </div>
+                    </div>
+
+                    <!-- Add more slides as needed -->
+                </div>
+            </div>
         </div>
-        <div className="item" id="bg" onclick="go('bg')">
-            <div className="logo"><img src="logos/bgb.png" /></div>
-            <div className="name">Board Games</div>
+
+        <div class="section">
+            <div class="section-title">Apps</div>
+
+            <!-- Swiper container -->
+            <div class="swiper mySwiper2">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div id="fishtail" class="image">
+                            <img src="images/gibbs.png" />
+                        </div>
+                        <div class="content">
+                            <div class="item-title">GIBBS</div>
+                            <div class="item-description tag">NFL Pick'em'</div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div id="fym" class="image">
+                            <img src="images/gobee.png" />
+                        </div>
+                        <div class="content">
+                            <div class="item-title">Go Bee</div>
+                            <div class="item-description tag">1v1 Strategy Game</div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div id="mvw" class="image">
+                            <img src="images/efilmhub.png" />
+                        </div>
+                        <div class="content">
+                            <div class="item-title">eFilmHub</div>
+                            <div class="item-description">African Film Community</div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div id="mvw" class="image">
+                            <img src="images/toc.png" />
+                        </div>
+                        <div class="content">
+                            <div class="item-title">The Owner's Closet</div>
+                            <div class="item-description">Vacation Rental Manager</div>
+                        </div>
+                    </div>
+
+                    <!-- Add more slides as needed -->
+                </div>
+            </div>
         </div>
-        <!--<div className="item" id="puzzles" onclick="go('puzzles')">
-        <div className="logo"><img src="logos/puzzles.png" /></div>
-        <div className="name">Daily Puzzles</div>
-    </div>
-    <div className="item" id="design" onclick="go('design')">
-        <div className="logo"><img src="logos/graphic.png" /></div>
-        <div className="name">Graphic Design</div>
-    </div>
-    <div className="item" id="fym" onclick="go('fym')">
-        <div className="logo"><img src="logos/bgb.png" /></div>
-        <div className="name">Feed 'Yer Mama</div>
-    </div>
-    <div className="item" id="mvw" onclick="go('mvw')">
-        <div className="logo"><img src="logos/bgb.png" /></div>
-        <div className="name">MONKEY vs WIZARD</div>
-    </div>-->
     </div>
 </body>
-    <footer>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-        <script>
-    function go(destination) {
-        switch(destination) {
-            case 'gibbs':
-                window.location.href = 'https://gibbpro.com';
-                break;
-            case 'puzzles':
-                window.location.href = 'https://bennyalashari.com/puzzles';
-                break;
-            case 'design':
-                window.location.href = 'https://altocreativeco.com';
-                break;
-            case 'bg':
-                window.location.href = 'https://bennyalashari.com/board-games';
-                break;
-            case 'fym':
-                window.location.href = 'https://bennyalashari.com/feed-yer-mama';
-                break;
-            case 'mvw':
-                window.location.href = 'https://bennyalashari.com/monkey-vs-wizard';
-                break;
-            default:
-                console.error('Invalid destination');
-        }
-    }
-$(document).ready(function(){
-    $(".item").hover(function(){
-        var itemId = $(this).attr("id");
-        $("body").addClass(itemId);
-    }, function(){
-        var itemId = $(this).attr("id");
-        $("body").removeClass(itemId);
-    });
-});
-</script>
-    </footer>
 </html>
+<footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        const swiper = new Swiper(".mySwiper", {
+            slidesPerView: "auto",      // Show 2 slides at a time
+            spaceBetween: 10,      // Spacing between slides
+            centeredSlides: false,  // Center active slides
+            loop: false,            // Infinite loop
+            grabCursor: true,      // Makes dragging feel natural
+          });
+           const swiper2 = new Swiper(".mySwiper2", {
+     slidesPerView: "auto",      // Show 2 slides at a time
+     spaceBetween: 10,      // Spacing between slides
+     centeredSlides: false,  // Center active slides
+     loop: false,            // Infinite loop
+     grabCursor: true,      // Makes dragging feel natural
+   });
+            function go(destination) {
+                switch(destination) {
+                    case 'gibbs':
+                        window.location.href = 'https://gibbpro.com';
+                        break;
+                    case 'puzzles':
+                        window.location.href = 'https://bennyalashari.com/puzzles';
+                        break;
+                    case 'design':
+                        window.location.href = 'https://altocreativeco.com';
+                        break;
+                    case 'bg':
+                        window.location.href = 'https://bennyalashari.com/board-games';
+                        break;
+                    case 'fym':
+                        window.location.href = 'https://bennyalashari.com/feed-yer-mama';
+                        break;
+                    case 'mvw':
+                        window.location.href = 'https://bennyalashari.com/monkey-vs-wizard';
+                        break;
+                    default:
+                        console.error('Invalid destination');
+                }
+            }
+    </script>
+</footer>

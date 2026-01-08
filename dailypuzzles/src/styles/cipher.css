@@ -83,7 +83,7 @@
 .header .grid-cell, .header.grid-cell {
     background: var(--ciphercompletebg);
     color: var(--cipherletterheader);
-    z-index: 999;
+    z-index: 9;
 }
 .still .grid-row{
     transition:0.25s ease;

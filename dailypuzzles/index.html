@@ -20,32 +20,5 @@
 <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-    <script>
-  window.onload = function () {
-    google.accounts.id.initialize({
-      client_id: "YOUR_GOOGLE_CLIENT_ID",
-      callback: handleCredentialResponse,
-      auto_select: false
-    });
-
-    google.accounts.id.renderButton(
-      document.getElementById("googleSignIn"),
-      {
-        theme: "outline",
-        size: "large",
-        shape: "pill"
-      }
-    );
-  };
-
-  function handleCredentialResponse(response) {
-    // ID token is here:
-    console.log("ID Token:", response.credential);
-
-    // Send response.credential to your backend for verification
-    // OR decode it client-side for user info.
-  }
-    </script>
-
 </body>
 </html>

@@ -4,8 +4,7 @@ import { useGoogleLogin } from '@react-oauth/google';
 import { useState } from 'react';
 import { CircleUserRound, Award } from 'lucide-react';
 
-export function GoogleSignIn({ children }) {
-const [username, setUsername] = useState(localStorage.getItem('username'));
+export function GoogleSignIn({ children, username, setUsername }) {
   const login = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
 
@@ -33,14 +32,14 @@ const [username, setUsername] = useState(localStorage.getItem('username'));
 
   if(username){
       return (
-                            <div>{username}</div>
+                            <div className="a"><CircleUserRound /> {username}</div>
 
   );
   }
 
   return (
     <div className="a" onClick={() => login()} style={{ cursor: 'pointer' }}>
-      <CircleUserRound /> Login
+      <CircleUserRound /> Login with Google
     </div>
   );
 }
