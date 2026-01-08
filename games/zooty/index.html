@@ -10,7 +10,7 @@
 </head>
 <body>
     <div id="page">
-        <div class="header">
+        <div className="header">
             <img width="100" src="zooty.png" />
             <div id="date">March 26, 2024</div>
         </div>
@@ -19,41 +19,41 @@
             Select an Animal
         </div>
         <div id="bank">
-            <div onclick="selectWord(1)" id="word1" class="word unused">Elephant</div>
-            <div onclick="selectWord(2)" id="word2" class="word unused">Shark</div>
-            <div onclick="selectWord(3)" id="word3" class="word unused">Bee</div>
-            <div onclick="selectWord(4)" id="word4" class="word unused">Butterfly</div>
-            <div onclick="selectWord(5)" id="word5" class="word unused">Chameleon</div>
+            <div onclick="selectWord(1)" id="word1" className="word unused">Elephant</div>
+            <div onclick="selectWord(2)" id="word2" className="word unused">Shark</div>
+            <div onclick="selectWord(3)" id="word3" className="word unused">Bee</div>
+            <div onclick="selectWord(4)" id="word4" className="word unused">Butterfly</div>
+            <div onclick="selectWord(5)" id="word5" className="word unused">Chameleon</div>
         </div>
         <div id="fact-message">
             Fill in all the Blanks
         </div>
         <div id="container">
-            <div class="fact" onclick="answer(1)" id="answer1">
-                <p>The <span class="fill here"></span> is the largest land animal.</p>
-                <div class="blank"></div>
+            <div className="fact" onclick="answer(1)" id="answer1">
+                <p>The <span className="fill here"></span> is the largest land animal.</p>
+                <div className="blank"></div>
             </div>
-            <div class="fact" onclick="answer(2)" id="answer2">
-                <p>The <span class="fill here"></span> has a cartilage skeleton.</p>
-                <div class="blank"></div>
+            <div className="fact" onclick="answer(2)" id="answer2">
+                <p>The <span className="fill here"></span> has a cartilage skeleton.</p>
+                <div className="blank"></div>
             </div>
-            <div class="fact" onclick="answer(3)" id="answer3">
-                <p>The <span class="fill here"></span> communicates by dancing.</p>
-                <div class="blank"></div>
+            <div className="fact" onclick="answer(3)" id="answer3">
+                <p>The <span className="fill here"></span> communicates by dancing.</p>
+                <div className="blank"></div>
             </div>
-            <div class="fact" onclick="answer(4)" id="answer4">
-                <p>The <span class="fill here"></span> tastes with its feet.</p>
-                <div class="blank"></div>
+            <div className="fact" onclick="answer(4)" id="answer4">
+                <p>The <span className="fill here"></span> tastes with its feet.</p>
+                <div className="blank"></div>
             </div>
         </div>
         <div id="final" onclick="guess()">Complete</div>
         <div id="guess" onclick="guess()">GUESS</div>
-        <div class="guesses-left">
+        <div className="guesses-left">
             Guesses Left:
-            <div id="hearts" class="three">
-                <img src="heart.png" class="heart" width="20" />
-                <img src="heart.png" class="heart" width="20" />
-                <img src="heart.png" class="heart" width="20" />
+            <div id="hearts" className="three">
+                <img src="heart.png" className="heart" width="20" />
+                <img src="heart.png" className="heart" width="20" />
+                <img src="heart.png" className="heart" width="20" />
             </div>
         </div>
     </div>
