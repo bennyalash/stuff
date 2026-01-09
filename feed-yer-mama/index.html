@@ -3,99 +3,138 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" user-scalable="no">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Orelega+One&family=Libre+Baskerville&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fustat:ital,wght@0,200..800;1,100..900&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="fymf.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Feed 'Yer Mama">
     <link rel="apple-touch-icon" href="fymf.png">
     <style>
-        body{
-    max-width: 800px;
-    margin: auto;
-    background: #530D00;
-    color: #FFFFFF;
-    display: flex
-;
-    align-items: center;
+        body {
+            padding: 24px;
+            font-family: "Fustat";
         }
-h1{
-font-family:"Orelega One";
-font-weight:normal;
-color:#530D00;
-text-align:left;
-font-size:2em;
-margin:10px 0 10px;
-}
-	    a{
-		    filter:brightness(1);
-	    }
-	    a:hover{
-		    filter:brightness(0.9);
-	    }
-        p{
-color:#530D00;
-            font-family:"Libre Baskerville";
-font-weight:normal;
+
+        h1 {
+            font-weight: 800;
+            font-family: "Fustat";
         }
-.middle-stuff{
-background:#FFF6EC;
-border-radius:20px;
-margin:10px 0;
-padding:20px;
-}
-#game-explanation, .button-container{
-background:#FFF6EC;
-border-radius:20px;
-}
-.button-container{
-display:flex;
-gap:10px;
-}
- a{
-padding: 10px;
-color:white;
-text-align:center;
-flex-grow: 1;
-border-radius:10px;
-text-decoration:none;
-font-family:"Montserrat";
-font-weight:600;
-}
-.overview{
-background:#3F923D;
-}
-.clarifications{
-    background: #963E0D;
-    display: block;
-    margin-top: 10px;}
-	    .cc{
-		    background:#224422;
-	    }
-hr{
-width:66%;
-margin:auto;
-height:2px;
-background:#530D00;
-}
+        .button-container{
+            display:flex;
+            gap:20px;
+        }
+        a {
+            background: transparent;
+            color: black;
+            display: block;
+            border-radius: 0;
+            text-decoration:none;
+            border-bottom:1px solid black;
+        }
+            a.buy {
+                width: min-content;
+                background: black;
+                color: white;
+                padding:10px 30px;
+                border-radius:5px;
+            }
+        img {
+            border-radius: 5px;
+            margin: 20px 0;
+            width: 300px;
+            border-radius: 5px;
+        }
     </style>
+    <!--<style>
+            body{
+        max-width: 800px;
+        margin: auto;
+    /*    background: #530D00;
+    */    color: #FFFFFF;
+        display: flex
+    ;
+        align-items: center;
+            }
+    h1{
+    font-family:"Orelega One";
+    font-weight:normal;
+    color:#530D00;
+    text-align:left;
+    font-size:2em;
+    margin:10px 0 10px;
+    }
+            a{
+                filter:brightness(1);
+            }
+            a:hover{
+                filter:brightness(0.9);
+            }
+            p{
+    color:#530D00;
+                font-family:"Libre Baskerville";
+    font-weight:normal;
+            }
+    .middle-stuff{
+    background:#FFF6EC;
+    border-radius:20px;
+    margin:10px 0;
+    padding:20px;
+    }
+    #game-explanation, .button-container{
+    background:#FFF6EC;
+    border-radius:20px;
+    }
+    .button-container{
+    display:flex;
+    gap:10px;
+    }
+     a{
+    padding: 10px;
+    color:white;
+    text-align:center;
+    flex-grow: 1;
+    border-radius:10px;
+    text-decoration:none;
+    font-family:"Montserrat";
+    font-weight:600;
+    }
+    .overview{
+    background:#3F923D;
+    }
+    .clarifications{
+        background: #963E0D;
+        display: block;
+        margin-top: 10px;}
+            .cc{
+                background:#224422;
+            }
+    hr{
+    width:66%;
+    margin:auto;
+    height:2px;
+    background:#530D00;
+    }
+        </style>-->
 </head>
-  <body>
-      <div class="middle-stuff">
-<h1>Feed 'Yer Mama</h1>
-          <div id="game-explanation">
-		<p>Welcome to the village, Farmer! Life here is simple: grow crops, raise animals, and most importantly—keep your very hungry Mama fed. But fair warning: Mama isn’t just hungry—she’s insatiable. And the more you feed her, the hungrier she gets.</p>
+<body>
+    <div class="middle-stuff">
+        <h1>Feed 'Yer Mama</h1>
+        <!--<div id="game-explanation">
+                <p>Welcome to the village, Farmer! Life here is simple: grow crops, raise animals, and most importantly—keep your very hungry Mama fed. But fair warning: Mama isn’t just hungry—she’s insatiable. And the more you feed her, the hungrier she gets.</p>
 
-<p>Each farmer has their own bottomless-pit Mama to satisfy, and this isn’t about sharing. You’ll need to out-farm and out-feed your neighbors to keep your Mama happy. Serve her everything, but don’t get too comfy. Just when you think you’re ahead, she’ll ask, “Is that all you’ve got?”</p>
+        <p>Each farmer has their own bottomless-pit Mama to satisfy, and this isn’t about sharing. You’ll need to out-farm and out-feed your neighbors to keep your Mama happy. Serve her everything, but don’t get too comfy. Just when you think you’re ahead, she’ll ask, “Is that all you’ve got?”</p>
 
-<p>Feed your Mama the most, the fastest, and you’ll claim victory. The rest? Let’s just say their Mamas won’t let them hear the end of it.</p>
+        <p>Feed your Mama the most, the fastest, and you’ll claim victory. The rest? Let’s just say their Mamas won’t let them hear the end of it.</p>
 
-<p>So grab your pitchfork and get ready to Feed ’Yer Mama!</p></div>
- 
-      <div class="button-container">
-              <a href="https://bennyalashari.com/feed-yer-mama/rules/howtoplay.html" class="button overview">How to Play</a>
-	      		<a href="https://bennyalashari.com/feed-yer-mama/rules/cc.html" class="button cc">Card Clarifications</a>
+        <p>So grab your pitchfork and get ready to Feed ’Yer Mama!</p></div>-->
 
-		
-          </div><a href="https://bennyalashari.com/feed-yer-mama/rules/" class="button clarifications">Full Rulebook</a></div>
-  </body>
+        <div class="button-container">
+            <a href="https://bennyalashari.com/feed-yer-mama/rules/howtoplay.html" class="button overview">Quick Guide</a>
+
+            <a href="https://bennyalashari.com/feed-yer-mama/rules/" class="button clarifications">Download Rulebook</a>
+        </div>
+    </div>
+    <img class="game" src="top.png" />
+    <a class="buy" target="_blank" href="https://buy.stripe.com/8x200i5V3b9sgOw8Du2cg01" >Buy</a>
+
+</body>
 </html>
