@@ -6,211 +6,661 @@
     <title>Benny Al-Ashari</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fustat:ital,wght@0,200..800;1,100..900&display=swap" rel="stylesheet">
-    <!-- Swiper CSS -->
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Fustat:wght@200..800&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
 
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <style>
         body {
+            margin: 0;
+        }
+
+        canvas {
+            background: white;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: -1;
+        }
+
+        .container {
+            background: linear-gradient(to bottom, transparent 10%, white 20%, white 100%);
+        }
+
+        #projectsContainer {
             font-family: "Fustat";
-            color: #3D3D3D;
-            margin: 0;
-        }
-
-        h1 {
-            font-weight: 800;
-            margin: 0;
-            font-size: 32px;
-            padding: 24px;
-        }
-
-        .section-title {
-            font-weight: 800;
-            font-size: 20px;
-            margin: 0 0 10px;
-            padding: 0 24px;
+            color: #333;
+            max-width: 800px;
+            padding: calc(100px + 8vw) 20px;
+            margin: auto;
         }
 
         .image {
-            height: 150px;
-            width: 150px;
-            border-radius: 20px;
+            width: calc(100% - 0.4vw - 2px);
+            height: calc(100% - 0.4vw - 2px);
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ccc;
+            box-shadow: 1px 1px 0 1px #000;
+            border: calc(0.2vw + 1px) solid black;
+            border-radius: 25%;
         }
-        .section{
-            margin-bottom:40px;
+
+            .image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+                .image img.logo {
+                    width: 80%;
+                    height: 60%;
+                    object-fit: contain;
+                }
+
+            .image div {
+                font-size: 16px;
+                font-weight: 800;
+                height: 80%;
+                width: 80%;
+                padding: 10%;
+                color: #666;
+                text-decoration: none;
+            }
+
+        .project a {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1/1;
+            border-radius: 25%;
+            overflow: hidden;
+            display: block;
+            /*box-shadow: 0 0 0.5vw 0 rgba(0, 0, 0, 0.25);*/
+            box-shadow: 0.1vw 0.1vw 0px #000, 0.2vw 0.2vw 0px #000, 0.3vw 0.3vw 0px #000, 0.4vw 0.4vw 0px #000;
+            transition: 0.25s ease;
         }
-        .swiper {
+
+        .project:has(a):hover a {
+            transform: translateY(-5px);
+        }
+
+        .project {
+            min-width: 0; /* Prevents long flex/grid items from stretching column width */
+        }
+
+        .title {
+            font-size: calc(6px + 0.5vw);
+            color: #333;
+            font-weight: 600;
+            margin-top: 1vw;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+            /* Ensure the h3 doesn't introduce default margins or break whitespace constraints */
+            .title h3 {
+                margin-top: 1px;
+                font-size: inherit;
+                font-weight: normal;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .title h4 {
+                margin: 0;
+                font-size: inherit;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+        .projects {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: calc(20px + 1vw);
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .links {
+            color: #666;
             display: flex;
             gap: 10px;
-            max-width: 100%;
-            padding: 0 24px;
-        }
-        .swiper-slide{
-            width:150px;
         }
 
-        .content {
-            padding: 5px;
+            .links a {
+                color: #999;
+                border-bottom: 1px solid #999;
+            }
+
+        .category {
+            color: white;
+            background: #999;
+            position: relative;
+            width: min-content;
+            padding: 3px 12px 2px 16px;
+            margin: auto;
+            border-radius: 2px;
+            height: calc(5px + 0.4vw);
+            display: flex;
+            align-items: center;
+            border-radius: 0 16px 16px 0;
+            font-size: calc(5px + 0.4vw);
         }
 
-        .item-title {
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        .item-description {
-            font-size: 12px;
-            font-weight: 400;
-        }
-        .italic{
-            font-style:italic;
-        }
+            .category::before {
+                box-shadow: rgba(0, 0, 0, 0.25) 0px 1px inset;
+                content: "";
+                height: 4px;
+                left: 6px;
+                position: absolute;
+                width: 4px;
+                top: calc(50% - 2px);
+                background: rgb(255, 255, 255);
+                border-radius: 10px;
+            }
     </style>
 </head>
 <body>
     <div class="container">
-
-        <h1>Benny Al-Ashari</h1>
-        <div class="section">
-            <div class="section-title">Board Games</div>
-
-            <!-- Swiper container -->
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div id="fishtail" class="image">
-                            <img src="images/fishtail.png" />
-                        </div>
-                        <div class="content">
-                            <div class="item-title">Fishtail</div>
-                            <div class="item-description tag">Simple, Tactical</div>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div id="fym" class="image">
-                            <img src="images/feedyermama.png" />
-                        </div>
-                        <div class="content">
-                            <div class="item-title">Feed 'Yer Mama</div>
-                            <div class="item-description tag">Family, Competitive</div>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div id="mvw" class="image">
-                            <img src="images/monkeyvswizard.png" />
-                        </div>
-                        <div class="content">
-                            <div class="item-title">Monkey vs Wizard</div>
-                            <div class="item-description">Strategy, Luck</div>
-                        </div>
-                    </div>
-
-                    <!-- Add more slides as needed -->
-                </div>
-            </div>
+        <div class="header">
+            <canvas id="scene"></canvas>
+            <input id="copy" type="text" value="Benny Al-Ashari" hidden />
+            <input id="copy2" type="text" value="My Projects" hidden />
+            <input id="copy3" type="text" value="Projects" hidden />
+            <input id="copy4" type="text" value="Resume" hidden />
+            <!--<div class="links">
+        <a href="Projects">Projects</a>
+        <a href="About">About</a>
+        <a href="Contact">Contact</a>
+    </div>-->
         </div>
-
-        <div class="section">
-            <div class="section-title">Apps</div>
-
-            <!-- Swiper container -->
-            <div class="swiper mySwiper2">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div id="fishtail" class="image">
-                            <img src="images/gibbs.png" />
-                        </div>
-                        <div class="content">
-                            <div class="item-title">GIBBS</div>
-                            <div class="item-description tag">NFL Pick'em'</div>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div id="fym" class="image">
-                            <img src="images/gobee.png" />
-                        </div>
-                        <div class="content">
-                            <div class="item-title">Go Bee</div>
-                            <div class="item-description tag">1v1 Strategy Game</div>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div id="mvw" class="image">
-                            <img src="images/efilmhub.png" />
-                        </div>
-                        <div class="content">
-                            <div class="item-title">eFilmHub</div>
-                            <div class="item-description">African Film Community</div>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div id="mvw" class="image">
-                            <img src="images/toc.png" />
-                        </div>
-                        <div class="content">
-                            <div class="item-title">The Owner's Closet</div>
-                            <div class="item-description">Vacation Rental Manager</div>
-                        </div>
-                    </div>
-
-                    <!-- Add more slides as needed -->
-                </div>
-            </div>
-        </div>
+        <div id="projectsContainer" class="projects"></div>
     </div>
-</body>
-
-</html>
-<footer>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        const swiper = new Swiper(".mySwiper", {
-            slidesPerView: "auto",      // Show 2 slides at a time
-            spaceBetween: 10,      // Spacing between slides
-            centeredSlides: false,  // Center active slides
-            loop: false,            // Infinite loop
-            grabCursor: true,      // Makes dragging feel natural
-          });
-           const swiper2 = new Swiper(".mySwiper2", {
-     slidesPerView: "auto",      // Show 2 slides at a time
-     spaceBetween: 10,      // Spacing between slides
-     centeredSlides: false,  // Center active slides
-     loop: false,            // Infinite loop
-     grabCursor: true,      // Makes dragging feel natural
-   });
-            function go(destination) {
-                switch(destination) {
-                    case 'gibbs':
-                        window.location.href = 'https://gibbpro.com';
-                        break;
-                    case 'puzzles':
-                        window.location.href = 'https://bennyalashari.com/puzzles';
-                        break;
-                    case 'design':
-                        window.location.href = 'https://altocreativeco.com';
-                        break;
-                    case 'bg':
-                        window.location.href = 'https://bennyalashari.com/board-games';
-                        break;
-                    case 'fym':
-                        window.location.href = 'https://bennyalashari.com/feed-yer-mama';
-                        break;
-                    case 'mvw':
-                        window.location.href = 'https://bennyalashari.com/monkey-vs-wizard';
-                        break;
-                    default:
-                        console.error('Invalid destination');
-                }
+
+            const projectsData = [
+                {
+                    title: "Fishtail",
+                    link: "https://bennyalashari.com/fishtail",
+                    img: "images/fishtail.png",
+                    type: "game",
+                    bg: "#002E42",
+                    rate: 4
+                },
+                {
+                    title: "Feed Yer Mama",
+                    link: "https://bennyalashari.com/feed-yer-mama",
+                    img: "images/fym.png",
+                    type: "game",
+                    bg: "#530D00",
+                    rate: 4
+                },
+                {
+                    title: "Monkey vs Wizard",
+                    link: "https://bennyalashari.com/monkey-vs-wizard",
+                    img: "images/mvw.png",
+                    type: "game",
+                    bg: "#B7DFD6",
+                    rate: 2
+                },
+                {
+                    title: "GIBBS",
+                    link: "https://gibbpro.com",
+                    img: "images/gibbs.png",
+                    type: "game",
+                    rate: 5
+                },
+                {
+                    title: "Go Bee",
+                    link: "https://gobeegame.netlify.app",
+                    img: "images/gobee.png",
+                    type: "game",
+                    rate: 5
+                },
+                {
+                    title: "eFilmHub",
+                    link: "https://efilmhub.com",
+                    img: "images/efilmhub.png",
+                    type: "website",
+                    rate: 5
+                },
+                {
+                    title: "TOC",
+                    link: "https://gtcalendar.netlify.app/",
+                    img: "images/toc.png",
+                    type: "website",
+                    bg: '#e8858e',
+                    rate: 1
+                },
+                {
+                    title: "NHS",
+                    link: "https://nationalhomeschoolsoccer.com",
+                    img: "images/nhs.png",
+                    bg: "#002244",
+                    type: "website",
+                    rate: 5
+                },
+                {
+                    title: "Monopoly Deal 2.0",
+                    link: "https://www.figma.com/proto/871TgdQwlCIZYlK55SPeJ9/Monopoly-Deal?node-id=2041-15&t=tSNA024F4CH4z4G9-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1",
+                    img: "images/deal.png",
+                    bg: "#30A9F4",
+                    type: "game",
+                    rate: 1
+                },
+                {
+                    title: "The Christian Atheist",
+                    link: "https://open.spotify.com/show/4wWaVlpuRgoLOpZDtADBPD?si=1d577305d5884d92",
+                    img: "images/tca.png",
+                    type: "book",
+                    bg: "#111",
+                    rate: 3
+                },
+                {
+                    title: "Quacks Expansion",
+                    link: "https://www.figma.com/proto/DyYgqacTc98MCKyJYn7Ilh/Quacks?node-id=178-3170&p=f&t=OWwGslT5gE4rEwOD-0&scaling=contain&content-scaling=fixed&page-id=136%3A2&starting-point-node-id=178%3A3170",
+                    img: "images/qoq.png",
+                    bg: '#5cbdb1',
+                    type: "game",
+                    rate: 1
+                },
+                {
+                    title: "TM Expansion",
+                    link: "https://www.figma.com/proto/1GKqmMiojkRJZst76ngA34/TM?node-id=3549-48&t=N9JLzGZJ1iOLlwe1-0&scaling=contain&content-scaling=fixed&page-id=3549%3A17",
+                    img: "images/tm.png",
+                    bg: "#bbb",
+                    type: "game",
+                    rate: 1
+                },
+                {
+                    title: "The PUZZ",
+                    link: "https://puzzles.bennyalashari.com",
+                    img: "images/puzz.png",
+                    type: "website",
+                    bg: "#666",
+                    rate: 4
+                },
+                {
+                    title: "Pool Deck",
+                    link: "https://www.figma.com/design/15elxOYqEOW6OAPFv52CzJ/ports-logo?node-id=2038-2&p=f&t=uzMCTpl3RFQMg6r4-0",
+                    img: "images/pool.png",
+                    type: "game",
+                    rate: 1
+                },
+                {
+                    title: "Gold Dust & Outlaws",
+                    link: "https://www.figma.com/design/vezMvObtWMZTnppp1srLoU/Gold-Dust---Outlaws?node-id=2086-362&t=l5FNwWEt25qL8mh3-0",
+                    img: "images/gdo.png",
+                    type: "game",
+                    rate: 1
+                },
+                {
+                    title: "Aalsmeer",
+                    link: "https://www.figma.com/design/aUBYAmwWjm8P6ze8zVqD3H/Aalsmeer?node-id=105-13&t=OIR41rIG5BUv86eB-0",
+                    img: "images/aalsmeer.png",
+                    type: "game",
+                    rate: 1
+                },
+                {
+                    title: "Zoorok",
+                    link: "https://www.figma.com/design/QyJ1jZWeHn40guIohHubcX/Nurok?node-id=2020-1432&t=uzMCTpl3RFQMg6r4-0",
+                    img: "images/zr2.png",
+                    bg: '#64ACBD',
+                    type: "game",
+                    rate: 1
+                },
+                {
+                    title: "Santorini Expansion",
+                    link: "https://www.figma.com/design/DfiwAwhm06TrYfBwbaMRFP/Santorini?node-id=0-1&p=f&t=zRDdFx47Q2VRb9hf-0",
+                    img: "images/sx.png",
+                    bg: "#e5c477",
+                    type: "game",
+                    rate: 1
+                },
+                {
+                    title: "Square Feats",
+                    link: "https://www.figma.com/design/eosucBmSjLwdxaupgrzPZo/Square-Feats?m=auto&t=4qCBAzMOAV5CCNg0-6",
+                    img: "images/sf.png",
+                    bg: "#D3B45D",
+                    type: "game",
+                    rate: 1
+                },
+                {
+                    title: "CFP Projector",
+                    link: "https://gibbpro.com/projection",
+                    img: "images/cfp.png",
+                    bg: "#111",
+                    type: "game",
+                    rate: 5
+                },
+                {
+                    title: "Nutrispark",
+                    link: "https://nutrispark.netlify.app/",
+                    img: "images/ns.png",
+                    bg:"#d6eeb8",
+                    type: "website",
+                    rate: 4
+                },
+                {
+                    title: "G+T Deck",
+                    link: "https://www.figma.com/design/E8ojFN1TNSlwFy5IJWZaJ3/GT-Deck",
+                    img: "images/gt.png",
+                    bg: "#111",
+                    type: "game",
+                    rate: 1
+                },
+                /*{
+                    title: "War Chest Expansion",
+                    link: "https://www.figma.com/design/QKOsQTog4Oy27RN3iBQYDx/War-Chest?m=auto&t=6G4of2zIrsNyvhC5-6",
+                    img: "images/wc.png",
+                    type: "game"
+                },
+                {
+                    title: "STG Portfolio",
+                    link: "https://stgportfolio.com",
+                    img: "images/stg.png",
+                    bg: "#0096cc",
+                    type: "website"
+                },
+                {
+                    title: "MTA",
+                    link: "https://michigantownships.org/",
+                    img: "images/mta.png",
+                    bg: "#002d74",
+                    type: "website"
+                },*/
+                {
+                    title: "OneSpace",
+                    link: "https://onespace.shumakergroup.com/",
+                    img: "images/os.png",
+                    bg: "#012527",
+                    type: "website",
+                    rate: 1
+                },
+                {
+                    title: "Tribes",
+                    link: "https://www.figma.com/design/QyJ1jZWeHn40guIohHubcX/Nurok?node-id=2084-50&t=6G4of2zIrsNyvhC5-0",
+                    img: "images/tribes.png",
+                    bg: "#AE451B",
+                    type: "game",
+                    rate: 1
+                },
+                /*{
+                    title: "Elements",
+                    link: "https://www.figma.com/design/aygFPiqy1RW1s8pAdDVIgu/GIBBS?node-id=4203-2&t=6G4of2zIrsNyvhC5-0",
+                    img: "images/elements.png",
+                    bg: "#CAECF9",
+                    type: "game"
+                },
+                {
+                    title: "Prison Break",
+                    link: "https://www.figma.com/design/sFyxp8Gaq81KxE2LKAHbFj/Untitled?node-id=2-65&t=6G4of2zIrsNyvhC5-0",
+                    img: "images/pb.png",
+                    type: "game",
+                    bg: "black"
+                }*/
+
+
+
+
+
+            ];
+
+            function capitalizeFirstLetter(str) {
+              if (!str) return "";
+              return str.charAt(0).toUpperCase() + str.slice(1);
             }
-    </script>
-</footer>
+
+            function renderProjects(projects) {
+                const container = document.getElementById("projectsContainer");
+
+                container.innerHTML = projects.map(project => {
+
+                    const innerContent = `
+                        <div class="image" style="background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1)), ${project.bg}">                            ${project.img
+                                ? `<img src="${project.img}" class=${project.bg ? 'logo' : ''} alt="${project.title}">`
+                                : `<div>${project.title}</div>`}
+                        </div>
+                    `;
+
+                    const cardContent = project.link ? `<a target="_blank" href="${project.link}">${innerContent}</a>` : innerContent;
+
+                    return `<div class="project">${cardContent}<div class="title"><h3>${project.title}</h3>
+                    <!--<div class="category">${project.type.toUpperCase()}</div>-->
+                    </div></div>`;
+                }).join('');
+            }
+
+            renderProjects(projectsData.sort((a, b) => b.rate - a.rate));
+
+//------------------------------------------------------------------------------
+// Code by Benny Al-Ashari (Refactored & Sharp-DPI Fix)
+//------------------------------------------------------------------------------
+
+const canvas = document.querySelector("#scene");
+const ctx = canvas.getContext("2d");
+const colors = ["#000000", "#330000", "#660000", "#990000", "#bb0000", "#dd0000", "#ff0000"];
+const words = [
+  document.querySelector("#copy"),
+  document.querySelector("#copy2"),
+  document.querySelector("#copy3"),
+  document.querySelector("#copy4")
+];
+    let mouse = {x:0,y:0};
+     let  run = 25;
+     let radius = window.innerWidth / 100;
+let particles = [];
+let ww = 0;
+let wh = 0;
+let dpr = 1;
+
+// Stagger Settings
+let activeCount = 0;
+let intervalId = null;
+const chunkSize = 20; // Increased chunk size for visible progress
+const delayMs = 0;   // Decreased delay interval for smooth flow
+
+function setupCanvasDimensions() {
+  dpr = window.devicePixelRatio || 1;
+  
+  ww = window.innerWidth;
+  //wh = Math.min(300, ww / 3);
+  wh = window.innerHeight;
+  canvas.width = Math.floor(ww * dpr);
+  canvas.height = Math.floor(wh * dpr);
+
+  ctx.scale(dpr, dpr);
+}
+
+function getTextWidth(text, font) {
+  ctx.font = font;
+  return ctx.measureText(text).width;
+}
+
+// Particle Class
+function Particle(x, y) {
+  //this.x = Math.random() * ww;
+  //this.y = Math.random() * wh;
+  this.x = x + (Math.random() - 0.5);
+  this.y = y + (Math.random() - 0.5);
+  this.dest = { x: x, y: y };
+  this.vx = (Math.random() - 0.5) * 0;
+  this.vy = (Math.random() - 0.5) * 0;
+  this.accX = 0;
+  this.accY = 0;
+  this.friction = 0.9;
+  this.color = colors[0];
+}
+
+Particle.prototype.render = function () {
+  this.accX = (this.dest.x - this.x) / 250 + (Math.random() - 0.5)/15000 * Math.min(1000, ww);
+  this.accY = (this.dest.y - this.y) / 250 + (Math.random() - 0.5)/15000 * Math.min(1000, ww);
+  
+  this.vx += this.accX;
+  this.vy += this.accY;
+  this.vx *= this.friction / 1;
+  this.vy *= this.friction / 1;
+  this.r += (Math.min(ww, 1000)/500 - this.r)/250
+
+  this.x += this.vx;
+  this.y += this.vy;
+
+  this.color = colors[0];
+
+  ctx.fillStyle = this.color;
+  ctx.beginPath();
+  ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2, false);
+  ctx.fill();
+
+
+  var a = this.x - mouse.x;
+    var b = this.y - mouse.y;
+    
+    var distance = Math.sqrt( a*a + b*b );
+    if(distance<(radius)){
+      this.accX = (this.x - mouse.x)/run;
+      this.accY = (this.y - mouse.y)/run;
+      this.vx += this.accX + (Math.random() - 0.5) * 1;
+      this.vy += this.accY + (Math.random() - 0.5) * 1;
+    }
+};
+
+Particle.prototype.size = function (s) {
+  //this.r = 0 * (ww / 900) + (ww / 1800) + s / 150;
+  this.r = 1;
+};
+
+Particle.prototype.wild = function () {
+  this.vx = (Math.random() - 0.5) * 5;
+  this.vy = (Math.random() - 0.5) * 5;
+};
+
+function startStaggeredRender() {
+  if (intervalId) {
+    clearInterval(intervalId);
+  }
+
+  activeCount = 0;
+
+  intervalId = setInterval(() => {
+    activeCount = Math.min(activeCount + chunkSize, particles.length);
+    if (activeCount >= particles.length) {
+      clearInterval(intervalId);
+      intervalId = null;
+    }
+  }, delayMs);
+}
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+function initScene() {
+  setupCanvasDimensions();
+
+  const urlParams = new URLSearchParams(window.location.search);
+  let page = parseInt(urlParams.get("page"), 10);
+  if (isNaN(page) || page < 0 || page >= words.length) {
+    page = 0;
+  }
+
+  const activeWord = words[page] ? words[page].value : "Demo";
+
+  ctx.clearRect(0, 0, ww, wh);
+
+  let size = activeWord.length;
+
+  const vwInPixels = window.innerWidth / 100;
+
+const pxBase = 50; // 20px fixed
+const vwAmount = 3; // 3vw relative
+
+// Calculate total pixels
+const totalFontSize = pxBase + (vwAmount * vwInPixels);
+
+// Set canvas font directly in pixels
+ctx.font = `bold ${vwInPixels*4+40 - size}px 'Fustat'`;
+
+ // while (getTextWidth(activeWord, ctx.font) > ww - 50) {
+  //  size += 0.1;
+   // ctx.font = `bold ${vwInPixels*4+40 - size}px 'Fustat'`;
+  //}
+
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText(activeWord, ww / 2, 60 + ww / 25);
+
+  const pixelData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+
+  ctx.clearRect(0, 0, ww, wh);
+
+  particles = [];
+  // Fixed step integer values so pixel sampling doesn't explode
+  const stepX = ww < 1000 ? 0.5 : 1;
+  const stepY = ww < 1000 ? 1.5 : 3;
+
+  for (let i = 0; i < ww; i += stepX) {
+    for (let j = 0; j < wh; j += stepY) {
+      const bufX = Math.floor(i * dpr);
+      const bufY = Math.floor(j * dpr);
+      const index = (bufX + bufY * canvas.width) * 4;
+
+      if (pixelData[index + 3] > 250) {
+        particles.push(new Particle(i, j));
+      }
+    }
+  }
+
+  particles.forEach((particle) => {
+    particle.wild();
+    particle.size(100);
+  });
+
+  shuffle(particles);
+
+
+  startStaggeredRender();
+}
+
+// Single render function strictly driven by activeCount
+function render() {
+  requestAnimationFrame(render);
+  ctx.clearRect(0, 0, ww, wh);
+
+  for (let i = 0; i < activeCount; i++) {
+    particles[i].render();
+  }
+}
+
+document.fonts.load("14px 'Fustat'").then(() => {
+  initScene();
+  render();
+});
+function onMouseMove(e){
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+}
+window.addEventListener("mousemove", onMouseMove);
+</script>
+
+</body>
+</html>
