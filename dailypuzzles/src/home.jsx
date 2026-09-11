@@ -63,7 +63,14 @@ export default function Home() {
                     
                 </div>
             </Link>
-            <Link to="/roots" className="game-card letter-ladder">
+            
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <h2>Other Puzzles Coming Soon</h2>
+            {/*<Link to="/" className="game-card letter-ladder">
                 <div className="game-card-cover">
                     <div className="game-card-info">
                         <div className="game-card-name">
@@ -78,11 +85,6 @@ export default function Home() {
                     
                 </div>
             </Link>
-            <br />
-            <br />
-            <br />
-            <h3>Coming Soon</h3>
-            
             <Link to="/" className="game-card cipher">
                 <div className="game-card-cover">
                     <div className="game-card-info">
@@ -113,7 +115,7 @@ export default function Home() {
                     </div>
                     
                 </div>
-            </Link>
+            </Link>*/}
             
             </div>
         </div>
