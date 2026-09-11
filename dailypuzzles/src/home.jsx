@@ -48,6 +48,7 @@ export default function Home() {
             </div>
             <div className="game-card-list">
            {username == null && <h5 align="center">Login to save your puzzle times</h5>}
+           {games.bridges && <h5 align="center">You've completed all the puzzles for today :)</h5>}
             <Link to="/bridges" className="game-card bridges">
                 <div className="game-card-cover">
                     <div className="game-card-info">
@@ -69,8 +70,8 @@ export default function Home() {
             <br />
             <br />
             <br />
-            <h2>Other Puzzles Coming Soon</h2>
-            {/*<Link to="/" className="game-card letter-ladder">
+            {/*<h5>Other Puzzles Coming Soon</h5>
+            <Link to="/" className="game-card letter-ladder">
                 <div className="game-card-cover">
                     <div className="game-card-info">
                         <div className="game-card-name">
