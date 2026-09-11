@@ -1,36 +1,38 @@
-import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
-import { db } from "../firebase"; // your Firebase config
-import { collection, query, where, orderBy, getDocs } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  serverTimestamp,
+  setDoc,
+  where,
+} from "firebase/firestore";
+import { db } from "../firebase";
 
 export async function fetchLeaderboard() {
   const today = new Date().toISOString().slice(0, 10);
   console.log(today);
-  const q = query(
-    collection(db, "stats"),
-    where("date", "==", today)
-  );
+  const q = query(collection(db, "stats"), where("date", "==", today));
 
   const snapshot = await getDocs(q);
-  return snapshot.docs.map(doc => doc.data());
+  return snapshot.docs.map((doc) => doc.data());
 }
 
 export async function fetchToday(type, userId) {
-    const today = new Date().toISOString().slice(0, 10);
-    const puzzleId = `${today}_${type}`;
+  const today = new Date().toISOString().slice(0, 10);
+  const puzzleId = `${today}_${type}`;
+  const docId = `${userId}_${puzzleId}`;
 
-    const docId = `${userId}_${puzzleId}`;
+  const docRef = doc(db, "stats", docId);
+  const snap = await getDoc(docRef);
 
-    const docRef = doc(db, "stats", docId);
-    const snap = await getDoc(docRef);
+  if (snap.exists()) {
+    return snap.data();
+  }
 
-    if (snap.exists()) {
-        const data = snap.data();
-        return data;
-    } 
-
-    return null;
+  return null;
 }
-
 
 export async function fetchTodaysPuzzle(type) {
   const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
@@ -40,7 +42,7 @@ export async function fetchTodaysPuzzle(type) {
   const puzzleSnap = await getDoc(puzzleRef);
 
   if (puzzleSnap.exists()) {
-    return puzzleSnap.data(); // your level.data, etc.
+    return puzzleSnap.data();
   } else {
     console.log("Puzzle not found for today");
     return null;
@@ -50,20 +52,58 @@ export async function fetchTodaysPuzzle(type) {
 export async function submitPuzzleStats(timeTaken, type, finalMap) {
   const today = new Date().toISOString().slice(0, 10);
   const puzzleId = `${today}_${type}`;
+  const username = localStorage.getItem("username");
 
-  const username = localStorage.getItem('username');
-
-  if(!username) return;
+  if (!username) return;
 
   const statsRef = doc(db, "stats", `${username}_${puzzleId}`);
   await setDoc(statsRef, {
-      userId: username || "guest",
+    userId: username || "guest",
     puzzleId,
     type,
     timeTaken,
     completedAt: serverTimestamp(),
     attempts: 1,
-    finalMap, // store only the final map
-    date: puzzleId.split("_")[0]
+    finalMap,
+    date: puzzleId.split("_")[0],
   });
 }
+
+export async function fetchPuzzleByDate(gameType, dateStr) {
+  const docId = `${dateStr}_${gameType}`;
+  const docRef = doc(db, "puzzles", docId);
+  const snap = await getDoc(docRef);
+
+  if (snap.exists()) {
+    return snap.data();
+  }
+  return null;
+}
+
+export async function savePuzzleByDate(
+  gameType,
+  dateStr,
+  dataObj,
+  difficulty = "Medium"
+) {
+  try {
+    const docId = `${dateStr}_${gameType}`;
+    const docRef = doc(db, "puzzles", docId);
+
+    await setDoc(
+      docRef,
+      {
+        Data: JSON.stringify(dataObj),
+        Type: gameType,
+        Difficulty: difficulty,
+        date: dateStr,
+      },
+      { merge: true }
+    );
+    return { success: true };
+  } catch (error) {
+    console.error("Error saving puzzle:", error);
+    return { success: false, error };
+  }
+}
+

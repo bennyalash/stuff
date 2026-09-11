@@ -1,23 +1,13 @@
 ﻿import { useState, useCallback } from "react";
 import "./styles/vines.css";
 
-const initialWords = [
-  "Faith", "Hope", "Love", "Grace",
-  "Moses", "Aaron", "David", "Solomon",
-  "Jerusalem", "Bethlehem", "Nazareth", "Galilee",
-  "ab", "Sabbath", "Prophecy", "Mordecai commanded"
+const initialData = [
+  { title: "Virtues", words: ["Faith", "Hope", "Love", "Grace"] },
+  { title: "People", words: ["Moses", "Aaron", "David", "Solomon"] },
+  { title: "Places", words: ["Jerusalem", "Bethlehem", "Nazareth", "Galilee"] },
+  { title: "Practices", words: ["ab", "Sabbath", "Prophecy", "Mordecai commanded"] },
 ];
 
-const COLUMN_SIZE = 4;
-const correctColumns = [];
-
-for (let i = 0; i < initialWords.length; i += COLUMN_SIZE) {
-  correctColumns.push(initialWords.slice(i, i + COLUMN_SIZE));
-}
-
-const categoryTitles = ["Virtues", "People", "Places", "Practices"];
-
-// Pure shuffle
 function shuffle(array) {
   const newArr = [...array];
   for (let i = newArr.length - 1; i > 0; i--) {
@@ -27,7 +17,6 @@ function shuffle(array) {
   return newArr;
 }
 
-// Auto-fit long words
 function getFontSize(word, defaultFont = 14, maxLength = 12, minFont = 10) {
   const length = word.length;
   if (length <= maxLength) return defaultFont;
@@ -36,120 +25,121 @@ function getFontSize(word, defaultFont = 14, maxLength = 12, minFont = 10) {
 }
 
 export default function Vines() {
-  // Initialize shuffled words once — no effect needed
-  const [words, setWords] = useState(() => shuffle(initialWords));
-
-  const [firstSelected, setFirstSelected] = useState(null);
+  const [availableWords, setAvailableWords] = useState(() =>
+    shuffle(initialData.flatMap((cat) => cat.words))
+  );
+  const [selectedWords, setSelectedWords] = useState([]);
+  const [solvedCategories, setSolvedCategories] = useState([]);
   const [message, setMessage] = useState("");
-  const [lockedColumns, setLockedColumns] = useState([false, false, false, false]);
-  const [swappedWords, setSwappedWords] = useState([]);
-  const [revealedCategories, setRevealedCategories] = useState([null, null, null, null]);
 
-  // submitGuess now takes the word list directly
-  const submitGuess = useCallback((currentWords) => {
-    let remainingCorrect = correctColumns.map((col, idx) => ({
-      words: [...col].sort(),
-      title: categoryTitles[idx],
-    }));
-
-    const newLockedColumns = [...lockedColumns];
-    const newRevealedCategories = [...revealedCategories];
-
-    for (let col = 0; col < 4; col++) {
-      if (newLockedColumns[col]) continue;
-
-      const start = col * 4;
-      const columnWords = currentWords.slice(start, start + 4).sort();
-
-      const matchIndex = remainingCorrect.findIndex(
-        correctCol => JSON.stringify(correctCol.words) === JSON.stringify(columnWords)
-      );
-
-      if (matchIndex !== -1) {
-        newLockedColumns[col] = true;
-        newRevealedCategories[col] = remainingCorrect[matchIndex].title;
-        remainingCorrect.splice(matchIndex, 1);
-      }
-    }
-
-    setLockedColumns(newLockedColumns);
-    setRevealedCategories(newRevealedCategories);
-
-    if (newLockedColumns.filter(Boolean).length === 4) {
-      setMessage("You Win!");
+  const handleSelect = (word) => {
+    if (selectedWords.includes(word)) {
+      setSelectedWords(selectedWords.filter((w) => w !== word));
     } else {
-      setMessage("");
-    }
-
-  }, [lockedColumns, revealedCategories]);
-
-  // Swap words
-  const swapWords = (index) => {
-    const colIndex = Math.floor(index / 4);
-    if (lockedColumns[colIndex]) return;
-
-    if (firstSelected === null) {
-      setFirstSelected(index);
-    } else if (firstSelected === index) {
-      setFirstSelected(null);
-    } else {
-      const firstColIndex = Math.floor(firstSelected / 4);
-      if (lockedColumns[firstColIndex]) {
-        setFirstSelected(null);
-        return;
+      if (selectedWords.length < 4) {
+        setSelectedWords([...selectedWords, word]);
       }
-
-      const newWords = [...words];
-      [newWords[firstSelected], newWords[index]] = [newWords[index], newWords[firstSelected]];
-
-      setWords(newWords);
-      submitGuess(newWords); // run immediately after swap
-
-      setSwappedWords([firstSelected, index]);
-      setTimeout(() => setSwappedWords([]), 500);
-
-      setFirstSelected(null);
     }
   };
 
+  const handleDeselectAll = () => {
+    setSelectedWords([]);
+  };
+
+  const handleShuffle = () => {
+    setAvailableWords((prev) => shuffle(prev));
+  };
+
+  const handleSubmit = useCallback(() => {
+    if (selectedWords.length !== 4) return;
+
+    const sortedSelection = [...selectedWords].sort();
+
+    // Check if the 4 selected words match any category
+    const matchedCategory = initialData.find((category) => {
+      const sortedCategoryWords = [...category.words].sort();
+      return JSON.stringify(sortedCategoryWords) === JSON.stringify(sortedSelection);
+    });
+
+    if (matchedCategory) {
+      setSolvedCategories((prev) => [...prev, matchedCategory]);
+      setAvailableWords((prev) => prev.filter((w) => !selectedWords.includes(w)));
+      setSelectedWords([]);
+      
+      if (solvedCategories.length + 1 === initialData.length) {
+        setMessage("Great job! You solved all categories!");
+      } else {
+        setMessage("Category Solved!");
+      }
+    } else {
+      // Check for "One Away" hint
+      const isOneAway = initialData.some((category) => {
+        const overlap = selectedWords.filter((word) => category.words.includes(word));
+        return overlap.length === 3;
+      });
+
+      setMessage(isOneAway ? "One away!" : "Incorrect group. Try again!");
+    }
+  }, [selectedWords, solvedCategories]);
+
   return (
-    <div className="vines-game game">
-      <div className="columns-container">
-        {[0, 1, 2, 3].map((col) => (
-          <div key={col} className={`column ${lockedColumns[col] ? "locked" : ""}`}>
-            {revealedCategories[col] && (
-              <div
-                className="category-title"
-                style={{ fontSize: getFontSize(revealedCategories[col]) + "px" }}
-              >
-                {revealedCategories[col]}
-              </div>
-            )}
-
-            {words.slice(col * 4, col * 4 + 4).map((word, idx) => {
-              const globalIndex = col * 4 + idx;
-              const isSwapped = swappedWords.includes(globalIndex);
-
-              return (
-                <div
-                  id={`word-${globalIndex}`}
-                  key={idx}
-                  style={{ fontSize: getFontSize(word) + "px" }}
-                  className={`vine-word word 
-                    ${firstSelected === globalIndex ? "selected" : ""} 
-                    ${lockedColumns[col] ? "locked-word" : ""} 
-                    ${isSwapped ? "swapped" : ""}`}
-                  onClick={() => swapWords(globalIndex)}
-                >
-                  {word}
-                </div>
-              );
-            })}
+    <div className="connections-game game vines">
+      {/* Solved Categories Stacked on Top */}
+      <div className="solved-categories-container">
+        {solvedCategories.map((cat, idx) => (
+          <div key={idx} className={`solved-category category-color-${idx}`}>
+            <h3 className="category-title">{cat.title}</h3>
+            <p className="category-words">{cat.words.join(", ")}</p>
           </div>
         ))}
       </div>
 
-      <div className="message">{message}</div>
+      {/* Grid of Remaining Unsolved Words */}
+      {availableWords.length > 0 && (
+        <div className="words-grid">
+          {availableWords.map((word) => {
+            const isSelected = selectedWords.includes(word);
+            return (
+              <button
+                key={word}
+                style={{ fontSize: `${getFontSize(word)}px` }}
+                className={`word-card ${isSelected ? "selected" : ""}`}
+                onClick={() => handleSelect(word)}
+              >
+                {word}
+              </button>
+            );
+          })}
+        </div>
+      )}
+
+      {/* Feedback Message */}
+      {message && <div className="message">{message}</div>}
+
+      {/* Control Actions */}
+      <div className="controls">
+        <button 
+          onClick={handleShuffle} 
+          disabled={availableWords.length === 0}
+          className="action-btn"
+        >
+          Shuffle
+        </button>
+        <button 
+          onClick={handleDeselectAll} 
+          disabled={selectedWords.length === 0}
+          className="action-btn"
+        >
+          Deselect All
+        </button>
+        <button 
+          onClick={handleSubmit} 
+          disabled={selectedWords.length !== 4}
+          className="action-btn submit-btn"
+        >
+          Submit
+        </button>
+      </div>
     </div>
   );
 }

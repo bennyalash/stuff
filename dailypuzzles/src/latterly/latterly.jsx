@@ -61,14 +61,14 @@ export default function Latter({ modal, setModal }) {
 
       if (statsSnap.exists()) {
         const data = statsSnap.data();
-        console.log(data);
+
         setCurrentWord(data.finalMap.finalWord);
         setPastGuesses(data.finalMap.pastGuesses || []);
         setMoves(data.finalMap.moves || 0);
         setPuzztime(data.timeTaken);
 
         setGameOver(true);
-        setShowWinModal(true);
+        //setShowWinModal(true);
       }
 
       setLoading(false);
@@ -86,21 +86,33 @@ export default function Latter({ modal, setModal }) {
   }
 
   async function checkWord(word) {
-    try {
-      const res = await fetch(
-        `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
-      );
+  try {
+    // Datamuse API natively allows browser fetch with CORS headers
+    const res = await fetch(
+      `https://api.datamuse.com/words?sp=${encodeURIComponent(word.toLowerCase())}&md=d&max=1`
+    );
 
-      if (!res.ok) throw new Error("Invalid");
+    if (!res.ok) throw new Error("Network response failed");
 
-      setMessage("");
-      return true;
-    } catch {
-      setMessage(`"${capitalize(word.toLowerCase())}" is not a valid word.`);
-      setValid(false);
-      return false;
-    }
+    const data = await res.json();
+
+    // Check if the exact word was returned AND has definitions attached
+    const isValid =
+      data.length > 0 &&
+      data[0].word.toLowerCase() === word.toLowerCase() &&
+      data[0].defs &&
+      data[0].defs.length > 0;
+
+    if (!isValid) throw new Error("Invalid word");
+
+    setMessage("");
+    return true;
+  } catch {
+    setMessage(`"${capitalize(word.toLowerCase())}" is not a valid word.`);
+    setValid(false);
+    return false;
   }
+}
 
   /* -------------------------------------------------- */
   /* Input handling                                    */

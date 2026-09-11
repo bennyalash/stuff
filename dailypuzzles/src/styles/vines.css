@@ -23,7 +23,7 @@
     padding: 4px 0 2px;
     color: #2e7d32; /* greenish for correct */
     font-size: 16px;
-    color:white;
+    color:black;
 }
 
 .column {
@@ -85,4 +85,72 @@
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+}
+.connections-game {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.solved-categories-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.solved-category {
+    padding: 16px;
+    border-radius: 0px;
+    text-align: center;
+    background-color: #abe096;
+    border: 4px solid #407a29;
+}
+
+.words-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.word-card {
+    aspect-ratio: 1.5;
+    border-radius: 0px;
+    border: none;
+    background-color: #efefef;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    color:black;
+}
+
+    .word-card.selected {
+        background-color: #5a5a5a;
+        color: #fff;
+    }
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.action-btn {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    background: white;
+    cursor: pointer;
+    color:black;
+}
+
+    .action-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+.submit-btn {
+    background-color: #000;
+    color: #fff;
 }

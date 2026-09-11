@@ -118,7 +118,10 @@ nav .far svg{
     background-image: url(./assets/Vine.svg);
 }
 
-
+#game-title{
+    display:flex;
+    gap:5px;
+}
 .cipher .game-card-cover {
     background: #ebe0eb;
 }

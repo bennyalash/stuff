@@ -83,7 +83,7 @@ export default function Cipher({ modal, setModal }) {
   const [startTime, setStartTime] = useState(null);
   const [puzztime, setPuzztime] = useState(null);
   const [winModal, setWinModal] = useState(false);
-  const [hint, setHint] = useState(false);
+  const [hint, setHint] = useState(true);
   const hasSubmittedRef = useRef(false);
 
 
@@ -101,6 +101,7 @@ export default function Cipher({ modal, setModal }) {
       const puzzle = await fetchTodaysPuzzle("Cipher");
 
       let levelData;
+      console.log(levelData);
       try {
         levelData = puzzle?.Data ? JSON.parse(puzzle.Data) : null;
       } catch {
@@ -130,7 +131,7 @@ export default function Cipher({ modal, setModal }) {
         const data = statsSnap.data();
         setPuzztime(data.timeTaken);
         setGameOver(true);
-        setWinModal(true);
+        //setWinModal(true);
       setGrid(levelData);
 
       }
@@ -275,14 +276,14 @@ export default function Cipher({ modal, setModal }) {
     const endTime=Date.now();
     const timeTaken=Math.floor((endTime-startTime)/1000);
     setPuzztime(timeTaken);
-    setWinModal(true);
+    //setWinModal(true);
 
-      submitPuzzleStats(timeTaken,"Cipher", null);
+      submitPuzzleStats(timeTaken,"Cipher", grid);
 
   },[gameOver,startTime]);
 
   if(grid == null) return;
-  console.log(hint);
+
   return (
     <div className={`cipher-game game ${hint && "hint"} ${gameOver && "complete"}`} style={{fontSize:CELL_SIZE/1.5+"px"}}>
       <HelpModal open={modal} onClose={()=>setModal(false)} title="How to Play"><CipherHelp/></HelpModal>
@@ -322,11 +323,11 @@ export default function Cipher({ modal, setModal }) {
           })}
         </div>
       </div>
-      {!gameOver && <div onClick={() => setHint(!hint)} className={`switch ${hint ? "on" : "off"}`}>
+      {/*{!gameOver && <div onClick={() => setHint(!hint)} className={`switch ${hint ? "on" : "off"}`}>
         <div className="switch-toggle" />
       </div>}
       {!gameOver && <h5 style={{fontSize: "16px"}}>Hint Mode</h5>}
-      {/*<input type="checkbox" onChange={(e) => setHint(e.target.checked)} />*/}
+      */}
       {gameOver && !winModal && (
         <div onClick={() => setWinModal(true)} className="keyboard">
           <button className="alt">View Results</button>

@@ -63,7 +63,7 @@ export default function Home() {
                     
                 </div>
             </Link>
-            <Link to="/latter" className="game-card letter-ladder">
+            <Link to="/roots" className="game-card letter-ladder">
                 <div className="game-card-cover">
                     <div className="game-card-info">
                         <div className="game-card-name">
@@ -78,7 +78,12 @@ export default function Home() {
                     
                 </div>
             </Link>
-            <Link to="/cipher" className="game-card cipher">
+            <br />
+            <br />
+            <br />
+            <h3>Coming Soon</h3>
+            
+            <Link to="/" className="game-card cipher">
                 <div className="game-card-cover">
                     <div className="game-card-info">
                         <div className="game-card-name">
@@ -93,21 +98,22 @@ export default function Home() {
                     
                 </div>
             </Link>
-            {/*<Link to="/" className="game-card vines">
+            
+            <Link to="/" className="game-card vines">
                 <div className="game-card-cover">
                     <div className="game-card-info">
                         <div className="game-card-name">
-                            Coming Soon
+                            Vines
                         </div>
                         <div className="game-card-description">
-                           Vines.
+                           Make matches of four.
                         </div>
                     </div>
                     <div className="game-card-illustration">
                     </div>
                     
                 </div>
-            </Link>*/}
+            </Link>
             
             </div>
         </div>

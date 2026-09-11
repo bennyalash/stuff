@@ -10,9 +10,7 @@
     align-items: center;
     margin:20px 0 70px;
 }
-.game.cipher-game {
-    justify-content: center;
-}
+
 .cipher-game .message{
     font-size: 16px;
     color:black;
