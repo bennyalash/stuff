@@ -2,7 +2,7 @@
     {
         title: "CFP Projector",
         link: "https://cfpp.netlify.app",
-        img: "images/cfp.png",
+        img: "cfp.png",
         bg: "#111",
         type: "Sports Analytics",
         rate: 10,
@@ -18,7 +18,7 @@ A key highlight of CFP Projector is its interactive scenario editor. Users can m
     {
         title: "Fishtail",
         link: "docs/FishtailRules.pdf",
-        img: "images/fishtail.png",
+        img: "fishtail.png",
         type: "Board Game",
         bg: "#0086c0",
         rate: 9,
@@ -33,7 +33,7 @@ Designed with clean component art and deep decision trees, Fishtail keeps player
                 {
                     title: "GIBBS",
                     link: "https://gibbpro.com",
-                    img: "images/gibbs.png",
+                    img: "gibbs.png",
                     type: "Online Game",
                     bg: "#111",
                     rate: 5,
@@ -48,7 +48,7 @@ As an ongoing live digital project, GIBBS serves as both a public-facing web gam
                 {
                     title: "NHS",
                     link: "https://nationalhomeschoolsoccer.com",
-                    img: "images/nhs.png",
+                    img: "nhs.png",
                     bg: "#002244",
                     type: "Website",
                     rate: 5,
@@ -63,7 +63,7 @@ Engineered for high traffic during tournament seasons, NHS provides rapid mobile
     /*{
         title: "Feed Yer Mama",
         link: "docs/fymrules.html",
-        img: "images/fym.png",
+        img: "fym.png",
         type: "Board Game",
         bg: "#530D00",
                 buy: "https://buy.stripe.com/8x200i5V3b9sgOw8Du2cg01",
@@ -80,7 +80,7 @@ With vibrant, character-driven artwork and a humorous thematic backbone, Feed Ye
     {
         title: "Monkey vs Wizard",
         link: "https://bennyalashari.com/monkey-vs-wizard",
-        img: "images/mvw.png",
+        img: "mvw.png",
         type: "Card Game",
         bg: "#B7DFD6",
         rate: 2,
@@ -96,7 +96,7 @@ Featuring custom card illustrations and punchy graphical cues, Monkey vs Wizard 
     {
         title: "Go Bee",
         link: "https://gobeegame.netlify.app",
-        img: "images/gobee.png",
+        img: "gobee.png",
         type: "Online Game",
         bg: "#ffce31",
         rate: 4,
@@ -111,7 +111,7 @@ Wrapped in a bold, cheerful yellow visual aesthetic, Go Bee captures classic arc
     {
         title: "eFilmHub",
         link: "https://efilmhub.com",
-        img: "images/efilmhub.png",
+        img: "efilmhub.png",
         bg: "#111",
         type: "Website",
         rate: 4,
@@ -126,7 +126,7 @@ Engineered with modern web standards, eFilmHub prioritizes high accessibility, f
     {
         title: "TOC",
         link: "https://gtcalendar.netlify.app/",
-        img: "images/toc.png",
+        img: "toc.png",
         type: "Business Tool",
         bg: '#e8858e',
         rate: 1,
@@ -142,7 +142,7 @@ With a soft, approachable visual palette, TOC delivers a distraction-free experi
     {
         title: "Monopoly Deal 2.0",
         link: "https://www.figma.com/proto/871TgdQwlCIZYlK55SPeJ9/Monopoly-Deal?node-id=2041-15&t=tSNA024F4CH4z4G9-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1",
-        img: "images/deal.png",
+        img: "deal.png",
         bg: "#30A9F4",
         type: "Game Expansion",
         rate: 1,
@@ -157,7 +157,7 @@ As a interactive digital prototype, users can click through component layouts, p
     {
         title: "Quacks Expansion",
         link: "https://www.figma.com/proto/DyYgqacTc98MCKyJYn7Ilh/Quacks?node-id=178-3170&p=f&t=OWwGslT5gE4rEwOD-0&scaling=contain&content-scaling=fixed&page-id=136%3A2&starting-point-node-id=178%3A3170",
-        img: "images/quacks.png",
+        img: "quacks.png",
         bg: '#77b4e1',
         type: "game Expansion",
         rate: 1,
@@ -172,7 +172,7 @@ Through the interactive Figma link, tabletop players and designers can inspect f
     {
         title: "TM Expansion",
         link: "https://www.figma.com/proto/1GKqmMiojkRJZst76ngA34/TM?node-id=3549-48&t=N9JLzGZJ1iOLlwe1-0&scaling=contain&content-scaling=fixed&page-id=3549%3A17",
-        img: "images/tm.png",
+        img: "tm.png",
         bg: "#b25100",
         type: "game Expansion",
         rate: 1,
@@ -187,7 +187,7 @@ The interactive prototype allows board game strategists to view asset mockups, s
     {
         title: "The PUZZ",
         link: "https://puzzles.bennyalashari.com",
-        img: "images/puzz.png",
+        img: "puzz.png",
         type: "website",
         bg: "#666",
         rate: 4,
@@ -202,7 +202,7 @@ Designed with minimalist styling and lightweight front-end performance, The PUZZ
     {
         title: "Pool Deck",
         link: "https://www.figma.com/design/15elxOYqEOW6OAPFv52CzJ/ports-logo?node-id=2038-2&p=f&t=uzMCTpl3RFQMg6r4-0",
-        img: "images/pool.png",
+        img: "pool.png",
         type: "Game",
         rate: 1,
         description: `Pool Deck is a graphical design concept and card game prototype inspired by classic cuesports and billiards tactics. Created in Figma, the game translates cue ball angles, shot calling, pocket positioning, and spin control into a slick, card-driven tabletop card game.
@@ -216,7 +216,7 @@ Featuring crisp, minimalist vector art reminiscent of polished pool hall aesthet
     {
         title: "Gold Dust & Outlaws",
         link: "https://www.figma.com/design/vezMvObtWMZTnppp1srLoU/Gold-Dust---Outlaws?node-id=2086-362&t=l5FNwWEt25qL8mh3-0",
-        img: "images/gdo.png",
+        img: "gdo.png",
         type: "Card Game",
         rate: 1,
         description: `Gold Dust & Outlaws is a Wild West-themed card game prototype centered around hidden roles, bluffing, and territorial gold claims. Designed in Figma, the game transports players to frontier mining towns where lawmen, outlaws, and prospectors fight over lucrative gold claims.
@@ -230,7 +230,7 @@ The project highlights vintage rustic card graphics, period-appropriate typograp
     {
         title: "Aalsmeer",
         link: "https://www.figma.com/design/aUBYAmwWjm8P6ze8zVqD3H/Aalsmeer?node-id=105-13&t=OIR41rIG5BUv86eB-0",
-        img: "images/aalsmeer.png",
+        img: "aalsmeer.png",
         type: "Card Game",
         rate: 1,
         description: `Aalsmeer is an economic strategy card game inspired by the historic Dutch flower auctions of Aalsmeer. Designed in Figma, players step into the shoes of floral merchants competing to buy, trade, and deliver valuable tulip and floral crops across international markets.
@@ -244,7 +244,7 @@ Accompanied by botanical visual motifs and structured economic card layouts, Aal
     {
         title: "Zoorok",
         link: "https://www.figma.com/design/QyJ1jZWeHn40guIohHubcX/Nurok?node-id=2020-1432&t=uzMCTpl3RFQMg6r4-0",
-        img: "images/zr2.png",
+        img: "zr2.png",
         bg: '#64ACBD',
         type: "Card Game",
         rate: 1,
@@ -259,7 +259,7 @@ Set against a vibrant teal background aesthetic, Zoorok combines striking styliz
     {
         title: "Santorini Expansion",
         link: "https://www.figma.com/design/DfiwAwhm06TrYfBwbaMRFP/Santorini?node-id=0-1&p=f&t=zRDdFx47Q2VRb9hf-0",
-        img: "images/sx.png",
+        img: "sx.png",
         bg: "#7cbbdc",
         type: "game Expansion",
         rate: 1,
@@ -274,7 +274,7 @@ The Figma design files allow players and playtesters to review card artwork, exp
     {
         title: "Square Feats",
         link: "https://www.figma.com/design/eosucBmSjLwdxaupgrzPZo/Square-Feats?m=auto&t=4qCBAzMOAV5CCNg0-6",
-        img: "images/sf.png",
+        img: "sf.png",
         bg: "#D3B45D",
         type: "In Progress",
         rate: 1,
@@ -289,7 +289,7 @@ As an active prototype, Square Feats serves as an ongoing exploration into abstr
     {
         title: "Nutrispark",
         link: "https://nutrispark.netlify.app/",
-        img: "images/ns.png",
+        img: "ns.png",
         bg:"#d6eeb8",
         type: "website",
         rate: 4,
@@ -304,7 +304,7 @@ Built with responsive front-end tools, Nutrispark runs smoothly across smartphon
     {
         title: "Tribes",
         link: "https://www.figma.com/design/QyJ1jZWeHn40guIohHubcX/Nurok?node-id=2084-50&t=6G4of2zIrsNyvhC5-0",
-        img: "images/tribes.png",
+        img: "tribes.png",
         bg: "#AE451B",
         type: "In Progress",
         rate: 1,

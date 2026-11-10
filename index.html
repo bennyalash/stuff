@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fustat:wght@200..800&display=swap" rel="stylesheet">
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
     <link rel="shortcut icon" href="b.png" />
-    <link rel="stylesheet" href="new_style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="projectsContainer">
@@ -35,7 +35,7 @@
                 const innerContent = `
                     <div class="image" style="background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1)), ${project.bg || '#000'}">
                         ${project.img
-                            ? `<img src="${project.img}" class="${project.bg ? 'logo' : ''}" alt="${project.title}">`
+                    ? `<img src="images/project_logos/${project.img}" class="${project.bg ? 'logo' : ''}" alt="${project.title}">`
                             : `<div>${project.title}</div>`}
                     </div>
                 `;
@@ -65,7 +65,7 @@
 
                     <div class="image" style="background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1)), ${project.bg || '#000'}">
                         ${project.img
-                            ? `<img src="${project.img}" class="${project.bg ? 'logo' : ''}" alt="${project.title}">`
+                            ? `<img src="images/project_logos/${project.img}" class="${project.bg ? 'logo' : ''}" alt="${project.title}">`
                             : `<div>${project.title}</div>`}
                     </div>
                     <div>
