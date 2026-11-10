@@ -20,7 +20,7 @@ A key highlight of CFP Projector is its interactive scenario editor. Users can m
         link: "docs/FishtailRules.pdf",
         img: "images/fishtail.png",
         type: "Board Game",
-        bg: "#002E42",
+        bg: "#0086c0",
         rate: 9,
         buy: "https://buy.stripe.com/8x2cN44QZelEcygf1S2cg02",
         cta: 'View Rules',
@@ -29,8 +29,38 @@ A key highlight of CFP Projector is its interactive scenario editor. Users can m
 The game introduces a tense drafting and casting rhythm where placing boats dictates control over available fish, while rolling dice into the shared Tackle Box alters the seasonal bait pool. Every turn requires balancing short-term resource placement with long-term collection goals. Players must read the season ahead, anticipating opponent bids and managing their hand of bait cards to complete complex catch requirements.   <br />
 <br />
 Designed with clean component art and deep decision trees, Fishtail keeps player downtime low while offering significant replayability through variable card setups and shifting availability. The game balances accessibility for casual game nights with enough tactical depth to satisfy seasoned tabletop enthusiasts seeking crisp economic reasoning and direct competition.`
-},
-    {
+                },
+                {
+                    title: "GIBBS",
+                    link: "https://gibbpro.com",
+                    img: "images/gibbs.png",
+                    type: "Online Game",
+                    bg: "#111",
+                    rate: 5,
+                    description: `GIBBS is a custom-engineered web application and interactive online game built for smooth real-time web browser sessions. Designed with a sleek, minimalist dark theme, the project focuses on responsive player input, crisp visual feedback, and reliable networked state synchronization.
+        <br />
+<br />
+Behind the scenes, GIBBS leverages modern front-end scripting and modular game state management to provide seamless user interactions without performance lag. Whether playing solo or engaging with shared game systems, users experience intuitive interface layouts designed to keep focus entirely on game mechanics and active play states.
+<br />
+<br />
+As an ongoing live digital project, GIBBS serves as both a public-facing web game and a testbed for innovative game engine patterns in JavaScript, real-time client-server event messaging, and modern responsive UI layout architecture across desktop and mobile browsers.`
+                },
+                {
+                    title: "NHS",
+                    link: "https://nationalhomeschoolsoccer.com",
+                    img: "images/nhs.png",
+                    bg: "#002244",
+                    type: "Website",
+                    rate: 5,
+                    description: `National Homeschool Soccer (NHS) is the official web portal serving national homeschool soccer tournaments, team registrations, rankings, and event schedules across the United States. Built on a rich navy athletic aesthetic, the site functions as a centralized hub for athletes, coaches, and sports parents.
+        <br />
+<br />
+The website features live tournament bracketing, field location maps, updated match scores, historical championship archives, and vendor information. Automated structure behind team submissions streamlines tournament logistics for organizers while keeping public information updated during multi-day events.
+<br />
+<br />
+Engineered for high traffic during tournament seasons, NHS provides rapid mobile browsing for users checking field schedules on-site, alongside accessible desktop dashboards for tournament directors managing logistics.`
+                },
+    /*{
         title: "Feed Yer Mama",
         link: "docs/fymrules.html",
         img: "images/fym.png",
@@ -62,21 +92,7 @@ The core card engine relies on managing action economy and hand tempo. The Wizar
 <br />
 Featuring custom card illustrations and punchy graphical cues, Monkey vs Wizard delivers quick 15-to-20 minute sessions filled with dramatic turnarounds. The tension between meticulous preparation and unpredictable chaos creates a distinct tactical push-and-pull, challenging players to master both sides of this clash.`
     },
-    {
-        title: "GIBBS",
-        link: "https://gibbpro.com",
-        img: "images/gibbs.png",
-        type: "Online Game",
-        bg: "#111",
-        rate: 5,
-        description: `GIBBS is a custom-engineered web application and interactive online game built for smooth real-time web browser sessions. Designed with a sleek, minimalist dark theme, the project focuses on responsive player input, crisp visual feedback, and reliable networked state synchronization.
-        <br />
-<br />
-Behind the scenes, GIBBS leverages modern front-end scripting and modular game state management to provide seamless user interactions without performance lag. Whether playing solo or engaging with shared game systems, users experience intuitive interface layouts designed to keep focus entirely on game mechanics and active play states.
-<br />
-<br />
-As an ongoing live digital project, GIBBS serves as both a public-facing web game and a testbed for innovative game engine patterns in JavaScript, real-time client-server event messaging, and modern responsive UI layout architecture across desktop and mobile browsers.`
-    },
+    
     {
         title: "Go Bee",
         link: "https://gobeegame.netlify.app",
@@ -122,21 +138,7 @@ The utility focuses on intuitive drag-and-drop scheduling, clear color-coded pro
 <br />
 With a soft, approachable visual palette, TOC delivers a distraction-free experience aimed at keeping team operations synchronized, deadline-aware, and organized across shared project schedules.`
     },
-    {
-        title: "NHS",
-        link: "https://nationalhomeschoolsoccer.com",
-        img: "images/nhs.png",
-        bg: "#002244",
-        type: "Website",
-        rate: 5,
-        description: `National Homeschool Soccer (NHS) is the official web portal serving national homeschool soccer tournaments, team registrations, rankings, and event schedules across the United States. Built on a rich navy athletic aesthetic, the site functions as a centralized hub for athletes, coaches, and sports parents.
-        <br />
-<br />
-The website features live tournament bracketing, field location maps, updated match scores, historical championship archives, and vendor information. Automated structure behind team submissions streamlines tournament logistics for organizers while keeping public information updated during multi-day events.
-<br />
-<br />
-Engineered for high traffic during tournament seasons, NHS provides rapid mobile browsing for users checking field schedules on-site, alongside accessible desktop dashboards for tournament directors managing logistics.`
-    },
+    
     {
         title: "Monopoly Deal 2.0",
         link: "https://www.figma.com/proto/871TgdQwlCIZYlK55SPeJ9/Monopoly-Deal?node-id=2041-15&t=tSNA024F4CH4z4G9-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1",
@@ -313,5 +315,5 @@ The game mechanics blend hand management with worker placement, requiring player
 <br />
 <br />
 With an earthy, high-contrast visual design, Tribes is an active sandbox for balancing deep multi-resource economies with fast, engaging player interactions on a shared map.`
-    }
+    }*/
 ];
