@@ -60,13 +60,13 @@ The website features live tournament bracketing, field location maps, updated ma
 <br />
 Engineered for high traffic during tournament seasons, NHS provides rapid mobile browsing for users checking field schedules on-site, alongside accessible desktop dashboards for tournament directors managing logistics.`
                 },
-    /*{
+    {
         title: "Feed Yer Mama",
         link: "docs/fymrules.html",
         img: "fym.png",
         type: "Board Game",
         bg: "#530D00",
-                buy: "https://buy.stripe.com/8x200i5V3b9sgOw8Du2cg01",
+        buy: "https://buy.stripe.com/6oU00i97f2CW7dWdXO2cg03",
 
         rate: 5,
         description: `Feed Yer Mama is a high-energy, tongue-in-cheek tabletop board game that blends fast-paced resource management, push-your-luck mechanisms, and chaotic player interactions. Set around an increasingly demanding family dinner table, players race against time and one another to gather specific food ingredients and construct elaborate meals to satisfy 'Mama' before her patience runs out.
@@ -76,7 +76,8 @@ Gameplay centers around dynamic collection phases where players must decide whet
 <br />
 <br />
 With vibrant, character-driven artwork and a humorous thematic backbone, Feed Yer Mama delivers an engaging mix of lighthearted table banter and strategic risk evaluation. Simple rules allow new players to jump right in within minutes, while tight resource constraints and aggressive player interaction ensure every round remains tight, unpredictable, and packed with memorable moments.`
-    },
+                },
+    /*
     {
         title: "Monkey vs Wizard",
         link: "https://bennyalashari.com/monkey-vs-wizard",
