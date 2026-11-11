@@ -69,14 +69,14 @@ Engineered for high traffic during tournament seasons, NHS provides rapid mobile
         buy: "https://buy.stripe.com/6oU00i97f2CW7dWdXO2cg03",
 
         rate: 5,
-        description: `Feed Yer Mama is a high-energy, tongue-in-cheek tabletop board game that blends fast-paced resource management, push-your-luck mechanisms, and chaotic player interactions. Set around an increasingly demanding family dinner table, players race against time and one another to gather specific food ingredients and construct elaborate meals to satisfy 'Mama' before her patience runs out.
-        <br />
+        description: `Feed ’Yer Mama is a fast, funny strategy card game for 2-5 players about raising animals, growing plants, and racing to be the first to fill Mama’s belly. It plays out as a quick engine-building race, with a twist: every time someone feeds Mama, the next meal costs more Food for everyone.<br />
 <br />
-Gameplay centers around dynamic collection phases where players must decide whether to bank gathered dish components safely or gamble for high-tier recipe combinations that score massive points. However, waiting too long leaves players vulnerable to sudden sabotage cards, stolen ingredients, and sudden culinary mishaps thrown by rival cooks across the table.
+On your turn, you gather resources (2 Coins, 1 Food, or a new card), put your animal and plant cards to work, play new cards from your hand, and then, if you can afford it, feed Mama to score a point. Your farm is your engine. Every animal and plant you play gives you new abilities, and the right combination can snowball into a big advantage.<br />
 <br />
-<br />
-With vibrant, character-driven artwork and a humorous thematic backbone, Feed Yer Mama delivers an engaging mix of lighthearted table banter and strategic risk evaluation. Simple rules allow new players to jump right in within minutes, while tight resource constraints and aggressive player interaction ensure every round remains tight, unpredictable, and packed with memorable moments.`
-                },
+The farm is not a safe place, though. Wolves hunt your animals, Goats devour your plants, Raccoons and Foxes swipe resources and abilities, and a well-timed Dog can protect your whole flock. Mixing a little mischief with smart planning is how you get ahead.
+<br /><br />
+The first player to feed Mama the required number of times wins, and the target scales with the group size, so the game stays tight at any table. Rules are simple enough to teach in a few minutes, and there’s depth to grow into with the optional advanced rules: a face-up Market, a Roll to Shop mode, and Lucky and Unlucky Rolls.
+`},
     /*
     {
         title: "Monkey vs Wizard",
