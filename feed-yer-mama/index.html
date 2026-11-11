@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Feed ’Yer Mama — Rulebook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Orelega+One&display=swap" rel="stylesheet">
+<style>
+:root{--brown:#963E0D;--wine:#6f0d27;--paper:#fff7f0;--cream:#ffecd9;--leaf:#3e913c;--grass:#1a8418;--forest:#224423;--ink:#2a1a14;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 15px/1.6 Montserrat,Helvetica,Arial,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{max-width:820px;margin:0 auto;padding:0 24px 48px}
+h1,h2,h3{font-family:"Orelega One",Georgia,serif;font-weight:400;margin:0}
+.cover{background:var(--wine);color:var(--cream);text-align:center;padding:72px 24px 56px;border-bottom:10px solid var(--brown)}
+.cover h1{font-size:clamp(44px,9vw,84px);line-height:1;color:var(--paper)}
+.cover .sub{font-family:"Orelega One",Georgia,serif;font-size:22px;color:#ffd7a8;margin:14px 0 22px}
+.cover p{max-width:520px;margin:0 auto 10px}
+.badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+.badges span{background:var(--cream);color:var(--wine);border-radius:99px;padding:5px 16px;font-weight:700;font-size:13px}
+.toc{background:var(--cream);border-radius:14px;padding:20px 28px;margin:32px 0}
+.toc h3{color:var(--brown);font-size:24px;margin-bottom:8px}
+.toc ol{columns:2;margin:0;padding-left:22px}.toc a{color:var(--forest);font-weight:500;text-decoration:none}
+section{margin-top:36px}
+h2{background:var(--forest);color:var(--paper);font-size:30px;padding:10px 22px;border-radius:12px;border-left:12px solid var(--leaf);margin-bottom:16px;break-after:avoid}
+h3{color:var(--wine);font-size:22px;margin:22px 0 8px;break-after:avoid}
+p{margin:0 0 12px}
+table{width:100%;border-collapse:collapse;margin:12px 0 18px;font-size:14px;break-inside:avoid}
+th{background:var(--brown);color:var(--paper);text-align:left;padding:8px 12px}
+td{padding:8px 12px;border-bottom:1px solid #e8c9ad}
+tbody tr:nth-child(even){background:var(--cream)}
+.scroll{overflow-x:auto}
+.callout{background:var(--cream);border-left:6px solid var(--brown);border-radius:0 12px 12px 0;padding:12px 18px;margin:14px 0;break-inside:avoid}
+.callout b:first-child{color:var(--brown)}
+.steps{display:grid;gap:14px}
+.step{display:flex;gap:16px;background:#fff;border:2px solid var(--cream);border-radius:14px;padding:16px;break-inside:avoid}
+.num{flex:none;width:44px;height:44px;border-radius:50%;background:var(--grass);color:#fff;font:400 24px/44px "Orelega One",Georgia,serif;text-align:center}
+.step h3{margin:0 0 4px}.step p:last-child,.step ul:last-child{margin-bottom:0}
+ul,ol{margin:0 0 12px;padding-left:22px}li{margin-bottom:4px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.card{border-radius:14px;padding:14px 16px;background:#fff;border:2px solid var(--brown);border-top:10px solid var(--brown);break-inside:avoid}
+.card.plant{border-color:var(--leaf);border-top-color:var(--leaf)}
+.card h3{margin:0 0 6px;font-size:21px}.card p{font-size:14px;margin:0 0 6px}
+.tag{font-size:11px;font-weight:700;color:var(--brown)}.plant .tag{color:var(--grass)}
+.imgbox{border:2px dashed var(--brown);border-radius:12px;text-align:center;color:var(--brown);padding:26px;margin:12px 0;font-weight:500}
+.go{text-align:center;font:400 30px "Orelega One",Georgia,serif;color:var(--wine);margin-top:36px}
+.credit{text-align:center;font-size:13px;color:var(--brown)}
+@media(max-width:560px){.toc ol{columns:1}.step{flex-direction:column}}
+@page{size:letter;margin:.5in}
+@media print{body{font-size:12px}.page{max-width:none;padding:0}.cover{padding:40px 24px;break-after:page}section{margin-top:22px}.toc{break-after:page}}
+</style></head><body>
+<header class="cover"><h1>Feed ’Yer Mama</h1><div class="sub">The Official Rulebook</div>
+<p>Mama is hungry, and she won’t wait. Gather coins, raise animals, grow plants, and be the first to feed her until she’s full.</p>
+<div class="badges"><span>2–5 Players</span><span>Strategy</span><span>Resource Management</span></div></header>
+<main class="page">
+<nav class="toc"><h3>Contents</h3><ol>
+<li><a href="#overview">Game Overview</a></li><li><a href="#contents">Game Contents</a></li><li><a href="#setup">Setup</a></li><li><a href="#winning">Winning</a></li><li><a href="#turn">Your Turn</a></li><li><a href="#rules">Rules &amp; Exceptions</a></li><li><a href="#terms">Terminology</a></li><li><a href="#cards">Card Clarifications</a></li><li><a href="#advanced">Advanced Rules</a></li><li><a href="#quick">Quick Reference</a></li></ol></nav>
+
+<section id="overview"><h2>Game Overview</h2>
+<p>Each player races to feed Mama more than anyone else. On your turn you collect resources, put animal and plant cards into play, and use them to build a stronger engine. Every time you pay Food to feed Mama, you move closer to victory, but the next meal costs <b>more</b> Food for everyone.</p>
+<p>The first player to feed Mama the required number of times wins.</p></section>
+
+<section id="contents"><h2>Game Contents</h2><div class="scroll"><table><thead><tr><th>Component</th><th>Qty</th></tr></thead><tbody>
+<tr><td>Cards (total)</td><td>36</td></tr><tr><td>&nbsp;&nbsp;Plant cards (2 of each)</td><td>14</td></tr><tr><td>&nbsp;&nbsp;Animal cards (2 of each, except only 1 Horse)</td><td>18</td></tr><tr><td>&nbsp;&nbsp;Rules cards</td><td>3</td></tr><tr><td>&nbsp;&nbsp;Point Tracking Card (’Yer Points)</td><td>1</td></tr>
+<tr><td>Brown Food pieces</td><td>20</td></tr><tr><td>Silver Coin pieces</td><td>20</td></tr><tr><td>Food Board (bottom of the box)</td><td>1</td></tr></tbody></table></div></section>
+
+<section id="setup"><h2>Setup</h2>
+<div class="steps">
+<div class="step"><div class="num">1</div><div><h3>Prepare the deck</h3><p>Remove the Point Tracking Card and the 3 Quick Rule cards. Shuffle the rest and deal <b>3 cards</b> to each player. Keep your hand hidden.</p></div></div>
+<div class="step"><div class="num">2</div><div><h3>Set up the points</h3><p>Place the Point Tracking Card face up in the middle of the play area. Put every player’s marker on its <b>start space</b>.</p></div></div>
+<div class="step"><div class="num">3</div><div><h3>Set up the Food Board</h3><p>Place the Food Board in the middle of the play area and put one Food (brown cylinder) on its <b>start space</b>. This is the <b>Food Tracker</b>.</p></div></div>
+<div class="step"><div class="num">4</div><div><h3>Make the bank</h3><p>Place all remaining Food and Coins in the middle. This shared pile is <b>the bank</b>. Keep the draw pile nearby with room for a discard pile.</p></div></div>
+<div class="step"><div class="num">5</div><div><h3>Pick the first player</h3><p>Everyone rolls the die. The highest roller goes first, then play continues clockwise.</p></div></div>
+<div class="step"><div class="num">6</div><div><h3>Give out bonus resources</h3><p>Later players get a head start to balance the game.</p>
+<table><thead><tr><th>Turn Order</th><th>Bonus Resources</th></tr></thead><tbody><tr><td>Player 1</td><td>None</td></tr><tr><td>Player 2</td><td>1 Card</td></tr><tr><td>Player 3</td><td>1 Coin</td></tr><tr><td>Player 4</td><td>1 Food</td></tr><tr><td>Player 5</td><td>1 Card and 1 Coin</td></tr></tbody></table></div></div>
+</div>
+<div class="imgbox">Setup layout image goes here: “Here is how it should look”</div></section>
+
+<section id="winning"><h2>Winning</h2>
+<p>Reach the winning space on the Point Tracking Card and you have <b>Fully Fed ’Yer Mama</b>. You win the game immediately. The winning space depends on the number of players.</p>
+<table><thead><tr><th>Players</th><th>Times to Feed ’Yer Mama</th></tr></thead><tbody><tr><td>2 Players</td><td>6 Times</td></tr><tr><td>3 Players</td><td>5 Times</td></tr><tr><td>4 Players</td><td>4 Times</td></tr><tr><td>5 Players</td><td>3 Times</td></tr></tbody></table>
+<div class="callout"><b>5-player note:</b> some rule cards say you need 4, but 3 times is recommended.</div></section>
+
+<section id="turn"><h2>Your Turn</h2>
+<p>Follow these four steps <b>in order</b> every turn. <b>Each step is optional.</b></p>
+<div class="steps">
+<div class="step"><div class="num">1</div><div><h3>Gain</h3><p>Choose <b>one</b>:</p><ul><li>Gain 2 Coins from the middle, <b>or</b></li><li>Draw 1 Card randomly from the deck, <b>or</b></li><li>Gain 1 Food from the middle.</li></ul></div></div>
+<div class="step"><div class="num">2</div><div><h3>Use your cards’ abilities</h3><p>For each card you have bought and placed in front of you, you may use the ability written on it. Use them in any order. You don’t have to use them all.</p><p>The portion in <i>italics</i> is not part of the ability. It is a note that is always true of the card. For example, if the Wolf tries to kill the Cat, the italics on the Cat say it cannot be killed.</p></div></div>
+<div class="step"><div class="num">3</div><div><h3>Play card(s)</h3><p>Pay using the cost in the card’s top corners: <b>top left is the Coin cost</b>, <b>top right is the Food cost</b>. Put the spent Coins and Food back in the middle, then place the card in front of you.</p><p>You can use the card’s ability on later turns. The <i>italic</i> portion takes effect immediately.</p></div></div>
+<div class="step"><div class="num">4</div><div><h3>Feed ’Yer Mama</h3><ul><li>Pay the Food shown on the <b>next space</b> of the Food Board after the Food Tracker’s current space.</li><li>Move your marker up one space on the Point Tracking Card.</li><li>Move the Food Tracker up one space, so the next meal costs more.</li></ul><p>You may do this <b>once per turn</b>.</p></div></div>
+</div></section>
+
+<section id="rules"><h2>Rules &amp; Exceptions</h2>
+<ul>
+<li><b>No Coins left?</b> You may steal Coins from other players. Example: you need to gain 4 Coins but only 2 are in the middle. Take the 2, then take 1 Coin from 2 players or 2 Coins from 1 player.</li>
+<li><b>No Food left?</b> Steal Food from other players the same way. See the <a href="#pig" style="color:var(--wine)">Pig</a> for an exception.</li>
+<li><b>No cards left to draw?</b> Do nothing.</li>
+<li><b>Deck runs out?</b> Reshuffle all cards that have been discarded for any reason.</li>
+<li><b>Italic abilities</b> are not part of a turn’s action. They are always true of the card.</li></ul></section>
+
+<section id="terms"><h2>Terminology</h2><div class="scroll"><table><tbody>
+<tr><td><b>Gain</b></td><td>Take resources from the bank in the middle. If none are left, take them from other players.</td></tr>
+<tr><td><b>Pay</b></td><td>Put your resources into the bank.</td></tr>
+<tr><td><b>Copy an Ability</b></td><td>Do what the copied card’s ability says, word for word, except for the italic portion.</td></tr>
+<tr><td><b>Draw</b></td><td>Take a random card from the pile in the middle.</td></tr>
+<tr><td><b>In Play</b></td><td>Bought and currently in front of a player.</td></tr>
+<tr><td><b>Steal</b></td><td>Take resources from another player for yourself.</td></tr>
+<tr><td><b>Discard</b></td><td>Place a card from your hand face up in a pile next to the draw pile. It is reshuffled when the deck runs out.</td></tr>
+<tr><td><b>Kill</b></td><td>Same as discard, but for an Animal in play. Place it face up in the discard pile.</td></tr>
+<tr><td><b>Destroy</b></td><td>Same as kill, but for a Plant in play.</td></tr>
+<tr><td><b>Animal</b></td><td>Brown background with a Food (burger) icon in the top right.</td></tr>
+<tr><td><b>Plant</b></td><td>Green background.</td></tr></tbody></table></div></section>
+
+<section id="cards"><h2>Card Clarifications</h2><div class="cards">
+<div class="card plant"><span class="tag">PLANT</span><h3>Corn</h3><p>You cannot copy another player’s animal.</p><p>Copy only the part of the ability that is not italicized.</p><p>You can either gain 1 Coin <b>or</b> pay 2 Coins to copy, not both.</p></div>
+<div class="card"><span class="tag">ANIMAL</span><h3>Dog</h3><p>The Wolf can kill the Dog. Once the Dog is dead, your other animals can also be killed.</p><p>You can kill your own Pig even if you have a Dog.</p><p>With 2 Dogs, none of your animals can be killed, including the Dogs.</p></div>
+<div class="card"><span class="tag">ANIMAL</span><h3>Goat</h3><p>You decide which plant to destroy <b>after</b> rolling the die.</p><p>The number on the die must match the Coin cost of the plant. For example, a 5 can only destroy a Tomato.</p></div>
+<div class="card"><span class="tag">ANIMAL</span><h3>Fox</h3><p>You cannot copy one of your own animals. Copy only the non-italic part. If you copy the Dog, ignore its italics about your other animals.</p><p>You can copy another Fox, but then you must do exactly what that ability says and pay another Coin for this Fox. This lets you copy one of your own animals, which a Fox normally cannot.</p></div>
+<div class="card" id="pig"><span class="tag">ANIMAL</span><h3>Pig</h3><p>Gain 1 Food and place it on the Pig card. Food there cannot be spent. It cannot be stolen by the Raccoon or by other players when the Food runs out.*</p><p>You can kill your own Pig even if you have a Dog. When the Pig is killed, count the Food on it, multiply by 3, and gain that much Food.</p><p><small>*It can be stolen if that is the only way a player can gain Food, meaning no one else has Food.</small></p></div>
+<div class="card"><span class="tag">ANIMAL</span><h3>Wolf</h3><p>You decide which animal to kill <b>after</b> rolling the die.</p><p>Ignore the Food cost. Compare your roll only with the Coin cost. If the Coin cost is lower than your roll, kill the animal.</p><p>You cannot kill the Cat.</p></div>
+<div class="card"><span class="tag">ANIMAL</span><h3>Chicken</h3><p>Count the Chickens you have in play, including this one. Gain that much Food.</p><p>If you have multiple Chickens, each one counts toward the total.</p></div>
+</div></section>
+
+<section id="advanced"><h2>Advanced Rules</h2>
+<div class="callout"><b>Recommended only after playing multiple times.</b> Use them one at a time or together.</div>
+<h3>Rule Change #1: The Market</h3>
+<p>Deal only <b>1 card</b> to each player at the start. Place <b>3 cards face up</b> in the middle. Players may pay for these as if they were in hand, but they cannot be drawn. When one is bought, replace it.</p>
+<h3>Rule Change #2: Roll to Shop</h3>
+<p>At the start of each turn, <b>instead of step 1</b>, roll the die and gain temporary buying power equal to your roll. Spend it immediately:</p>
+<table><thead><tr><th>Cost</th><th>Resources</th></tr></thead><tbody><tr><td>1</td><td>1 Coin</td></tr><tr><td>2</td><td>1 Card</td></tr><tr><td>3</td><td>1 Food</td></tr><tr><td>4</td><td>2 Coins</td></tr><tr><td>5</td><td>2 Cards</td></tr><tr><td>6</td><td>2 Food</td></tr></tbody></table>
+<p><b>You cannot buy from the same row twice.</b></p>
+<h3>Rule Change #3: Lucky and Unlucky Rolls</h3>
+<ul><li>If you ever roll a <b>1</b> for any reason, steal 1 Coin.</li><li>If you ever roll a <b>6</b> for any reason, give another player 1 of your Coins.</li></ul></section>
+
+<section id="quick"><h2>Quick Reference</h2>
+<table><thead><tr><th>Step</th><th>Action</th></tr></thead><tbody>
+<tr><td><b>1. Gain</b></td><td>2 Coins, or draw 1 Card, or 1 Food</td></tr>
+<tr><td><b>2. Abilities</b></td><td>Use each card in play, any order</td></tr>
+<tr><td><b>3. Play cards</b></td><td>Pay Coins (top left) and Food (top right)</td></tr>
+<tr><td><b>4. Feed ’Yer Mama</b></td><td>Pay next Food Board cost, +1 point, advance the Food Tracker (once per turn)</td></tr></tbody></table>
+<table><thead><tr><th>Players</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead><tbody><tr><td><b>Feedings to win</b></td><td>6</td><td>5</td><td>4</td><td>3</td></tr></tbody></table>
+<div class="callout"><b>Golden rules:</b> steps are optional but the order is fixed. Italics are always true. <b>Gain</b> comes from the bank, <b>steal</b> from players. Empty bank, steal instead. Empty deck, reshuffle the discards.</div></section>
+
+<div class="go">Now go on. Mama’s hungry.</div>
+<p class="credit">Special thanks to Jonny Al-Ashari for the Advanced Rules inspiration.</p>
+</main></body></html>
