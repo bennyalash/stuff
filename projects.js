@@ -46,7 +46,7 @@ Behind the scenes, GIBBS leverages modern front-end scripting and modular game s
 As an ongoing live digital project, GIBBS serves as both a public-facing web game and a testbed for innovative game engine patterns in JavaScript, real-time client-server event messaging, and modern responsive UI layout architecture across desktop and mobile browsers.`
                 },
                 {
-                    title: "NHS",
+                    title: "National Homeschool Soccer",
                     link: "https://nationalhomeschoolsoccer.com",
                     img: "nhs.png",
                     bg: "#002244",
@@ -67,7 +67,7 @@ Engineered for high traffic during tournament seasons, NHS provides rapid mobile
         type: "Board Game",
         bg: "#530D00",
         buy: "https://buy.stripe.com/6oU00i97f2CW7dWdXO2cg03",
-
+        cta: 'View Rules',
         rate: 5,
         description: `Feed ’Yer Mama is a fast, funny strategy card game for 2-5 players about raising animals, growing plants, and racing to be the first to fill Mama’s belly. It plays out as a quick engine-building race, with a twist: every time someone feeds Mama, the next meal costs more Food for everyone.<br />
 <br />
@@ -76,7 +76,21 @@ On your turn, you gather resources (2 Coins, 1 Food, or a new card), put your an
 The farm is not a safe place, though. Wolves hunt your animals, Goats devour your plants, Raccoons and Foxes swipe resources and abilities, and a well-timed Dog can protect your whole flock. Mixing a little mischief with smart planning is how you get ahead.
 <br /><br />
 The first player to feed Mama the required number of times wins, and the target scales with the group size, so the game stays tight at any table. Rules are simple enough to teach in a few minutes, and there’s depth to grow into with the optional advanced rules: a face-up Market, a Roll to Shop mode, and Lucky and Unlucky Rolls.
-`},
+`},{
+        title: "Go Bee",
+        link: "https://gobeegame.netlify.app",
+        img: "gobee.png",
+        type: "Online Game",
+        bg: "#ffce31",
+        rate: 4,
+        description: `Go Bee is a vibrant, browser-based arcade game that combines quick reflexes, timing, and precision movement. Players control a busy bee navigating through increasingly tricky obstacle courses, collecting nectar, avoiding predators, and keeping momentum alive across fast-paced single-run challenges.
+        <br />
+<br />
+The game features smooth physics controls designed for instant pick-up-and-play accessibility on desktop keyboards or touchscreen mobile devices. As players progress through levels, environmental hazards become more complex, introducing shifting wind currents, closing gates, and moving obstacles that demand split-second spatial decisions.
+<br />
+<br />
+Wrapped in a bold, cheerful yellow visual aesthetic, Go Bee captures classic arcade charm with modern web engine responsiveness. High-score tracking and instant replay loops encourage players to refine their routes and master tight tight maneuvers.`
+    },
     /*
     {
         title: "Monkey vs Wizard",
@@ -94,21 +108,7 @@ The core card engine relies on managing action economy and hand tempo. The Wizar
 Featuring custom card illustrations and punchy graphical cues, Monkey vs Wizard delivers quick 15-to-20 minute sessions filled with dramatic turnarounds. The tension between meticulous preparation and unpredictable chaos creates a distinct tactical push-and-pull, challenging players to master both sides of this clash.`
     },
     
-    {
-        title: "Go Bee",
-        link: "https://gobeegame.netlify.app",
-        img: "gobee.png",
-        type: "Online Game",
-        bg: "#ffce31",
-        rate: 4,
-        description: `Go Bee is a vibrant, browser-based arcade game that combines quick reflexes, timing, and precision movement. Players control a busy bee navigating through increasingly tricky obstacle courses, collecting nectar, avoiding predators, and keeping momentum alive across fast-paced single-run challenges.
-        <br />
-<br />
-The game features smooth physics controls designed for instant pick-up-and-play accessibility on desktop keyboards or touchscreen mobile devices. As players progress through levels, environmental hazards become more complex, introducing shifting wind currents, closing gates, and moving obstacles that demand split-second spatial decisions.
-<br />
-<br />
-Wrapped in a bold, cheerful yellow visual aesthetic, Go Bee captures classic arcade charm with modern web engine responsiveness. High-score tracking and instant replay loops encourage players to refine their routes and master tight tight maneuvers.`
-    },
+    
     {
         title: "eFilmHub",
         link: "https://efilmhub.com",

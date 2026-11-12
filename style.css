@@ -82,7 +82,7 @@ canvas {
 }
 
 .title {
-    font-size: calc(8px + 0.5vw);
+    font-size: calc(10px + 0.1vw);
     color: #333;
     font-weight: 500;
     margin-top: 5px;
@@ -140,7 +140,7 @@ a {
     }
 
 .category {
-    font-size: calc(6px + 0.3vw);
+    font-size: calc(8px + 0.1vw);
 }
 
 .project-detail-header {
