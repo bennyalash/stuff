@@ -28,6 +28,17 @@
     <script>
         const sortedData = projectsData.sort((a, b) => b.rate - a.rate);
 
+        // Convert project title into a URL-safe slug (e.g., "My App!" -> "my-app")
+        function slugify(text) {
+            return text
+                .toString()
+                .toLowerCase()
+                .trim()
+                .replace(/\s+/g, '-')        // Replace spaces with -
+                .replace(/[^\w\-]+/g, '')    // Remove all non-word chars
+                .replace(/\-\-+/g, '-');     // Replace multiple - with single -
+        }
+
         function renderProjects(projects) {
             const container = document.getElementById("projectsGrid");
 
@@ -35,14 +46,14 @@
                 const innerContent = `
                     <div class="image" style="background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1)), ${project.bg || '#000'}">
                         ${project.img
-                    ? `<img src="images/project_logos/${project.img}" class="${project.bg ? 'logo' : ''}" alt="${project.title}">`
+                            ? `<img src="images/project_logos/${project.img}" class="${project.bg ? 'logo' : ''}" alt="${project.title}">`
                             : `<div>${project.title}</div>`}
                     </div>
                 `;
 
                 return `
                     <div class="project">
-                        <div onclick="openDetail(${index})">${innerContent}</div>
+                        <div onclick="openDetail(${index}, true)">${innerContent}</div>
                         <div class="title">
                             <h3>${project.title}</h3>
                             <div class="category">${project.type.toUpperCase()}</div>
@@ -52,8 +63,10 @@
             }).join('');
         }
 
-        function openDetail(index) {
+        function openDetail(index, updateHash = true) {
             const project = sortedData[index];
+            if (!project) return;
+
             document.getElementById("projectsGrid").style.display = "none";
             document.getElementById("header").style.display = "none";
 
@@ -80,15 +93,44 @@
                 <p>${project.description || ''}</p>
                 <button onclick="closeDetail()" style="margin-top: 15px; cursor: pointer;">Back to All Projects</button>
             `;
+
+            // Set the URL hash to the slugified project title
+            if (updateHash) {
+                window.location.hash = slugify(project.title);
+            }
         }
 
         function closeDetail() {
             document.getElementById("projectDetail").style.display = "none";
             document.getElementById("projectsGrid").style.display = "grid";
             document.getElementById("header").style.display = "block";
+
+            // Clear the hash from the URL when returning to the main grid
+            if (history.pushState) {
+                history.pushState("", document.title, window.location.pathname + window.location.search);
+            } else {
+                window.location.hash = '';
+            }
         }
 
+        // Match the URL hash against the slugified project titles
+        function handleRouting() {
+            const hash = window.location.hash.replace('#', '');
+            if (hash) {
+                const index = sortedData.findIndex(project => slugify(project.title) === hash);
+                if (index !== -1) {
+                    openDetail(index, false);
+                    return;
+                }
+            }
+            closeDetail();
+        }
+
+        window.addEventListener('hashchange', handleRouting);
+
+        // Initial render & route check
         renderProjects(sortedData);
+        handleRouting();
     </script>
 </body>
 </html>
